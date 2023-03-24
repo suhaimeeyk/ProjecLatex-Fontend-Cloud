@@ -19,7 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-
+import { useParams } from 'react-router-dom';
 
 function fncSum() {
 
@@ -84,62 +84,63 @@ const theme = createTheme();
 
 export default function SignUp() {
 
-    const [users_id, setusers_id] = useState('');
+    const [users_id,setusers_id] = useState('');
 
     useEffect(() => {
-
-        const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
-            method: 'POST', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
+  
+      const token = localStorage.getItem('token')
+      fetch('http://localhost:3333/authen', {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
+          },
         })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.status === 'ok') {
-
-                    setusers_id(data.decoded['users_id'])
-                    // console.log(data.decoded['users_name'])
-
-                } else {
-                    alert('authen failed')
-                    localStorage.removeItem('token');
-                    window.location = '/login'
-                    // console.log('asdasdasd')
-
-
-                }
-
-            })
-
-
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
-
-    }, [])
-
-
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
+          .then((response) => response.json())
+          .then((data) => {
+              if(data.status === 'ok' ) {
+  
+                  setusers_id(data.decoded['users_id'])
+                //   console.log(data.decoded['users_name'])
+  
+              }else{
+                  alert('authen failed')
+                  localStorage.removeItem('token');
+                  window.location ='/login'
+                  // console.log('asdasdasd')
+  
+                  
+              }
+              
+          })
+  
+          
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+  
+  
+  }, [])
 
 
-        fetch("http://localhost:3333/db_dataSelect/" + users_id, requestOptions)
-            .then(res => res.json())
-            .then((result) => {
-                setItems(result);
-                console.log(result)
-            }
-            )
-    }, [users_id])
+  const [items, setItems] = useState([]);
+        
+  useEffect(() => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+
+
+    fetch("http://localhost:3333/db_dataSelect/"+users_id , requestOptions)
+    .then(res => res.json())
+    .then((result) => {
+        setItems(result);
+        console.log(result)
+      }
+    )
+  }, [users_id])
+
     // const [selectedOption,setSelectedOption] = useState(0);
 
     const [Users, setUsers] = useState([]);
@@ -201,6 +202,9 @@ export default function SignUp() {
             data_dryrubber: data.get('data_dryrubber'),
             data_price: data.get('data_price'),
             data_pricetotal: data.get('data_pricetotal'),
+            data_percent: '0',
+            data_shareprice: '0',
+            status_id: '0',
         }
         console.log(jsonData)
 
@@ -224,6 +228,8 @@ export default function SignUp() {
                         console.log(data)
                     } else {
                         alert('register failed')
+                        console.log(data)
+
 
                     }
 
@@ -446,7 +452,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="/user/datadisplay" variant="body2">
+                                <Link href="/datadisplay" variant="body2">
                                     BACK
                                 </Link>
                             </Grid>

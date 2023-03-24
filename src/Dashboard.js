@@ -22,7 +22,15 @@ import { experimentalStyled as muiStyled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
+import moment from 'moment';
+import 'moment/locale/th';
+
+
+
+
+
 import {
+    ResponsiveContainer,
     LineChart,
     Line,
     XAxis,
@@ -30,9 +38,12 @@ import {
     CartesianGrid,
     Tooltip,
     Legend,
-    ReferenceLine, BarChart, Bar, ResponsiveContainer
+    Label,
+    ReferenceArea,
+    ComposedChart,
+    Area,
+    ReferenceLine, BarChart, Bar, PieChart, Pie, Sector, Cell
 } from "recharts";
-
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -99,7 +110,8 @@ const mdTheme = createTheme();
 
 
 function DashboardContent() {
-    const [open, setOpen] = React.useState(false); // nacbar
+
+    const [open, setOpen] = React.useState(true); // nacbar
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -148,6 +160,50 @@ function DashboardContent() {
         window.location = '/login'
     }
 
+    const colorsCustomShapeBarChart = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF0000', '#FF00DC', '#001FFF', '#00B148'];
+
+    
+
+    const getPath = (x, y, width, height) => {
+        return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
+        ${x + width / 2}, ${y}
+        C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
+        Z`;
+    };
+
+    const TriangleBar = (props) => {
+        const { fill, x, y, width, height } = props;
+
+        return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
+    };
+
+
+    const data3 = [
+        { name: 'Group A', value: 400 },
+        { name: 'Group B', value: 300 },
+        { name: 'Group C', value: 300 },
+        { name: 'Group D', value: 200 },
+    ];
+
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF0000', '#FF00DC', '#001FFF', '#00B148'];
+
+
+    const RADIAN = Math.PI / 180;
+
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                {`${(percent * 100).toFixed(0)}%`} 
+            </text>
+            
+            
+        );
+    };
+
     const data2 = [
         {
             name: "Page A",
@@ -192,6 +248,70 @@ function DashboardContent() {
             amt: 2100
         }
     ];
+
+
+
+    const [manuredisplayALL, setmanuredisplayALL] = useState('');
+    const [db_manure_date, setdb_manure_date] = useState('');
+
+
+    useEffect(() => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:3333/manuredisplayALL/", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                if (result['status'] === 'Ok') {
+
+                    setmanuredisplayALL(result['data'])
+
+                }
+            })
+            .catch(error => console.log('error', error));
+    }, [])
+
+    const dateFormat = 'DD/MM/YYYY';
+
+
+    const [db_dataALL, setdb_dataALL] = useState([]);
+
+    const UserGetdb_pricerubbers = () => {
+        fetch("http://localhost:3333/db_dataALL")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setdb_dataALL(result['data']);
+                    // console.log(result['data'])
+
+                }
+            )
+    }
+
+    useEffect(() => {
+        UserGetdb_pricerubbers()
+    }, [])
+
+    const [revealdisplayALL, setrevealdisplayALL] = useState([]);
+
+    const UserrevealdisplayALL = () => {
+        fetch("http://localhost:3333/revealdisplayALL")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setrevealdisplayALL(result['data']);
+                    // console.log(result['data'])
+
+                }
+            )
+    }
+
+    useEffect(() => {
+        UserrevealdisplayALL()
+    }, [])
+
 
     const data = [
         {
@@ -238,10 +358,106 @@ function DashboardContent() {
         },
     ];
 
+    const data4 = [
+        {
+            name: 'Page A',
+            uv: 4000,
+            pv: 2400,
+            amt: 2400,
+        },
+        {
+            name: 'Page B',
+            uv: 3000,
+            pv: 1398,
+            amt: 2210,
+        },
+        {
+            name: 'Page C',
+            uv: 2000,
+            pv: 9800,
+            amt: 2290,
+        },
+        {
+            name: 'Page D',
+            uv: 2780,
+            pv: 3908,
+            amt: 2000,
+        },
+        {
+            name: 'Page E',
+            uv: 1890,
+            pv: 4800,
+            amt: 2181,
+        },
+        {
+            name: 'Page F',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+        {
+            name: 'Page G',
+            uv: 3490,
+            pv: 4300,
+            amt: 2100,
+        },
+    ];
 
+
+
+    const initialData = [
+        { name: 1, cost: 4.11, impression: 100 },
+        { name: 2, cost: 2.39, impression: 120 },
+        { name: 3, cost: 1.37, impression: 150 },
+        { name: 4, cost: 1.16, impression: 180 },
+        { name: 5, cost: 2.29, impression: 200 },
+        { name: 6, cost: 3, impression: 499 },
+        { name: 7, cost: 0.53, impression: 50 },
+        { name: 8, cost: 2.52, impression: 100 },
+        { name: 9, cost: 1.79, impression: 200 },
+        { name: 10, cost: 2.94, impression: 222 },
+        { name: 11, cost: 4.3, impression: 210 },
+        { name: 12, cost: 4.41, impression: 300 },
+        { name: 13, cost: 2.1, impression: 50 },
+        { name: 14, cost: 8, impression: 190 },
+        { name: 15, cost: 0, impression: 300 },
+        { name: 16, cost: 9, impression: 400 },
+        { name: 17, cost: 3, impression: 200 },
+        { name: 18, cost: 2, impression: 50 },
+        { name: 19, cost: 3, impression: 100 },
+        { name: 20, cost: 7, impression: 100 },
+    ];
+
+    const getAxisYDomain = (from, to, ref, offset) => {
+        const refData = initialData.slice(from - 1, to);
+        let [bottom, top] = [refData[0][ref], refData[0][ref]];
+        refData.forEach((d) => {
+            if (d[ref] > top) top = d[ref];
+            if (d[ref] < bottom) bottom = d[ref];
+        });
+
+        return [(bottom | 0) - offset, (top | 0) + offset];
+    };
+
+    const initialState = {
+        data: initialData,
+        left: 'dataMin',
+        right: 'dataMax',
+        refAreaLeft: '',
+        refAreaRight: '',
+        top: 'dataMax+1',
+        bottom: 'dataMin-1',
+        top2: 'dataMax+20',
+        bottom2: 'dataMin-20',
+        animation: true,
+    };
+
+
+    moment.locale('th');
 
 
     return (
+
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
@@ -329,62 +545,129 @@ function DashboardContent() {
                         <br></br>
                         <br></br>
                         <br></br>
-                        <br></br>
+
 
                         <Grid container spacing={2}>
-                            <Grid item xs={8}>
+
+                            <Grid item xs={12} sm={8}>
                                 <Item>
-                                    <LineChart
-                                        width={750}
-                                        height={300}
-                                        data={data} ///เปลี่ยน Data
-                                        margin={{
-                                            top: 20,
-                                            right: 50,
-                                            left: 20,
-                                            bottom: 5
-                                        }}
-                                    >
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="name" />
-                                        <YAxis />
-                                        <Tooltip />
-                                        <Legend />
-                                        <ReferenceLine x="Page C" stroke="red" label="Max PV PAGE" />
-                                        <ReferenceLine y={9800} label="Max" stroke="red" />
-                                        <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                                        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                                    </LineChart>
+                                    <Typography variant="h6" gutterBottom >
+                                        ยอดรายการขายน้ำยาง
+                                    </Typography>
+                                    <ResponsiveContainer width="100%" aspect={2}>
+                                        <BarChart
+                                            width={600}
+                                            height={300}
+                                            data={db_dataALL}
+                                            margin={{
+                                                top: 20,
+                                                right: 30,
+                                                left: 20,
+                                                bottom: 5,
+                                            }}
+                                        >
+                                            <CartesianGrid strokeDasharray="3 3" />
+                                            <XAxis dataKey="customer_name" />
+                                            <YAxis />
+                                            <Bar dataKey="data_pricetotal" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                                                {data.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={colorsCustomShapeBarChart[index % 20]} />
+                                                ))}
+                                            </Bar>
+                                        </BarChart>
+                                    </ResponsiveContainer>
                                 </Item>
                             </Grid>
-                            <Grid item xs={4}>
-                                <Item> <BarChart
-                                    width={350}
-                                    height={300}
-                                    data={data}
-                                    margin={{
-                                        top: 20,
-                                        right: 30,
-                                        left: 20,
-                                        bottom: 5
-                                    }}
-                                    fullWidth
-                                >
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-                                    <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
-                                </BarChart></Item>
+
+                            <Grid item xs={12} sm={8} md={4}>
+                                <Item>
+                                    <Typography variant="h6" gutterBottom >
+                                        เปอร์เซ็นรายการขายน้ำยาง
+                                    </Typography>
+                                    <ResponsiveContainer width="100%" aspect={1}>
+                                        <PieChart width={400} height={100}>
+                                            <Pie
+                                                data={db_dataALL}
+                                                cx="50%"
+                                                cy="50%"
+                                                labelLine={false}
+                                                label={renderCustomizedLabel}
+                                                outerRadius={170}
+                                                fill="#8884d8"
+                                                dataKey="data_pricetotal"
+                                            >
+                                                
+                                                {data.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                                ))}
+                                            </Pie>
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                </Item>
                             </Grid>
-                            <Grid item xs={4}>
-                                <Item>xs=4</Item>
+
+                            <Grid item xs={12} sm={12}>
+                                <Item>
+                                    <Typography variant="h6" gutterBottom >
+                                        กราฟรายการค่าปุ๋ย
+                                    </Typography>
+                                    <ResponsiveContainer width="100%" aspect={2}>
+                                        <ComposedChart width={300} height={100} data={manuredisplayALL}>
+                                            {/* <XAxis dataKey="db_manure_date" /> */}
+                                            <XAxis dataKey="db_manure_date"
+                                                tickFormatter={(date) => moment.utc(date).local().format('D MMMM YYYY')} />
+                                            <Tooltip labelFormatter={(date) => moment.utc(date).local().format('D MMMM YYYY')} />
+                                            <YAxis />
+                                            <YAxis orientation="right" yAxisId="2" />
+                                            <Tooltip />
+                                            <CartesianGrid stroke="#f5f5f5" />
+                                            <Legend />
+                                            <Area label="" type="monotone" dataKey="ค่าหลังจ่าย" fill="#8884d8" stroke="#8884d8" />
+                                            <Bar dataKey="ค่าที่จ่าย" stackId="a" barSize={20} fill="#FF0000" />
+                                            <Bar dataKey="ผลรวมค่าปุ๋ย" stackId="b" barSize={20} fill="#413ea0" /> // ผลร่วมค่าปุ๋ย ตัวแปร
+                                            <Line type="monotone" dataKey="ชื่อ" stroke="#ff7300" />
+                                            <Line type="monotone" dataKey="ชื่อผู้ดูแล" stroke="#ff7300" />
+                                            {/* <Line label="" yAxisId="2" dataKey="ค่าที่จ่าย" stroke="#FF0000" /> */}
+                                        </ComposedChart>
+
+                                    </ResponsiveContainer>
+                                </Item>
                             </Grid>
-                            <Grid item xs={8}>
-                                <Item>xs=8</Item>
+
+                            <Grid item xs={12} sm={6}>
+                                <Item>
+                                <Typography variant="h6" gutterBottom >
+                                        กราฟรายการเบิก/จ่าย
+                                    </Typography>
+                                    <ResponsiveContainer width="100%" aspect={1}>
+                                        <BarChart
+                                            width={400}
+                                            height={300}
+                                            data={revealdisplayALL}
+                                            margin={{
+                                                top: 20,
+                                                right: 30,
+                                                left: 20,
+                                                bottom: 5
+                                            }}
+                                            fullWidth
+                                        >
+                                            <CartesianGrid strokeDasharray="3 3" />
+                                            <XAxis dataKey="ชื่อ"  barSize={20} />
+                                            <YAxis />
+                                            <Tooltip />
+                                            <Legend />
+                                            <Bar dataKey="ค่าที่จ่าย" stackId="a"  barSize={20} fill="#E20000" />
+                                            <Bar dataKey="ค่าหลังจ่าย" stackId="b"   barSize={20} fill="#00D83B" />
+                                            <Bar dataKey="ผลรวมค่ารายการเบิก" stackId="c"  barSize={20}  fill="#00B2EA" />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </Item>
                             </Grid>
+
+
+
+
                         </Grid>
 
 
@@ -401,6 +684,7 @@ function DashboardContent() {
 
         </ThemeProvider>
     );
+
 }
 
 export default function Dashboard() {

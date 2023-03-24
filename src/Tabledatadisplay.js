@@ -181,34 +181,6 @@ export default function Users() {
             .catch(error => console.log('error', error));
     }
 
-    
-    const [data, setData] = useState([
-        { id: 1, name: "มูฮำหมัด", age: 30, city: "New York" },
-        { id: 2, name: "Jane Doe", age: 25, city: "London" },
-        { id: 3, name: "Bob Smith", age: 40, city: "Paris" }
-      ]);
-
-
-    
-
-
-
-    // function MyDocument() {
-    //     return (
-    //       <Document>
-    //         <Page>
-    //           <View>
-    //             <Text> เทส (Hello world in Thai)</Text>
-    //           </View>
-    //         </Page>
-    //       </Document>
-    //     );
-    //   }
-
-
-  
-
-
 
 
 
@@ -305,8 +277,8 @@ export default function Users() {
                                                     <Button > ยังไม่ได้ทำรายการ </Button>
                                                     : null}
                                                 {results.status_id === 1 ? <p>เบิกทั้งหมด</p> : null}
-                                                {results.status_id === 3 ? <p>คูณ 45</p> : null}
-                                                {results.status_id === 2 ? <p>%2</p> : null}
+                                                {results.status_id === 2 ? <p>45% - 55%</p> : null}
+                                                {results.status_id === 3 ? <p>%2</p> : null}
                                             </TableCell>
 
 
@@ -334,8 +306,8 @@ export default function Users() {
                                                                     </ButtonGroup>
                                                                 </MenuItem>
                                                                 <MenuItem onClick={() => Process_owner(results.data_id)}>เจ้าของส่วนกรีดยางเอง</MenuItem>
-                                                                <MenuItem onClick={() => Process_divide(results.data_id)}>ลูกจ้าง %2</MenuItem>
-                                                                <MenuItem onClick={() => Process_percent(results.data_id)}>45% - 55%</MenuItem>
+                                                                <MenuItem onClick={() =>Process_percent(results.data_id)}>ลูกจ้าง %2</MenuItem>
+                                                                <MenuItem onClick={() => Process_divide(results.data_id)}>45% - 55%</MenuItem>
 
                                                                 {/* <MenuItem> <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
                                                                     {({ blob, url, loading, error }) =>

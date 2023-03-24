@@ -49,6 +49,7 @@ import Manureeditform from './Manureeditform'
 import Revealditform from './Revealditform'
 import Revealdisplay_detail from './Revealdisplay_detail'
 import Dashboard from './Dashboard'
+import Profit from './Profit'
 
 
 
@@ -103,6 +104,7 @@ root.render(
         <Route path="/Manureeditform/:manure_id" element={<Manureeditform />} />
         <Route path="/Revealditform/:reveal_id" element={<Revealditform />} />
         <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Profit" element={<Profit />} />
 
 
 

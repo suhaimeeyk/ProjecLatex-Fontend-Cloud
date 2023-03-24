@@ -14,8 +14,14 @@ import AddCardIcon from '@mui/icons-material/AddCard';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Link from '@mui/material/Link';
 
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+
+
 
 export const mainListItems = (
+
+
     <React.Fragment>
 
         <Link href="/Dashboard" underline="none">
@@ -54,12 +60,17 @@ export const mainListItems = (
             </ListItemButton>
         </Link>
 
-        <ListItemButton>
-            <ListItemIcon>
-                <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="ข้อมูลรายรับรายจ่าย" />
-        </ListItemButton>
+        <Link href="/Profit" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <LayersIcon />
+                </ListItemIcon>
+                <ListItemText primary="ข้อมูลรายรับและรายจ่าย" />
+            </ListItemButton>
+        </Link>
+
+
+
 
     </React.Fragment>
 );
