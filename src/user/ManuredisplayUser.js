@@ -13,39 +13,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
 import Container from '@mui/material/Container';
-import TableProfit from './TableProfit';
+import TableManuredisplayUser from './TableManuredisplayUser';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-import { experimentalStyled as muiStyled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-
-import moment from 'moment';
-import 'moment/locale/th';
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  Label,
-  ReferenceArea,
-  ComposedChart,
-  Area,
-  ReferenceLine, BarChart, Bar, PieChart, Pie, Sector, Cell
-} from "recharts";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 const drawerWidth = 240;
 
@@ -237,7 +208,7 @@ window.location ='/login'
 
 {/* เพิ่มเติมตรงนี้ */}
    
-             <TableProfit/>
+             <TableManuredisplayUser/>
     
         </Box>
 

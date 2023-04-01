@@ -214,6 +214,8 @@ export default function Users() {
                                     {/* <TableCell align="center"></TableCell> */}
                                     <TableCell align="lift">วันที่ทำรายการ</TableCell>
                                     <TableCell align="lift">ชื่อลูกค้า</TableCell>
+                                    <TableCell align="lift">จำนวนเงินทั้งหมด</TableCell>
+
                                     <TableCell align="lift">ประเภท</TableCell>
                                     <TableCell align="lift">น้ำหนักรวมทั้งหมด</TableCell>
                                     <TableCell align="lift">น้ำหนักแกลลอน</TableCell>
@@ -221,7 +223,6 @@ export default function Users() {
                                     {/* <TableCell align="lift">เปอร์เซ็น</TableCell> */}
                                     <TableCell align="lift">น้ำยาแห้ง</TableCell>
                                     <TableCell align="lift">ราคา</TableCell>
-                                    <TableCell align="lift">จำนวนเงินทั้งหมด</TableCell>
                                     <TableCell align="lift">เงินแบ่ง</TableCell>
                                     <TableCell align="lift">เงินฝาก</TableCell>
                                     <TableCell align="lift">สถานะ</TableCell>
@@ -252,6 +253,8 @@ export default function Users() {
                                             </TableCell>
 
                                             <TableCell align="lift">{results.customer_name}</TableCell>
+                                            <TableCell align="lift">{results.data_pricetotal}</TableCell>
+
                                             <TableCell align="lift">{results.catwithdraw_name}</TableCell>
                                             <TableCell align="lift">{results.data_totalgallon}</TableCell>
                                             <TableCell align="lift">{results.data_wgallon}</TableCell>
@@ -259,7 +262,6 @@ export default function Users() {
                                             {/* <TableCell align="lift">{results.data_percent}</TableCell> */}
                                             <TableCell align="lift">{results.data_dryrubber}</TableCell>
                                             <TableCell align="lift">{results.data_price}</TableCell>
-                                            <TableCell align="lift">{results.data_pricetotal}</TableCell>
                                             <TableCell align="lift">
                                                 {results.data_shareprice === 0 ?
                                                     <p><Button > ยังไม่ได้ทำรายการ </Button></p>

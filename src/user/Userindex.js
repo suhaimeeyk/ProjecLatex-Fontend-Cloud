@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React,{ useState,useEffect } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -9,14 +9,28 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import Container from '@mui/material/Container';
-import Users from './Users';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Logo from "../img/LOGO.png";
+import { useParams } from 'react-router-dom';
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 
@@ -70,6 +84,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 
+
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -77,55 +92,117 @@ function DashboardContent() {
   };
 
   
-  const [users_name,setusers_name] = useState('');
-  
+  const [users_id, setusers_id] = useState('');
+
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    fetch('http://localhost:3333/authen', {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+ token
-        },
+
+      const token = localStorage.getItem('token')
+      fetch('http://localhost:3333/authen', {
+          method: 'POST', // or 'PUT'
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+          },
       })
-        .then((response) => response.json())
-        .then((data) => {
-            if(data.status === 'ok' ) {
+          .then((response) => response.json())
+          .then((data) => {
+              if (data.status === 'ok') {
 
-                setusers_name(data.decoded['users_name'])
-                // console.log(data.decoded['users_name'])
+                  setusers_id(data.decoded['users_id'])
+                  //   console.log(data.decoded['users_name'])
 
-            }else{
-                alert('authen failed')
-                localStorage.removeItem('token');
-                window.location ='../login'
-                // console.log('asdasdasd')
+              } else {
+                  alert('authen failed')
+                  localStorage.removeItem('token');
+                  window.location = '/login'
+                  // console.log('asdasdasd')
 
-                
-            }
-            
-        })
 
+              }
+
+          })
+
+
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+
+
+  }, [])
+
+  const [users_name,setUsers_name] = useState('');
+  const [users_tel,setUsers_tel] = useState('');
+  const [users_usersname,setUsers_usersname] = useState('');
+
+  useEffect( () => {
+      var requestOptions = {
+          method: 'GET',
+          redirect: 'follow'
+        };
         
-        .catch((error) => {
-          console.error('Error:', error);
-        });
+        fetch("http://localhost:3333/EditUser/"+users_id, requestOptions)
+          .then(response => response.json())
+          .then(result => {
+              if (result['status'] === 'Ok') {
+                  
+                  setUsers_name(result['data']['users_name'])
+                  setUsers_tel(result['data']['users_tel'])
+                  setUsers_usersname(result['data']['users_usersname'])
+                  console.log(result['data'])
+
+              }
+          })
+          .catch(error => console.log('error', error));
+  }, [users_id])
 
 
-}, [])
+const handleSubmit = (event) => {
+  event.preventDefault();
 
+  var data = new FormData(event.currentTarget);
+  
+  var  jsonData = {
+    users_id: users_id,
+    users_usersname: data.get('users_usersname'),
+    users_password: data.get('users_password'),
+    users_name : data.get('users_name'),
+    users_tel : data.get('users_tel'),
+    level : data.get('level'),
+  }
+//   console.log(jsonData)
 
-const handleLogout = (event) => {
-event.preventDefault();
-localStorage.removeItem('token');
-window.location ='/login'
-}
+  if ( (jsonData.users_usersname && jsonData.users_name && jsonData.users_password && jsonData.users_tel && jsonData.level ) ==='') {
+      alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
+    }else{
 
+  
+  fetch('http://localhost:3333/EditUser', {
+      method: 'PUT', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jsonData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+      if(data.status === 'Ok' ) {
+          window.location ='/user/Userindex'
+          alert('แก้ข้อมูลเรียบร้อย')
+//   console.log(data)
 
+      }else{
+          alert('register failed')
+      }
 
+      })
+      
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 
-
-
+  }
+};
+  
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -156,23 +233,12 @@ window.location ='/login'
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Latex Purchasing Platfrom
+              Dashboard
             </Typography>
             <IconButton color="inherit">
-                
-            <Stack direction="row" spacing={2}>
-             <Button 
-               style={{
-                borderRadius: 35,
-                backgroundColor: "#d50000"
-            }}
-             variant="contained"  onClick={handleLogout}> {users_name} | Logout</Button>
-            </Stack>
-
-              {/* <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
-              </Badge> */}
-              
+              </Badge>
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -181,6 +247,7 @@ window.location ='/login'
           <Toolbar
             sx={{
               display: 'flex',
+              alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
             }}
@@ -209,15 +276,135 @@ window.location ='/login'
           }}
         >
 
-{/* เพิ่มเติมตรงนี้ */}
-        <Container maxWidth="lg" sx={{ mt: 10, mb: 5 }}> 
-             <Users/>
-        </Container>
+            <Container  maxWidth="lg" sx={{ mt: 11, mb: 5 }}> 
+                <Paper >
+                {/* EditUser */}
+                <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+             <Box
+            component="img"
+            sx={{
+            height: 150,
+            }}
+            alt="Your logo."
+            src={Logo}
+        />
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+            {/* <LockOutlinedIcon /> */}
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Edit Users
+          </Typography>
 
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="users_name"
+                  required
+                  fullWidth
+                  id="users_name"
+                  label="Name"
+                  onChange={ (e) => setUsers_name(e.target.value)}
+                  value={users_name}
+                />
+              </Grid>
+              
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="users_tel"
+                  label="Tell"
+                  name="users_tel"
+                  autoComplete="family-name"
+                  onChange={ (e) => setUsers_tel(e.target.value)}
+                  value={users_tel}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="users_usersname"
+                  label="Email Address"
+                  name="users_usersname"
+                  autoComplete="email"
+                  onChange={ (e) => setUsers_usersname(e.target.value)}
+                  value={users_usersname}
+
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="users_password"
+                  label="กรุณาใส่รหัสผ่านใหม่"
+                  type="password"
+                  id="users_password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+
+              <Grid item xs={12} >
+                        <FormControl fullWidth>
+                                <InputLabel name="level" id="level">สถานะ</InputLabel>
+                                <Select
+                                labelId="demo-simple-select-label"
+                                id="level"
+                                label="ผุู้ดูแล"
+                                name="level"
+                                >
+                                    <MenuItem value="2">ผู้ใช้</MenuItem>
+                                </Select>
+                        </FormControl>
+                </Grid>
+
+              {/* <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="ยอมรับการสร้างบัญชี."
+                />
+              </Grid> */}
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              ยืนยันการแก้ไข
+            </Button>
+            <Grid container justifyContent="flex-end">
+       
+            </Grid>
+          </Box>
+          <hr/>
         </Box>
 
-      </Box>
+      </Container>
+                {/* EndEditUser */}
 
+                </Paper>
+            </Container>
+
+
+
+
+        </Box>
+      </Box>
       
     </ThemeProvider>
   );
@@ -226,11 +413,4 @@ window.location ='/login'
 export default function Dashboard() {
   return <DashboardContent />;
 }
-
-
-
-
-
-
-
 

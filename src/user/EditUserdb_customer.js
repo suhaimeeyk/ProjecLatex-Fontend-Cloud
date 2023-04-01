@@ -415,11 +415,11 @@ const [items, setItems] = useState([]);
                 
                 <Grid item xs={12} sm={6} >
                         <FormControl fullWidth>
-                                <InputLabel name="db_users_id" id="db_users_id">ผุู้ดูแล</InputLabel>
+                                <InputLabel name="db_users_id" id="db_users_id">ผู้ดูแล</InputLabel>
                                 <Select
                                 labelId="demo-simple-select-label"
                                 id="db_users_id"
-                                label="ผุู้ดูแล"
+                                label="ผู้ดูแล"
                                 name="db_users_id"
 
                                 >

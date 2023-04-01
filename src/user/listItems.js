@@ -17,82 +17,90 @@ import Link from '@mui/material/Link';
 
 
 export const mainListItems = (
-  <React.Fragment>
+    <React.Fragment>
 
-    <ListItemButton>
-            <ListItemIcon>
-                    <DashboardIcon />
-            </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-    </ListItemButton>
-
-    <Link href="/user/datadisplay" underline="none">
-        <ListItemButton>
+        <Link href="/user/DashboardUser" underline="none">
+            <ListItemButton>
                 <ListItemIcon>
-                        <ShoppingCartIcon />
+                    <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+            </ListItemButton>
+        </Link>
+
+        <Link href="/user/datadisplay" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <ShoppingCartIcon />
                 </ListItemIcon>
                 <ListItemText primary="ข้อมูลการขายยางพารา" />
-        </ListItemButton>
-    </Link>
+            </ListItemButton>
+        </Link>
 
-    <ListItemButton>
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
+        <Link href="/user/ManuredisplayUser" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <PeopleIcon />
+                </ListItemIcon>
                 <ListItemText primary="ค่าปุ๋ย" />
-    </ListItemButton>
+            </ListItemButton>
+        </Link>
 
-    <ListItemButton>
-            <ListItemIcon>
-                <BarChartIcon />
-            </ListItemIcon>
+        <Link href="/user/RevealdisplayUser" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <BarChartIcon />
+                </ListItemIcon>
                 <ListItemText primary="เบิกล่วงหน้า" />
-    </ListItemButton>
+            </ListItemButton>
+        </Link>
 
-    <ListItemButton>
-            <ListItemIcon>
-                <LayersIcon />
-            </ListItemIcon>
-                 <ListItemText primary="ข้อมูลรายรับรายจ่าย" />
-    </ListItemButton>
+        <Link href="/user/ProfitUser" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <LayersIcon />
+                </ListItemIcon>
+                <ListItemText primary="ข้อมูลรายรับรายจ่าย" />
+            </ListItemButton>
+        </Link>
 
-  </React.Fragment>
+    </React.Fragment >
 );
 
 export const secondaryListItems = (
-  <React.Fragment>
-    <ListSubheader component="div" align="lift"  inset>
-    รายการส่วนตัว
-    </ListSubheader>
+    <React.Fragment>
+        <ListSubheader component="div" align="lift" inset>
+            รายการส่วนตัว
+        </ListSubheader>
 
-    <Link href="/user/Userindex" underline="none">
-        <ListItemButton>
-            <ListItemIcon>
-                <AccountCircleIcon />
-            </ListItemIcon>
-            <ListItemText primary="รายการสมาชิกผู้ซื้อ" />
-        </ListItemButton>
-    </Link>
+        <Link href="/user/Userindex" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary="แก้ไขประวัติส่วนตัว" />
+            </ListItemButton>
+        </Link>
 
-    <Link href="/user/Alldb_customer" underline="none">
-        <ListItemButton>
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="รายการสมาชิกลูกค้า" />
-        </ListItemButton>
-    </Link>
+        <Link href="/user/Alldb_customer" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="รายการสมาชิกลูกค้า" />
+            </ListItemButton>
+        </Link>
 
-    <Link href="/user/Alldb_pricerubbers" underline="none">
-        <ListItemButton>
-            <ListItemIcon>
-                <MonetizationOnIcon />
-            </ListItemIcon>
-            <ListItemText primary="รายการราคาน้ำยาง" />
-        </ListItemButton>
-    </Link>
+        <Link href="/user/Alldb_pricerubbers" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <MonetizationOnIcon />
+                </ListItemIcon>
+                <ListItemText primary="รายการราคาน้ำยาง" />
+            </ListItemButton>
+        </Link>
 
 
 
-  </React.Fragment> 
+    </React.Fragment>
 );

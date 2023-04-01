@@ -81,7 +81,6 @@ export default function Users() {
   
 
     const [items, setItems] = useState([]);
-    
 
     useEffect(() => {
         var requestOptions = {
@@ -98,6 +97,24 @@ export default function Users() {
           }
         )
       }, [users_id])
+    
+
+
+    // useEffect(() => {
+    //     var requestOptions = {
+    //         method: 'GET',
+    //         redirect: 'follow'
+    //     };
+
+
+    //     fetch("http://localhost:3333/Revealdisplay", requestOptions)
+    //         .then(res => res.json())
+    //         .then((result) => {
+    //             setItems(result);
+    //             console.log(result);
+    //         }
+    //         )
+    // }, [])
 
 
     const UserUpdate = reveal_id => {
@@ -105,10 +122,10 @@ export default function Users() {
     }
 
     const Process_owner = reveal_id => {
-        window.location = '/Revealdisplay_detail/' + reveal_id
+        window.location = '/user/Revealdisplay_detailUser/' + reveal_id
     }
     const Process_divide = reveal_id => {
-        window.location = '/Revealditform/' + reveal_id
+        window.location = '/user/RevealditformUser/' + reveal_id
     }
 
 
@@ -132,7 +149,7 @@ export default function Users() {
             .then((data) => {
                 console.log(data)
                 if (data.status === 'Ok') {
-                    window.location = '/Revealdisplay'
+                    window.location = '/user/RevealdisplayUser'
                     alert('ลบรายการเรียบร้อย')
                 } else {
                     console.log(data.status)

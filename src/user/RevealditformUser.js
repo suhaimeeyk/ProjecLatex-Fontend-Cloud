@@ -24,29 +24,29 @@ import TextField from '@mui/material/TextField';
 // import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Logo from "./img/LOGO.png";
+import Logo from "../img/LOGO.png";
 import { useParams } from 'react-router-dom';
 
 function fncSum() {
 
-    const manure_total = parseFloat(document.frmMain.manure_total.value);
-    const manurePayValue = parseFloat(document.frmMain.manure_pay.value);
-    const manurePayNowValue = parseFloat(document.frmMain.manure_payNow.value);
+    const reveal_total = parseFloat(document.frmMain.reveal_total.value);
+    const revealPayValue = parseFloat(document.frmMain.reveal_pay.value);
+    const revealPayNowValue = parseFloat(document.frmMain.reveal_payNow.value);
 
-    if (isNaN(manurePayValue) || manurePayValue === "") {
-        document.frmMain.manure_pay.focus();
+    if (isNaN(revealPayValue) || revealPayValue === "") {
+        document.frmMain.reveal_pay.focus();
         return;
     }
 
-    if (isNaN(manurePayNowValue) || manurePayNowValue === "") {
-        document.frmMain.manure_payNow.focus();
+    if (isNaN(revealPayNowValue) || revealPayNowValue === "") {
+        document.frmMain.reveal_payNow.focus();
         return;
     }
 
-    if (manurePayValue === 0) {
-        document.frmMain.manure_totalNow.value = manure_total - manurePayNowValue;
+    if (revealPayValue === 0) {
+        document.frmMain.reveal_totalNow.value = reveal_total - revealPayNowValue;
     } else {
-        document.frmMain.manure_totalNow.value = manurePayValue - manurePayNowValue;
+        document.frmMain.reveal_totalNow.value = revealPayValue - revealPayNowValue;
     }
 }
 
@@ -109,10 +109,10 @@ function DashboardContent() {
     };
 
 
-    const { manure_id } = useParams();
+    const { reveal_id } = useParams();
 
     const [customer_name, setcustomer_name] = useState('');
-    const [manure_total, setmanure_total] = useState('');
+    const [reveal_total, setreveal_total] = useState('');
     const [users_id, setusers_id] = useState('');
 
     useEffect(() => {
@@ -121,22 +121,22 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Manureeditform/" + manure_id, requestOptions)
+        fetch("http://localhost:3333/Revealditform/" + reveal_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
 
                     setcustomer_name(result['data']['customer_name'])
-                    setmanure_total(result['data']['manure_total'])
+                    setreveal_total(result['data']['reveal_total'])
                     setusers_id(result['data']['users_id'])
                 }
             })
             .catch(error => console.log('error', error));
-    }, [manure_id])
+    }, [reveal_id])
 
 
     
-    const [manure_sumtotal, setmanure_sumtotal] = useState('');
+    const [reveal_sumtotal, setreveal_sumtotal] = useState('');
 
     useEffect(() => {
         var requestOptions = {
@@ -144,17 +144,17 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Manureeditformdetail/" + manure_id, requestOptions)
+        fetch("http://localhost:3333/Revealditformdetail/" + reveal_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
 
-                    setmanure_sumtotal(result['data']['manure_sumtotal'])
+                    setreveal_sumtotal(result['data']['reveal_sumtotal'])
            
                 }
             })
             .catch(error => console.log('error', error));
-    }, [manure_id])
+    }, [reveal_id])
 
 
     
@@ -172,20 +172,20 @@ function DashboardContent() {
 
         const jsonData = {
             users_id: users_id,
-            manure_total: data.get('manure_totalNow'),
-            manure_id	: manure_id ,
-            manure_sumtotal	: data.get('manure_totalNow'),
-            manure_pay	: data.get('manure_payNow'),
-            manure_total:manure_total,
+            reveal_total: data.get('reveal_totalNow'),
+            reveal_id	: reveal_id ,
+            reveal_sumtotal	: data.get('reveal_totalNow'),
+            reveal_pay	: data.get('reveal_payNow'),
+            reveal_total:reveal_total,
         }
         // console.log(jsonData)
 
 
-        if ((jsonData.manure_id && jsonData.manure_pay ) === '') {
+        if ((jsonData.reveal_id && jsonData.reveal_pay ) === '') {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
-            fetch('http://localhost:3333/editmanure', {
+            fetch('http://localhost:3333/editreveal', {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',
@@ -195,7 +195,7 @@ function DashboardContent() {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.status === 'Ok') {
-                        window.location = '/Manuredisplay_detail/' + manure_id
+                        window.location = '/user/Revealdisplay_detailUser/' + reveal_id
                         alert('ทำรายการเรียบร้อย')
                         console.log(data)
                     } else {
@@ -320,7 +320,7 @@ function DashboardContent() {
                                     </Typography>
 
                                     {/* <Typography component="h1" variant="h5">
-                                        เลขที่รายการ : {manure_id}
+                                        เลขที่รายการ : {reveal_id}
                                     </Typography> */}
 
 
@@ -342,9 +342,9 @@ function DashboardContent() {
                                                 <TextField
                                                     label="ยอดทั้งหมด"
                                                     variant="filled"
-                                                    id='manure_total'
-                                                    name='manure_total'
-                                                    value={manure_total}
+                                                    id='reveal_total'
+                                                    name='reveal_total'
+                                                    value={reveal_total}
                                                     type="number"
                                                     focused
                                                     fullWidth
@@ -356,9 +356,9 @@ function DashboardContent() {
                                                 <TextField
                                                     label="ยอดปัจจุบันทั้งหมด"
                                                     variant="filled"
-                                                    id='manure_pay'
-                                                    name='manure_pay'
-                                                    value={manure_sumtotal ? manure_sumtotal : 0}
+                                                    id='reveal_pay'
+                                                    name='reveal_pay'
+                                                    value={reveal_sumtotal ? reveal_sumtotal : 0}
                                                     type="number"
                                                     focused
                                                     fullWidth
@@ -370,9 +370,9 @@ function DashboardContent() {
 
                                                 <TextField
                                                 fullWidth
-                                                    id="manure_payNow"
+                                                    id="reveal_payNow"
                                                     label="ยอดที่จ่าย"
-                                                    name="manure_payNow"
+                                                    name="reveal_payNow"
                                                     type="number"
                                                     onChange={fncSum} aria-describedby="emailHelp" placeholder=""
                                                 />
@@ -382,9 +382,9 @@ function DashboardContent() {
                                             <Grid item xs={12}>
 
                                                 <TextField
-                                                    id="manure_totalNow"
+                                                    id="reveal_totalNow"
                                                     label="ยอดทั้งหมดหลังจ่าย"
-                                                    name="manure_totalNow"
+                                                    name="reveal_totalNow"
                                                     defaultValue="ยอดทั้งหมด - ยอดที่จ่าย"
                                                     variant="filled"
                                                     InputProps={{
@@ -408,7 +408,7 @@ function DashboardContent() {
                                         </Button>
                                         <Grid container justifyContent="flex-end">
                                             <Grid item>
-                                                <Link href="/Manuredisplay" variant="body2">
+                                                <Link href="/user/RevealdisplayUser" variant="body2">
                                                     BACK
                                                 </Link>
                                             </Grid>
@@ -436,3 +436,4 @@ function DashboardContent() {
 export default function Dashboard() {
     return <DashboardContent />;
 }
+

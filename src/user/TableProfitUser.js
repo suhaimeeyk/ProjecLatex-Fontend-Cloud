@@ -462,7 +462,7 @@ export default function Users() {
             .then((data) => {
                 console.log(data)
                 if (data.status === 'Ok') {
-                    window.location = '/Profit'
+                    window.location = '/user/ProfitUser'
                     alert('ลบรายการเรียบร้อย')
                 } else {
                     console.log(data.status)
@@ -568,7 +568,7 @@ export default function Users() {
                             </Typography>
                         </Box>
                         <Box>
-                            <Link href="CreateProfitfor_day">
+                            <Link href="/user/CreateProfitfor_dayUser">
                                 <Button variant="contained">Create</Button>
                             </Link>
                         </Box>
@@ -652,7 +652,7 @@ export default function Users() {
                             </Typography>
                         </Box>
                         <Box>
-                            <Link href="CreateProfitincome_day">
+                            <Link href="/user/CreateProfitincome_dayUser">
                                 <Button variant="contained">Create</Button>
                             </Link>
                         </Box>
@@ -728,7 +728,7 @@ export default function Users() {
                             </Typography>
                         </Box>
                         <Box>
-                            <Link href="CreateProfit">
+                            <Link href="/user/CreateProfitUser">
                                 <Button variant="contained">Create</Button>
                             </Link>
                         </Box>

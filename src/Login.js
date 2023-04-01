@@ -51,7 +51,7 @@ export default function SignInSide() {
                 })
 
                 localStorage.setItem('token', data.token)
-                window.location ='/album'
+                window.location ='/Dashboard'
                 // alert('success')
         }else if(data.level === '2'){
             // alert('Login failed')
@@ -64,7 +64,7 @@ export default function SignInSide() {
                 })
 
                 localStorage.setItem('token', data.token)
-                window.location ='/user/Userindex'
+                window.location ='/user/DashboardUser'
 
         }else{
             // alert('Login failed')

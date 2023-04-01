@@ -24,7 +24,7 @@ import TextField from '@mui/material/TextField';
 // import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Logo from "./img/LOGO.png";
+import Logo from "../img/LOGO.png";
 import { useParams } from 'react-router-dom';
 
 function fncSum() {
@@ -195,7 +195,7 @@ function DashboardContent() {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.status === 'Ok') {
-                        window.location = '/Manuredisplay_detail/' + manure_id
+                        window.location = '/Manuredisplay_detailUser/' + manure_id
                         alert('ทำรายการเรียบร้อย')
                         console.log(data)
                     } else {
@@ -408,7 +408,7 @@ function DashboardContent() {
                                         </Button>
                                         <Grid container justifyContent="flex-end">
                                             <Grid item>
-                                                <Link href="/Manuredisplay" variant="body2">
+                                                <Link href="/user/ManuredisplayUser" variant="body2">
                                                     BACK
                                                 </Link>
                                             </Grid>

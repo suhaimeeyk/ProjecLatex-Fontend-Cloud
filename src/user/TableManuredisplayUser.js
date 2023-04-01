@@ -19,6 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 
+
 export default function Users() {
 
 
@@ -74,50 +75,67 @@ export default function Users() {
     .then(res => res.json())
     .then((result) => {
         setUser(result);
-        console.log(result)
+        // console.log(result)
       }
     )
   }, [users_id])
   
 
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState([]);;
+        
+  useEffect(() => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+
+
+    fetch("http://localhost:3333/manuredisplay/"+users_id , requestOptions)
+    .then(res => res.json())
+    .then((result) => {
+        setItems(result);
+        console.log(result)
+      }
+    )
+  }, [users_id])
     
 
-    useEffect(() => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-          };
-    
-    
-        fetch("http://localhost:3333/RevealdisplayAll/"+users_id , requestOptions)
-        .then(res => res.json())
-        .then((result) => {
-            setItems(result);
-            console.log(result)
-          }
-        )
-      }, [users_id])
+
+    // useEffect(() => {
+    //     var requestOptions = {
+    //         method: 'GET',
+    //         redirect: 'follow'
+    //     };
 
 
-    const UserUpdate = reveal_id => {
-        window.location = '/Editdb_data/' + reveal_id
+    //     fetch("http://localhost:3333/manuredisplay", requestOptions)
+    //         .then(res => res.json())
+    //         .then((result) => {
+    //             setItems(result);
+    //             console.log(result);
+    //         }
+    //         )
+    // }, [])
+
+
+
+
+
+    const Manuredisplay_detail = manure_id => {
+        window.location = '/Manuredisplay_detailUser/' + manure_id
+    }
+    const Manureeditform = manure_id => {
+        window.location = '/user/ManureeditformUser/' + manure_id
     }
 
-    const Process_owner = reveal_id => {
-        window.location = '/Revealdisplay_detail/' + reveal_id
-    }
-    const Process_divide = reveal_id => {
-        window.location = '/Revealditform/' + reveal_id
-    }
 
 
-    const UserDelete = reveal_id => {
+    const UserDelete = manure_id => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
-            "reveal_id": reveal_id
+            "manure_id": manure_id
         });
 
         var requestOptions = {
@@ -127,12 +145,12 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/db_reveal_id", requestOptions)
+        fetch("http://localhost:3333/db_manure_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
                 if (data.status === 'Ok') {
-                    window.location = '/Revealdisplay'
+                    window.location = '/user/ManuredisplayUser'
                     alert('ลบรายการเรียบร้อย')
                 } else {
                     console.log(data.status)
@@ -141,8 +159,6 @@ export default function Users() {
             })
             .catch(error => console.log('error', error));
     }
-
-
 
 
 
@@ -156,11 +172,11 @@ export default function Users() {
                     <Box align="center" display="flex">
                         <Box sx={{ flexGrow: 1 }}>
                             <Typography variant="h6" gutterBottom >
-                            รายการเบิก/จ่าย
+                            รายการค่าปุ๋ย
                             </Typography>
                         </Box>
                         <Box>
-                            <Link href="CreateRevealdisplayUser">
+                            <Link href="CreateManuredisplayUser">
                                 <Button variant="contained">Create</Button>
                             </Link>
                         </Box>
@@ -172,7 +188,7 @@ export default function Users() {
 
                                     <TableCell align="center">ลำดับ</TableCell>
                                     {/* <TableCell align="center"></TableCell> */}
-                                    <TableCell align="lift">ชื่อลูกค้า</TableCell>
+                                    <TableCell align="lift">ชื่อสมาชิก</TableCell>
                                     <TableCell align="lift">ยอดร่วมทั้งหมด</TableCell>
                                     <TableCell align="lift">วันที่</TableCell>
                                     <TableCell align="lift">Action</TableCell>
@@ -182,7 +198,7 @@ export default function Users() {
                                 {items.results?.map((results, index) => {
                                     return (
                                         <TableRow
-                                            key={results.reveal_id}
+                                            key={results.manure_id}
                                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row" align="center">
@@ -191,18 +207,26 @@ export default function Users() {
 
                                             <TableCell align="lift">{results.customer_name}</TableCell>
                                             
-               
-
-                                            <TableCell align="lift">{results.reveal_total}</TableCell>
-
-                                               <TableCell align="lift" >
-                                                {(new Date(results.db_reveal_date)).toLocaleTimeString('th-TH', {
+                                           
+                                            <TableCell align="lift">{results.manure_total}</TableCell>        
+                                            {/* <TableCell align="lift">{results.db_manure_date}</TableCell>  */}
+                                            <TableCell align="lift" >
+                                                {(new Date(results.db_manure_date)).toLocaleTimeString('th-TH', {
                                                     year: 'numeric',
                                                     month: 'long',
                                                     day: 'numeric',
                                                     weekday: 'long',
                                                 })}
-                                            </TableCell>                                                                                      
+                                            </TableCell>       
+
+                                            {/* <TableCell align="lift">{results.manure_pay}</TableCell>       */}
+
+                                            {/* <TableCell align="lift">
+                                                {results.manure_sumtotal === 0 ?
+                                                     <p><Button > ไม่มียอดการจ่าย </Button></p>
+                                                    : null}
+                                                {results.manure_sumtotal !== 0 ? <p>{results.manure_sumtotal}</p> : null}
+                                            </TableCell>                                       */}
 
                                             <TableCell align="lift">
                                                 <PopupState variant="popover" popupId="demo-popup-menu">
@@ -212,9 +236,10 @@ export default function Users() {
                                                                 ทำรายการ
                                                             </Button>
                                                             <Menu {...bindMenu(popupState)}>
-                                                                <MenuItem onClick={() => Process_owner(results.reveal_id)}>ดูรายการ</MenuItem>
-                                                                <MenuItem onClick={() => Process_divide(results.reveal_id)}>จ่ายเงิน</MenuItem>
-                                                                <MenuItem onClick={() => { if (window.confirm("คุณต้องการลบรายการนี้ใช่หรือไม่?")) { UserDelete(results.reveal_id); }}}>ลบ</MenuItem>
+                                                                <MenuItem onClick={() => Manuredisplay_detail(results.manure_id)}>ดูรายการ</MenuItem>
+                                                                <MenuItem onClick={() => Manureeditform(results.manure_id)}>จ่ายเงิน</MenuItem>
+                                                                {/* <MenuItem onClick={() => UserDelete(results.manure_id)}>ลบ</MenuItem> */}
+                                                                <MenuItem onClick={() => { if (window.confirm("คุณต้องการลบรายการนี้ใช่หรือไม่?")) { UserDelete(results.manure_id); }}}>ลบ</MenuItem>
                                                             </Menu>
                                                         </React.Fragment>
                                                     )}

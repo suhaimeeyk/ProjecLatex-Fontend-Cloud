@@ -13,7 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
 import Container from '@mui/material/Container';
-import TableProfit from './TableProfit';
+import TableProfitUser from './TableProfitUser';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -237,7 +237,7 @@ window.location ='/login'
 
 {/* เพิ่มเติมตรงนี้ */}
    
-             <TableProfit/>
+             <TableProfitUser/>
     
         </Box>
 

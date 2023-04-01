@@ -140,7 +140,7 @@ const [items, setItems] = useState([]);
                         <TableCell align="lift">ชื่อลูกค้า</TableCell>
                         <TableCell align="lift">เบอร์โทร</TableCell>
                         <TableCell align="lift">ประเภทลูกค้า</TableCell>
-                        <TableCell align="lift">ผุู้ดูแล</TableCell>
+                        <TableCell align="lift">ผู้ดูแล</TableCell>
                         <TableCell align="lift">Action</TableCell>
 
                     </TableRow>
