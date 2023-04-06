@@ -38,7 +38,7 @@ export default function Users() {
         .then((data) => {
             if(data.status === 'ok' ) {
 
-                setusers_id(data.decoded['users_id'])
+                setusers_id(data.decoded['customer_id'])
                 // console.log(data.decoded['users_id'])
 
             }else{
@@ -70,7 +70,7 @@ export default function Users() {
           };
 
 
-        fetch("http://localhost:3333/db_data/"+users_id , requestOptions)
+        fetch("http://localhost:3333/db_dataCostomer/"+users_id , requestOptions)
         .then(res => res.json())
         .then((result) => {
             setItems(result);
@@ -81,17 +81,17 @@ export default function Users() {
 
 
       const UserUpdate = data_id => {
-        window.location = '/user/Editdb_data/' + data_id
+        window.location = '/Costomer/Editdb_data/' + data_id
     }
 
     const Process_owner = data_id => {
-        window.location = '/user/Process_owner/' + data_id
+        window.location = '/Costomer/Process_owner/' + data_id
     }
     const Process_divide = data_id => {
-        window.location = '/user/Process_divide/' + data_id
+        window.location = '/Costomer/Process_divide/' + data_id
     }
     const Process_percent = data_id => {
-        window.location = '/user/Process_percent/' + data_id
+        window.location = '/Costomer/Process_percent/' + data_id
     }
 
  
@@ -115,7 +115,7 @@ export default function Users() {
             .then((data) => {
                 console.log(data)
                 if (data.status === 'Ok') {
-                    window.location = '/user/datadisplay'
+                    window.location = '/Costomer/datadisplay'
                     alert('ลบรายการเรียบร้อย')
                 } else {
                     console.log(data.status)
@@ -142,11 +142,11 @@ export default function Users() {
                 รายการขายน้ำยาง
                 </Typography>
                 </Box>
-                    <Box>
+                    {/* <Box>
                         <Link href="Createdatadisplay">
                             <Button variant="contained">Create</Button>
                         </Link>
-                    </Box>
+                    </Box> */}
             </Box>
         <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 2000 }} aria-label="simple table">
@@ -168,7 +168,7 @@ export default function Users() {
                             <TableCell align="lift">เงินฝาก</TableCell>
                             <TableCell align="lift">สถานะ</TableCell>
 
-                            <TableCell align="lift">Action</TableCell>
+                            {/* <TableCell align="lift">Action</TableCell> */}
              
                     </TableRow>
                     </TableHead>
@@ -223,7 +223,7 @@ export default function Users() {
                                             </TableCell>
 
 
-                                            <TableCell align="lift">
+                                            {/* <TableCell align="lift">
 
 
                                                 <PopupState variant="popover" popupId="demo-popup-menu">
@@ -247,7 +247,7 @@ export default function Users() {
                                                     )}
                                                 </PopupState>
 
-                                            </TableCell>
+                                            </TableCell> */}
 
 
                                         </TableRow>

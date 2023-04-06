@@ -20,85 +20,87 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 
 
+
+
 export default function Users() {
 
 
-    const [users_id,setusers_id] = useState('');
+    const [users_id, setusers_id] = useState('');
 
     useEffect(() => {
-  
-      const token = localStorage.getItem('token')
-      fetch('http://localhost:3333/authen', {
-          method: 'POST', // or 'PUT'
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ token
-          },
+
+        const token = localStorage.getItem('token')
+        fetch('http://localhost:3333/authen', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
         })
-          .then((response) => response.json())
-          .then((data) => {
-              if(data.status === 'ok' ) {
-  
-                  setusers_id(data.decoded['users_id'])
-                //   console.log(data.decoded['users_name'])
-  
-              }else{
-                  alert('authen failed')
-                  localStorage.removeItem('token');
-                  window.location ='/login'
-                  // console.log('asdasdasd')
-  
-                  
-              }
-              
-          })
-  
-          
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-  
-  
-  }, [])
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 'ok') {
+
+                    setusers_id(data.decoded['customer_id'])
+                    //   console.log(data.decoded['users_name'])
+
+                } else {
+                    alert('authen failed')
+                    localStorage.removeItem('token');
+                    window.location = '/login'
+                    // console.log('asdasdasd')
 
 
-  const [User, setUser] = useState([]);
-        
-  useEffect(() => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
+                }
+
+            })
 
 
-    fetch("http://localhost:3333/db_dataSelect/"+users_id , requestOptions)
-    .then(res => res.json())
-    .then((result) => {
-        setUser(result);
-        // console.log(result)
-      }
-    )
-  }, [users_id])
-  
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
+    }, [])
+
+
+    const [User, setUser] = useState([]);
+
+    useEffect(() => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+
+        fetch("http://localhost:3333/db_dataSelect/" + users_id, requestOptions)
+            .then(res => res.json())
+            .then((result) => {
+                setUser(result);
+                // console.log(result)
+            }
+            )
+    }, [users_id])
+
 
     const [items, setItems] = useState([]);;
-        
-  useEffect(() => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
+
+    useEffect(() => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
 
 
-    fetch("http://localhost:3333/manuredisplay/"+users_id , requestOptions)
-    .then(res => res.json())
-    .then((result) => {
-        setItems(result);
-        console.log(result)
-      }
-    )
-  }, [users_id])
-    
+        fetch("http://localhost:3333/manuredisplayCostomer/" + users_id, requestOptions)
+            .then(res => res.json())
+            .then((result) => {
+                setItems(result);
+                console.log(result)
+            }
+            )
+    }, [users_id])
+
 
 
     // useEffect(() => {
@@ -122,10 +124,10 @@ export default function Users() {
 
 
     const Manuredisplay_detail = manure_id => {
-        window.location = '/user/Manuredisplay_detailUser/' + manure_id
+        window.location = '/Costomer/Manuredisplay_detailUser/' + manure_id
     }
     const Manureeditform = manure_id => {
-        window.location = '/user/ManureeditformUser/' + manure_id
+        window.location = '/Costomer/ManureeditformUser/' + manure_id
     }
 
 
@@ -169,20 +171,20 @@ export default function Users() {
 
             <Container maxWidth="xl" sx={{ mt: 10, p: 5 }}>
                 <Paper sx={{ p: 2 }}>
-                    <Box align="center" display="flex">
+                   <Box align="center" display="flex">
                         <Box sx={{ flexGrow: 1 }}>
                             <Typography variant="h6" gutterBottom >
-                            รายการค่าปุ๋ย
+                                รายการค่าปุ๋ย
                             </Typography>
                         </Box>
-                        <Box>
+                        {/* <Box>
                             <Link href="CreateManuredisplayUser">
                                 <Button variant="contained">Create</Button>
                             </Link>
-                        </Box>
+                        </Box> */}
                     </Box>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth:650 }} aria-label="simple table">
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 
@@ -199,16 +201,16 @@ export default function Users() {
                                     return (
                                         <TableRow
                                             key={results.manure_id}
-                                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row" align="center">
                                                 {index + 1}
                                             </TableCell>
 
                                             <TableCell align="lift">{results.customer_name}</TableCell>
-                                            
-                                           
-                                            <TableCell align="lift">{results.manure_total}</TableCell>        
+
+
+                                            <TableCell align="lift">{results.manure_total}</TableCell>
                                             {/* <TableCell align="lift">{results.db_manure_date}</TableCell>  */}
                                             <TableCell align="lift" >
                                                 {(new Date(results.db_manure_date)).toLocaleTimeString('th-TH', {
@@ -217,7 +219,7 @@ export default function Users() {
                                                     day: 'numeric',
                                                     weekday: 'long',
                                                 })}
-                                            </TableCell>       
+                                            </TableCell>
 
                                             {/* <TableCell align="lift">{results.manure_pay}</TableCell>       */}
 
@@ -229,21 +231,7 @@ export default function Users() {
                                             </TableCell>                                       */}
 
                                             <TableCell align="lift">
-                                                <PopupState variant="popover" popupId="demo-popup-menu">
-                                                    {(popupState) => (
-                                                        <React.Fragment>
-                                                            <Button variant="contained" {...bindTrigger(popupState)}>
-                                                                ทำรายการ
-                                                            </Button>
-                                                            <Menu {...bindMenu(popupState)}>
-                                                                <MenuItem onClick={() => Manuredisplay_detail(results.manure_id)}>ดูรายการ</MenuItem>
-                                                                <MenuItem onClick={() => Manureeditform(results.manure_id)}>จ่ายเงิน</MenuItem>
-                                                                {/* <MenuItem onClick={() => UserDelete(results.manure_id)}>ลบ</MenuItem> */}
-                                                                <MenuItem onClick={() => { if (window.confirm("คุณต้องการลบรายการนี้ใช่หรือไม่?")) { UserDelete(results.manure_id); }}}>ลบ</MenuItem>
-                                                            </Menu>
-                                                        </React.Fragment>
-                                                    )}
-                                                </PopupState>
+                                                <Button variant="contained" onClick={() => Manuredisplay_detail(results.manure_id)}>ดูรายละเอียด</Button>
 
                                             </TableCell>
 

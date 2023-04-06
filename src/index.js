@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from './Login'
+import Costomerindex from './Costomer/index'
 import Album from './Album'
 import Register from './Register'
 import CreateUsers from './CreateUsers'
@@ -17,6 +18,7 @@ import Createdb_catwithdraw from './Createdb_catwithdraw'
 import Editdb_catwithdraw from './Editdb_catwithdraw'
 import Alldb_pricerubbers from './Alldb_pricerubbers'
 import UserAlldb_pricerubbers from './user/Alldb_pricerubbers'
+import UserAlldb_pricerubbersCostomer from './Costomer/Alldb_pricerubbers'
 import EditUserdb_pricerubbers from './EditUserdb_pricerubbers'
 import UserEditUserdb_pricerubbers from './user/EditUserdb_pricerubbers'
 import Createdb_pricerubbers from './Createdb_pricerubbers'
@@ -25,10 +27,12 @@ import Alldb_customer from './Alldb_customer'
 import Createdb_customer from './Createdb_customer'
 import UserCreatedb_customer from './user/Createdb_customer'
 import Userindex from './user/Userindex'
+import UserindexCostomer from './Costomer/Userindex'
 import UserAlldb_customer from './user/Alldb_customer'
 import EditUserdb_customer from './EditUserdb_customer'
 import UserEditUserdb_customer from './user/EditUserdb_customer'
 import UserDatadisplay from './user/datadisplay'
+import CostomerDatadisplay from './Costomer/datadisplay'
 import Datadisplay from './datadisplay'
 import Createdatadisplay from './Createdatadisplay'
 import CreateManuredisplay from './CreateManuredisplay'
@@ -37,25 +41,33 @@ import CreateRevealdisplay from './CreateRevealdisplay'
 import CreateRevealdisplayUser from './user/CreateRevealdisplayUser'
 import UserCreatedatadisplay from './user/Createdatadisplay'
 import Editdb_data from './Editdb_data'
+import CostomerEditdb_data from './Costomer/Editdb_data'
 import Process_owner from './Process_owner'
+import CostomerProcess_owner from './Costomer/Process_owner'
 import Process_divide from './Process_divide'
+import CostomerProcess_divide from './Costomer/Process_divide'
 import Process_percent from './Process_percent'
+import CostomerProcess_percent from './Costomer/Process_percent'
 import UserEditdb_data from './user/Editdb_data'
 import UserProcess_owner from './user/Process_owner'
 import UserProcess_divide from './user/Process_divide'
 import UserProcess_percent from './user/Process_percent'
 import Manuredisplay from './Manuredisplay'
 import ManuredisplayUser from './user/ManuredisplayUser'
+import ManuredisplayCostomer from './Costomer/ManuredisplayUser'
 import Manuredisplay_detail from './Manuredisplay_detail'
 import Manuredisplay_detailUser from './user/Manuredisplay_detailUser'
+import Manuredisplay_detailCostomer from './Costomer/Manuredisplay_detailUser'
 import Revealdisplay from './Revealdisplay'
 import RevealdisplayUser from './user/RevealdisplayUser'
+import RevealdisplayCostomer from './Costomer/RevealdisplayUser'
 import Manureeditform from './Manureeditform'
 import ManureeditformUser from './user/ManureeditformUser'
 import Revealditform from './Revealditform'
 import RevealditformUser from './user/RevealditformUser'
 import Revealdisplay_detail from './Revealdisplay_detail'
 import Revealdisplay_detailUser from './user/Revealdisplay_detailUser'
+import Revealdisplay_detailCostomer from './Costomer/Revealdisplay_detailUser'
 import Dashboard from './Dashboard'
 import DashboardUser from './user/DashboardUser'
 import Profit from './Profit'
@@ -67,6 +79,8 @@ import CreateProfitincome_day from './CreateProfitincome_day'
 import CreateProfitincome_dayUser from './user/CreateProfitincome_dayUser'
 import CreateProfit from './CreateProfit'
 import CreateProfitUser from './user/CreateProfitUser'
+import CustomerLogin from './Costomer/CustomerLogin'
+import DashboarCostomer from './Costomer/DashboarCostomer'
 
 
 
@@ -74,13 +88,17 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Costomerindex />} />
+        {/* <Route path="/Costomer/index" element={<Costomerindex />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/album" element={<Album />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/Costomer/CustomerLogin" element={<CustomerLogin />} />
+        <Route path="/Costomer/DashboarCostomer" element={<DashboarCostomer />} />
         <Route path="/CreateUsers" element={<CreateUsers />} />
         <Route path="/Createdb_catusers" element={<Createdb_catusers />} />
         <Route path="/user/Userindex" element={<Userindex />} />
+        <Route path="/Costomer/Userindex" element={<UserindexCostomer />} />
         <Route path="/EditUser/:users_id" element={<EditUser />} />
         <Route path="/Navbar" element={<Navbar />} />
         <Route path="/Alldb_catusers" element={<Alldb_catusers />} />
@@ -92,6 +110,7 @@ root.render(
         <Route path="/Createdb_catwithdraw" element={<Createdb_catwithdraw />} />
         <Route path="/Alldb_pricerubbers" element={<Alldb_pricerubbers />} />
         <Route path="/user/Alldb_pricerubbers" element={<UserAlldb_pricerubbers />} />
+        <Route path="/Costomer/Alldb_pricerubbers" element={<UserAlldb_pricerubbersCostomer />} />
         <Route path="/Createdb_pricerubbers" element={<Createdb_pricerubbers />} />
         <Route path="/user/Createdb_pricerubbers" element={<UserCreatedb_pricerubbers />} />
         <Route path="/Alldb_customer" element={<Alldb_customer />} />
@@ -102,6 +121,7 @@ root.render(
         <Route path="/EditUserdb_customer/:customer_id" element={<EditUserdb_customer />} />
         <Route path="/user/EditUserdb_customer/:customer_id" element={<UserEditUserdb_customer />} />
         <Route path="/user/datadisplay" element={<UserDatadisplay />} />
+        <Route path="/Costomer/datadisplay" element={<CostomerDatadisplay />} />
         <Route path="/datadisplay" element={<Datadisplay />} />
         <Route path="/Createdatadisplay" element={<Createdatadisplay />} />
         <Route path="/CreateManuredisplay" element={<CreateManuredisplay />} />
@@ -110,21 +130,29 @@ root.render(
         <Route path="/user/CreateRevealdisplayUser" element={<CreateRevealdisplayUser />} />
         <Route path="/user/Createdatadisplay" element={<UserCreatedatadisplay />} />
         <Route path="/Editdb_data/:data_id" element={<Editdb_data />} />
+        <Route path="/Costomer/Editdb_data/:data_id" element={<CostomerEditdb_data />} />
         <Route path="/Process_owner/:data_id" element={<Process_owner />} />
+        <Route path="/Costomer/Process_owner/:data_id" element={<CostomerProcess_owner />} />
         <Route path="/Process_divide/:data_id" element={<Process_divide />} />
+        <Route path="/Costomer/Process_divide/:data_id" element={<CostomerProcess_divide />} />
         <Route path="/Process_percent/:data_id" element={<Process_percent />} />
+        <Route path="/Costomer/Process_percent/:data_id" element={<CostomerProcess_percent />} />
         <Route path="/user/Editdb_data/:data_id" element={<UserEditdb_data />} />
         <Route path="/user/Process_owner/:data_id" element={<UserProcess_owner />} />
         <Route path="/user/Process_divide/:data_id" element={<UserProcess_divide />} />
         <Route path="/user/Process_percent/:data_id" element={<UserProcess_percent />} />
         <Route path="/Manuredisplay" element={<Manuredisplay />} />
         <Route path="/user/ManuredisplayUser" element={<ManuredisplayUser />} />
+        <Route path="/Costomer/ManuredisplayUser" element={<ManuredisplayCostomer />} />
         <Route path="/Manuredisplay_detail/:manure_id" element={<Manuredisplay_detail />} />
-        <Route path="/Manuredisplay_detailUser/:manure_id" element={<Manuredisplay_detailUser />} />
+        <Route path="/user/Manuredisplay_detailUser/:manure_id" element={<Manuredisplay_detailUser />} />
+        <Route path="/Costomer/Manuredisplay_detailUser/:manure_id" element={<Manuredisplay_detailCostomer />} />
         <Route path="/Revealdisplay_detail/:reveal_id" element={<Revealdisplay_detail />} />
         <Route path="/user/Revealdisplay_detailUser/:reveal_id" element={<Revealdisplay_detailUser />} />
+        <Route path="/Costomer/Revealdisplay_detailUser/:reveal_id" element={<Revealdisplay_detailCostomer />} />
         <Route path="/Revealdisplay" element={<Revealdisplay />} />
         <Route path="/user/RevealdisplayUser" element={<RevealdisplayUser />} />
+        <Route path="/Costomer/RevealdisplayUser" element={<RevealdisplayCostomer />} />
         <Route path="/Manureeditform/:manure_id" element={<Manureeditform />} />
         <Route path="/user/ManureeditformUser/:manure_id" element={<ManureeditformUser />} />
         <Route path="/Revealditform/:reveal_id" element={<Revealditform />} />

@@ -22,82 +22,99 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 export default function Users() {
 
 
-    const [users_id,setusers_id] = useState('');
+    const [users_id, setusers_id] = useState('');
 
     useEffect(() => {
-  
-      const token = localStorage.getItem('token')
-      fetch('http://localhost:3333/authen', {
-          method: 'POST', // or 'PUT'
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ token
-          },
+
+        const token = localStorage.getItem('token')
+        fetch('http://localhost:3333/authen', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
         })
-          .then((response) => response.json())
-          .then((data) => {
-              if(data.status === 'ok' ) {
-  
-                  setusers_id(data.decoded['users_id'])
-                //   console.log(data.decoded['users_name'])
-  
-              }else{
-                  alert('authen failed')
-                  localStorage.removeItem('token');
-                  window.location ='/login'
-                  // console.log('asdasdasd')
-  
-                  
-              }
-              
-          })
-  
-          
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-  
-  
-  }, [])
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 'ok') {
+
+                    setusers_id(data.decoded['customer_id'])
+                    //   console.log(data.decoded['users_name'])
+
+                } else {
+                    alert('authen failed')
+                    localStorage.removeItem('token');
+                    window.location = '/login'
+                    // console.log('asdasdasd')
 
 
-  const [User, setUser] = useState([]);
-        
-  useEffect(() => {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
+                }
+
+            })
 
 
-    fetch("http://localhost:3333/db_dataSelect/"+users_id , requestOptions)
-    .then(res => res.json())
-    .then((result) => {
-        setUser(result);
-        console.log(result)
-      }
-    )
-  }, [users_id])
-  
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
-    const [items, setItems] = useState([]);
-    
+
+    }, [])
+
+
+    const [User, setUser] = useState([]);
 
     useEffect(() => {
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
-          };
-    
-    
-        fetch("http://localhost:3333/RevealdisplayAll/"+users_id , requestOptions)
-        .then(res => res.json())
-        .then((result) => {
-            setItems(result);
-            console.log(result)
-          }
-        )
-      }, [users_id])
+        };
+
+
+        fetch("http://localhost:3333/db_dataSelect/" + users_id, requestOptions)
+            .then(res => res.json())
+            .then((result) => {
+                setUser(result);
+                console.log(result)
+            }
+            )
+    }, [users_id])
+
+
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+
+        fetch("http://localhost:3333/RevealdisplayAllCos/" + users_id, requestOptions)
+            .then(res => res.json())
+            .then((result) => {
+                setItems(result);
+                console.log(result)
+            }
+            )
+    }, [users_id])
+
+
+
+    // useEffect(() => {
+    //     var requestOptions = {
+    //         method: 'GET',
+    //         redirect: 'follow'
+    //     };
+
+
+    //     fetch("http://localhost:3333/Revealdisplay", requestOptions)
+    //         .then(res => res.json())
+    //         .then((result) => {
+    //             setItems(result);
+    //             console.log(result);
+    //         }
+    //         )
+    // }, [])
 
 
     const UserUpdate = reveal_id => {
@@ -105,10 +122,10 @@ export default function Users() {
     }
 
     const Process_owner = reveal_id => {
-        window.location = '/Revealdisplay_detail/' + reveal_id
+        window.location = '/Costomer/Revealdisplay_detailUser/' + reveal_id
     }
     const Process_divide = reveal_id => {
-        window.location = '/Revealditform/' + reveal_id
+        window.location = '/Costomer/RevealditformUser/' + reveal_id
     }
 
 
@@ -132,7 +149,7 @@ export default function Users() {
             .then((data) => {
                 console.log(data)
                 if (data.status === 'Ok') {
-                    window.location = '/Revealdisplay'
+                    window.location = '/Costomer/RevealdisplayUser'
                     alert('ลบรายการเรียบร้อย')
                 } else {
                     console.log(data.status)
@@ -156,17 +173,17 @@ export default function Users() {
                     <Box align="center" display="flex">
                         <Box sx={{ flexGrow: 1 }}>
                             <Typography variant="h6" gutterBottom >
-                            รายการเบิก/จ่าย
+                                รายการเบิก/จ่าย
                             </Typography>
                         </Box>
-                        <Box>
-                            <Link href="CreateRevealdisplay">
+                        {/* <Box>
+                            <Link href="CreateRevealdisplayUser">
                                 <Button variant="contained">Create</Button>
                             </Link>
-                        </Box>
+                        </Box> */}
                     </Box>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth:650 }} aria-label="simple table">
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 
@@ -183,42 +200,30 @@ export default function Users() {
                                     return (
                                         <TableRow
                                             key={results.reveal_id}
-                                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row" align="center">
                                                 {index + 1}
                                             </TableCell>
 
                                             <TableCell align="lift">{results.customer_name}</TableCell>
-                                            
-               
+
+
 
                                             <TableCell align="lift">{results.reveal_total}</TableCell>
 
-                                               <TableCell align="lift" >
+                                            <TableCell align="lift" >
                                                 {(new Date(results.db_reveal_date)).toLocaleTimeString('th-TH', {
                                                     year: 'numeric',
                                                     month: 'long',
                                                     day: 'numeric',
                                                     weekday: 'long',
                                                 })}
-                                            </TableCell>                                                                                      
+                                            </TableCell>
 
                                             <TableCell align="lift">
-                                                <PopupState variant="popover" popupId="demo-popup-menu">
-                                                    {(popupState) => (
-                                                        <React.Fragment>
-                                                            <Button variant="contained" {...bindTrigger(popupState)}>
-                                                                ทำรายการ
-                                                            </Button>
-                                                            <Menu {...bindMenu(popupState)}>
-                                                                <MenuItem onClick={() => Process_owner(results.reveal_id)}>ดูรายการ</MenuItem>
-                                                                <MenuItem onClick={() => Process_divide(results.reveal_id)}>จ่ายเงิน</MenuItem>
-                                                                <MenuItem onClick={() => { if (window.confirm("คุณต้องการลบรายการนี้ใช่หรือไม่?")) { UserDelete(results.reveal_id); }}}>ลบ</MenuItem>
-                                                            </Menu>
-                                                        </React.Fragment>
-                                                    )}
-                                                </PopupState>
+                                                <Button variant="contained" onClick={() => Process_owner(results.reveal_id)}>ดูรายละเอียด</Button>
+
 
                                             </TableCell>
 

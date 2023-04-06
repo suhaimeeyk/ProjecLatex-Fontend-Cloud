@@ -12,9 +12,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Background from "./img/1.png";
-import Logo from "./img/LOGO.png";
+import Background from "../img/1.png";
+import Logo from "../img/LOGO.png";
 import Swal from 'sweetalert2'
+import { Container } from '@mui/material';
 
 
 
@@ -25,13 +26,13 @@ export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-  
+
     const jsonData = {
-      users_usersname: data.get('users_usersname'),
-      users_password: data.get('users_password'),
+      customer_name: data.get('customer_name'),
+      customer_tel: data.get('customer_tel'),
     };
-  
-    fetch('http://localhost:3333/login', {
+
+    fetch('http://localhost:3333/loginCostomer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,72 +42,42 @@ export default function SignInSide() {
       .then((response) => response.json())
       .then((data) => {
 
-        if (data.level === '1') {
+        if (data.status === 'ok') {
+          // Store the token in localStorage
+          localStorage.setItem('token', data.token);
+
           Swal.fire({
-            title: 'Login Admin Success..',
+            title: 'Login Success..',
             text: 'กำลังเดินการเข้าสู่ระบบ',
             icon: 'success',
             timer: 3000, // Display time increased to 8 seconds
             showConfirmButton: false
           });
-          localStorage.setItem('token', data.token);
           setTimeout(() => {
-            window.location = '/Dashboard';
+            window.location = '/Costomer/DashboarCostomer';
           }, 3000); // Wait 8 seconds before redirecting
-
-        } else if (data.level === '2') {
-
-          Swal.fire({
-            title: 'Login User Success..',
-            text: 'กำลังเดินการเข้าสู่ระบบ',
-            icon: 'success',
-            timer: 3000, // Display time increased to 8 seconds
-            showConfirmButton: false
-          });
-          localStorage.setItem('token', data.token);
-          setTimeout(() => {
-            window.location = '/user/DashboardUser';
-          }, 3000); // Wait 8 seconds before redirecting
-          
         } else {
-
           Swal.fire({
             title: 'Login Error!',
-            text: 'รหัสผ่านไม่ถูกต้อง!! กรุณาตรวจสอบ',
+            text: data.message,
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
           });
-          
         }
+
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   };
-  
-
 
 
 
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: `url(${Background})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
@@ -129,16 +100,16 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign in Costomer
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="users_usersname"
-                label="Email Address"
-                name="users_usersname"
+                id="customer_name"
+                label="ชื่อ"
+                name="customer_name"
                 autoComplete="email"
                 autoFocus
               />
@@ -146,10 +117,10 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 fullWidth
-                name="users_password"
-                label="Password"
+                name="customer_tel"
+                label="เบอร์โทรศัพย์"
                 type="password"
-                id="users_password"
+                id="customer_tel"
                 autoComplete="current-password"
               />
               {/* <FormControlLabel
@@ -170,19 +141,22 @@ export default function SignInSide() {
                   <Link href="/" variant="body2">
                     Back
                   </Link>
+
                 </Grid>
-                <Grid item>
+
+                {/* <Grid item>
                   <Link href="/Register" variant="body2">
                     {"Create Register"}
                   </Link>
-                </Grid>
+                </Grid> */}
+                <br></br>     <br></br>     <br></br>
               </Grid>
 
 
             </Box>
           </Box>
         </Grid>
-      </Grid>
+      </Container>
     </ThemeProvider>
   );
 }

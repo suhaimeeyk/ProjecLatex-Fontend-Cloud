@@ -68,7 +68,7 @@ export default function SignUp() {
                 console.log(data)
                 if (data.status === 'Ok') {
                     window.location = '/login'
-                    alert('register success')
+                    alert('สร้างบัญชีเรียบร้อย')
                 } else {
                     alert('register failed')
                 }
@@ -155,24 +155,20 @@ export default function SignUp() {
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="level"
-                                        label="สถานะ"
+                                        label="ประเภท"
                                         name="level"
                                     >
-                                        {items.results?.map((results, index) => (
-
-                                            <MenuItem value={results.id}>{results.name}</MenuItem>
-                                        ))}
-
+                                        <MenuItem value="2">ผู้ใช้</MenuItem>
                                     </Select>
                                 </FormControl>
 
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="allowExtraEmails" color="primary" />}
                                     label="ยอมรับการสร้างบัญชี."
                                 />
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                         <Button
                             type="submit"
