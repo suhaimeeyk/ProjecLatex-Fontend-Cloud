@@ -88,8 +88,7 @@ function DashboardContent() {
     const { data_id } = useParams();
 
     const [customer_name, setcustomer_name] = useState('');
-    const [data_pricetotal45, setdata_pricetotal45] = useState('');
-    const [data_pricetotal55, setdata_pricetotal55] = useState('');
+    const [data_pricetotal, setdata_pricetotal] = useState('');
     const [data_pricetotalAll, setdata_pricetotalAll] = useState('');
     const [data_date, setdata_date] = useState('');
 
@@ -105,8 +104,7 @@ function DashboardContent() {
                 if (result['status'] === 'Ok') {
 
                     setcustomer_name(result['data']['customer_name'])
-                    setdata_pricetotal45(result['data']['data_pricetotal']*45/100)
-                    setdata_pricetotal55(result['data']['data_pricetotal']*55/100)
+                    setdata_pricetotal(result['data']['data_pricetotal']/2)
                     setdata_pricetotalAll(result['data']['data_pricetotal'])
                     setdata_date(result['data']['data_date'])
                 }
@@ -124,7 +122,7 @@ function DashboardContent() {
             data_id: data_id,
             data_shareprice: data.get('data_shareprice'),
             data_depositprice: data.get('data_depositprice'),
-            status_id: 3,
+            status_id: 2,
         }
       
         if ( (jsonData.data_shareprice && jsonData.data_depositprice && jsonData.status_id ) ==='') {
@@ -254,13 +252,13 @@ function DashboardContent() {
                                         {/* <LockOutlinedIcon /> */}
                                     </Avatar>
                                     <Typography component="h1" variant="h5">
-                                    ลูกจ้าง%2
+                                 ลูกจ้าง%2
                                     </Typography>
 
                                     {/* <Typography component="h1" variant="h5">
                                         เลขที่รายการ : {data_id}
                                     </Typography> */}
-                                    <Typography component="h1" variant="h6">
+                                     <Typography component="h1" variant="h6">
                                         {(new Date(data_date)).toLocaleTimeString('th-TH', {
                                             year: 'numeric',
                                             month: 'long',
@@ -295,11 +293,11 @@ function DashboardContent() {
 
                                             <Grid item xs={12} >
                                                 <TextField
-                                                    label="ช่องแบ่งเอา"
+                                                    label="เงินแบ่ง"
                                                     id='data_shareprice'
                                                     name='data_shareprice'
-                                                    onChange={ (e) => setdata_pricetotal45(e.target.value)}
-                                                    value={data_pricetotal45}
+                                                    onChange={ (e) => setdata_pricetotal(e.target.value)}
+                                                    value={data_pricetotal}
                                                     type="number"
                                                     color="warning"
                                                     focused
@@ -311,12 +309,11 @@ function DashboardContent() {
                                                 <TextField
                                                     id="data_depositprice"
                                                     name="data_depositprice"
-                                                    label="ช่องฝากเอา"
+                                                    label="เงินฝาก"
                                                     color="warning"
-                                                    onChange={ (e) => setdata_pricetotal55(e.target.value)}
                                                     focused
                                                     fullWidth
-                                                    value={data_pricetotal55}
+                                                    value={data_pricetotal} 
                                                 />
                                             </Grid>
 

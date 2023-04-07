@@ -88,7 +88,8 @@ function DashboardContent() {
     const { data_id } = useParams();
 
     const [customer_name, setcustomer_name] = useState('');
-    const [data_pricetotal, setdata_pricetotal] = useState('');
+    const [data_pricetotal45, setdata_pricetotal45] = useState('');
+    const [data_pricetotal55, setdata_pricetotal55] = useState('');
     const [data_pricetotalAll, setdata_pricetotalAll] = useState('');
     const [data_date, setdata_date] = useState('');
 
@@ -104,7 +105,8 @@ function DashboardContent() {
                 if (result['status'] === 'Ok') {
 
                     setcustomer_name(result['data']['customer_name'])
-                    setdata_pricetotal(result['data']['data_pricetotal']/2)
+                    setdata_pricetotal45(result['data']['data_pricetotal'] * 45 / 100)
+                    setdata_pricetotal55(result['data']['data_pricetotal'] * 55 / 100)
                     setdata_pricetotalAll(result['data']['data_pricetotal'])
                     setdata_date(result['data']['data_date'])
                 }
@@ -115,45 +117,45 @@ function DashboardContent() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-      
+
         var data = new FormData(event.currentTarget);
-        
-        var  jsonData = {
+
+        var jsonData = {
             data_id: data_id,
             data_shareprice: data.get('data_shareprice'),
             data_depositprice: data.get('data_depositprice'),
-            status_id: 2,
+            status_id: 3,
         }
-      
-        if ( (jsonData.data_shareprice && jsonData.data_depositprice && jsonData.status_id ) ==='') {
+
+        if ((jsonData.data_shareprice && jsonData.data_depositprice && jsonData.status_id) === '') {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
-          }else{
-      
-        
-        fetch('http://localhost:3333/Editdb_data2', {
-            method: 'PUT', // or 'PUT'
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(jsonData),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(jsonData)
-            if(data.status === 'Ok' ) {
-                window.location ='/datadisplay'
-                alert('ทำรายการเรียบร้อย')
-            }else{
-                alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
-            }
-      
+        } else {
+
+
+            fetch('http://localhost:3333/Editdb_data2', {
+                method: 'PUT', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData),
             })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-      
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(jsonData)
+                    if (data.status === 'Ok') {
+                        window.location = '/user/datadisplay'
+                        alert('ทำรายการเรียบร้อย')
+                    } else {
+                        alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
+                    }
+
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
         }
-      };
+    };
 
     return (
         <ThemeProvider theme={mdTheme}>
@@ -252,8 +254,7 @@ function DashboardContent() {
                                         {/* <LockOutlinedIcon /> */}
                                     </Avatar>
                                     <Typography component="h1" variant="h5">
-                                    เปอร์เซ็นต์ 45% กับ 50%
-                                    </Typography>
+                                        เปอร์เซ็นต์ 45% กับ 50%                                           </Typography>
 
                                     {/* <Typography component="h1" variant="h5">
                                         เลขที่รายการ : {data_id}
@@ -293,11 +294,11 @@ function DashboardContent() {
 
                                             <Grid item xs={12} >
                                                 <TextField
-                                                    label="เงินแบ่ง"
+                                                    label="ช่องแบ่งเอา"
                                                     id='data_shareprice'
                                                     name='data_shareprice'
-                                                    onChange={ (e) => setdata_pricetotal(e.target.value)}
-                                                    value={data_pricetotal}
+                                                    onChange={(e) => setdata_pricetotal45(e.target.value)}
+                                                    value={data_pricetotal45}
                                                     type="number"
                                                     color="warning"
                                                     focused
@@ -309,11 +310,12 @@ function DashboardContent() {
                                                 <TextField
                                                     id="data_depositprice"
                                                     name="data_depositprice"
-                                                    label="เงินฝาก"
+                                                    label="ช่องฝากเอา"
                                                     color="warning"
+                                                    onChange={(e) => setdata_pricetotal55(e.target.value)}
                                                     focused
                                                     fullWidth
-                                                    value={data_pricetotal} 
+                                                    value={data_pricetotal55}
                                                 />
                                             </Grid>
 
@@ -328,7 +330,7 @@ function DashboardContent() {
                                         </Button>
                                         <Grid container justifyContent="flex-end">
                                             <Grid item>
-                                                <Link href="/datadisplay" variant="body2">
+                                                <Link href="/user/datadisplay" variant="body2">
                                                     BACK
                                                 </Link>
                                             </Grid>

@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from './Login'
+import Testing from './Testting'
 import Costomerindex from './Costomer/index'
 import Album from './Album'
 import Register from './Register'
@@ -50,8 +51,8 @@ import Process_percent from './Process_percent'
 import CostomerProcess_percent from './Costomer/Process_percent'
 import UserEditdb_data from './user/Editdb_data'
 import UserProcess_owner from './user/Process_owner'
-import UserProcess_divide from './user/Process_divide'
-import UserProcess_percent from './user/Process_percent'
+import UserProcess_divide from './user/Process_percent'
+import UserProcess_percent from './user/Process_divide'
 import Manuredisplay from './Manuredisplay'
 import ManuredisplayUser from './user/ManuredisplayUser'
 import ManuredisplayCostomer from './Costomer/ManuredisplayUser'
@@ -83,13 +84,13 @@ import CustomerLogin from './Costomer/CustomerLogin'
 import DashboarCostomer from './Costomer/DashboarCostomer'
 
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
         <Route path="/" element={<Costomerindex />} />
         {/* <Route path="/Costomer/index" element={<Costomerindex />} /> */}
+        <Route path="/testing" element={<Testing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/album" element={<Album />} />
         <Route path="/register" element={<Register />} />
