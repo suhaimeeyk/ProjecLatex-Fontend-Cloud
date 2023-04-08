@@ -249,7 +249,7 @@ const handleSubmit = (event) => {
             {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
-            แก้ไขประเภทการเบิกเงิน
+          แก้ไขราคาน้ำยาง
           </Typography>
 
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>

@@ -316,7 +316,7 @@ function DashboardContent() {
                                         {/* <LockOutlinedIcon /> */}
                                     </Avatar>
                                     <Typography component="h1" variant="h5">
-                                    ฟอร์มรายการค่าปุ๋ย
+                                    เบิกล่วงหน้า
                                     </Typography>
 
                                     {/* <Typography component="h1" variant="h5">

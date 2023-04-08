@@ -33,7 +33,7 @@ function Copyright() {
                 นายซูไฮมี ยะโกะ
             </Link>{'และ'}
             <Link color="inherit" href="https://www.facebook.com/suraimee.yk">
-                นางสาวฟาตีเมาะ หะยีมะมิง
+            ฟาตีเม๊าะ หะยีมะมิง
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -139,7 +139,7 @@ export default function Album() {
                             gutterBottom
                         >
                             <Box sx={{ pb: 2 }}>
-                                ยินดีต้อนรับเข้าสู่แพล็ตฟอร์มจัดซื้อน้ำยางพารา
+                                ยินดีต้อนรับเข้าสู่แพลตฟอร์มจัดซื้อน้ำยางพารา
                             </Box>
                             <Stack sx={{ pb: 2 }} direction="row" spacing={2} justifyContent="center">
                                 <Button variant="contained" href="/Costomer/CustomerLogin">เช็คข้อมูลขายน้ำยาง</Button>

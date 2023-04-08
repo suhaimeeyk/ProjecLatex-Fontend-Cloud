@@ -191,7 +191,7 @@ export default function Users() {
                                     <TableCell align="center">ลำดับ</TableCell>
                                     {/* <TableCell align="center"></TableCell> */}
                                     <TableCell align="lift">ชื่อสมาชิก</TableCell>
-                                    <TableCell align="lift">ยอดร่วมทั้งหมด</TableCell>
+                                    <TableCell align="lift">ยอดรวมทั้งหมด</TableCell>
                                     <TableCell align="lift">วันที่</TableCell>
                                     <TableCell align="lift">Action</TableCell>
                                 </TableRow>
