@@ -19,6 +19,19 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import './index.css';
 
+import { TextField } from '@material-ui/core';
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import { PDFDownloadLink, Page, Text, View, Document } from '@react-pdf/renderer';
 
@@ -43,7 +56,7 @@ import './index.css';
 //   }
 
 
-  
+
 // function printPDF() {
 //     var docDefinition = {
 //         content: [
@@ -55,7 +68,7 @@ import './index.css';
 //       };
 //       pdfMake.createPdf(docDefinition).open();
 //   }
-  
+
 
 export default function Users() {
 
@@ -182,10 +195,24 @@ export default function Users() {
     }
 
 
+    const [searchQuery, setSearchQuery] = useState("");
 
-
-
-
+    const filteredData = items.data?.filter((results, index) => {
+        const customerName = results.customer_name.toLowerCase();
+        const catwithdrawName = results.catwithdraw_name.toLowerCase();
+        const priceTotal = typeof results.data_pricetotal === 'string' ? results.data_pricetotal.toLowerCase() : '';
+        const data_date = typeof results.data_date === 'string' ? results.data_date.toLowerCase() : '';
+    
+        return (
+            customerName.includes(searchQuery.toLowerCase()) ||
+            catwithdrawName.includes(searchQuery.toLowerCase()) ||
+            priceTotal.includes(searchQuery.toLowerCase()) ||
+            data_date.includes(searchQuery.toLowerCase())
+        );
+    });
+    
+    
+    // items.data?.filter((results, index) => {
 
     return (
         <React.Fragment>
@@ -205,7 +232,48 @@ export default function Users() {
                             </Link>
                         </Box>
                     </Box>
+                    <TextField
+                    fullWidth
+                                    label="Search"
+                                    value={searchQuery}
+                                    onChange={(event) => setSearchQuery(event.target.value)}
+                                />
+                    {/* <SearchForm onSearch={(searchTerm) => console.log(searchTerm)} /> */}
+                    {/* <TextField
+                        label="Search"
+                        value={searchQuery}
+                        onChange={(event) => setSearchQuery(event.target.value)}
+                    /> */}
+
+
+                    {/* <TableHead>
+                        <TableRow>
+                            <TableCell align="center">ID</TableCell>
+                            <TableCell align="center">Name</TableCell>
+                            <TableCell align="center">Email</TableCell>
+                            <TableCell align="center">
+                                <TextField
+                                    label="Search"
+                                    value={searchQuery}
+                                    onChange={(event) => setSearchQuery(event.target.value)}
+                                />
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filteredData?.map((item) => (
+                            <TableRow key={item.id}>
+                                <TableCell align="center">{item.customer_name}</TableCell>
+                                <TableCell align="center">{item.catwithdraw_name}</TableCell>
+                                <TableCell align="center">{item.data_pricetotal}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody> */}
+
+                    
+
                     <TableContainer component={Paper}>
+                    
                         <Table sx={{ minWidth: 2000 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -233,7 +301,7 @@ export default function Users() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {items.data?.map((results, index) => {
+                                {filteredData?.map((results,index)  => {
                                     return (
                                         <TableRow
                                             key={results.data_id}
@@ -308,7 +376,7 @@ export default function Users() {
                                                                     </ButtonGroup>
                                                                 </MenuItem>
                                                                 <MenuItem onClick={() => Process_owner(results.data_id)}>เจ้าของส่วนกรีดยางเอง</MenuItem>
-                                                                <MenuItem onClick={() =>Process_percent(results.data_id)}>ลูกจ้าง %2</MenuItem>
+                                                                <MenuItem onClick={() => Process_percent(results.data_id)}>ลูกจ้าง %2</MenuItem>
                                                                 <MenuItem onClick={() => Process_divide(results.data_id)}>45% - 55%</MenuItem>
 
                                                                 {/* <MenuItem> <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
@@ -330,7 +398,7 @@ export default function Users() {
 
                                             </TableCell>
                                             <TableCell>
-                                                
+
 
                                             </TableCell>
 

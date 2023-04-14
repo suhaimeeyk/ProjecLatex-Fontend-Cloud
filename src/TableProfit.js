@@ -670,7 +670,7 @@ export default function Users() {
                                     <TableCell align="lift">รับค่าเบิกล่วงหน้า</TableCell>
                                     <TableCell align="lift">รับค่าน้ำยางทั้งหมด</TableCell>
 
-                                    <TableCell align="lift" >รวมยอดรายจ่ายทั้งหมด</TableCell>
+                                    <TableCell align="lift" >รวมยอดรายรับทั้งหมด</TableCell>
                                     <TableCell align="lift" >Action</TableCell>
 
                                     {/* <TableCell align="lift"><span style="color:red;">รวมยอดรายจ่ายทั้งหมด</span></TableCell> */}
