@@ -66,7 +66,7 @@ export default function SignUp() {
     useEffect(() => {
 
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
+        fetch('https://latexplatform-api.coecore.com/authen', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ export default function SignUp() {
     //     };
 
 
-    //     fetch("http://localhost:3333/ManureProfit/", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/ManureProfit/", requestOptions)
     //         .then(res => res.json())
     //         .then((result) => {
     //             setItems(result);
@@ -127,7 +127,7 @@ export default function SignUp() {
         };
 
 
-        fetch("http://localhost:3333/ManureProfit/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/ManureProfit/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setItems(result);
@@ -147,7 +147,7 @@ export default function SignUp() {
         };
 
 
-        fetch("http://localhost:3333/RevealProfit/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/RevealProfit/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setUsers(result);
@@ -163,7 +163,7 @@ export default function SignUp() {
 
 
     // const UserGetUsers = () => {
-    //     fetch("http://localhost:3333/RevealProfit")
+    //     fetch("https://latexplatform-api.coecore.com/RevealProfit")
     //         .then(res => res.json())
     //         .then(
     //             (result) => {
@@ -177,7 +177,7 @@ export default function SignUp() {
     // const [db_pricerubbers, setdb_pricerubbers] = useState([]);
 
     // const UserGetdb_pricerubbers = () => {
-    //     fetch("http://localhost:3333/pay_for_all_latex_Profit")
+    //     fetch("https://latexplatform-api.coecore.com/pay_for_all_latex_Profit")
     //         .then(res => res.json())
     //         .then(
     //             (result) => {
@@ -200,7 +200,7 @@ export default function SignUp() {
         };
 
 
-        fetch("http://localhost:3333/pay_for_all_latex_Profit/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/pay_for_all_latex_Profit/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setdb_pricerubbers(result);
@@ -236,7 +236,7 @@ export default function SignUp() {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
-            fetch('http://localhost:3333/CreatedataProfit', {
+            fetch('https://latexplatform-api.coecore.com/CreatedataProfit', {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',

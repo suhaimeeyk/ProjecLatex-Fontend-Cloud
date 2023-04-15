@@ -79,7 +79,7 @@ function DashboardContent() {
   useEffect(() => {
     
     const token = localStorage.getItem('token')
-    fetch('http://localhost:3333/authen', {
+    fetch('https://latexplatform-api.coecore.com/authen', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',

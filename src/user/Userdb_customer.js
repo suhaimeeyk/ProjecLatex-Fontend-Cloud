@@ -27,7 +27,7 @@ export default function Users() {
   useEffect(() => {
 
     const token = localStorage.getItem('token')
-    fetch('http://localhost:3333/authen', {
+    fetch('https://latexplatform-api.coecore.com/authen', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const [items, setItems] = useState([]);
           };
 
 
-        fetch("http://localhost:3333/db_customer_user/"+users_id , requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_customer_user/"+users_id , requestOptions)
         .then(res => res.json())
         .then((result) => {
             setItems(result);
@@ -98,7 +98,7 @@ const [items, setItems] = useState([]);
         redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/db_customer_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_customer_id", requestOptions)
         .then(response => response.json())
         .then((data) => {
             console.log(data)

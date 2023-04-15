@@ -103,7 +103,7 @@ function DashboardContent() {
           redirect: 'follow'
         };
         
-        fetch("http://localhost:3333/EditUserdb_customer/"+customer_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/EditUserdb_customer/"+customer_id, requestOptions)
           .then(response => response.json())
           .then(result => {
               if (result['status'] === 'Ok') {
@@ -134,7 +134,7 @@ const handleSubmit = (event) => {
     }else{
 
   
-  fetch('http://localhost:3333/EditUserdb_customer', {
+  fetch('https://latexplatform-api.coecore.com/EditUserdb_customer', {
       method: 'PUT', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ const [items, setItems] = useState([]);
 
 
     const UserGet = () => {
-        fetch("http://localhost:3333/db_catusers")
+        fetch("https://latexplatform-api.coecore.com/db_catusers")
         .then(res => res.json())
         .then(
           (result) => {
@@ -187,7 +187,7 @@ const [items, setItems] = useState([]);
 
 
     const UserGetUsers = () => {
-        fetch("http://localhost:3333/Users")
+        fetch("https://latexplatform-api.coecore.com/Users")
         .then(res => res.json())
         .then(
           (result) => {

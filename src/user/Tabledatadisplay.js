@@ -17,6 +17,7 @@ import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import { TextField } from '@material-ui/core';
 
 
 export default function Users() {
@@ -27,7 +28,7 @@ export default function Users() {
     useEffect(() => {
 
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
+        fetch('https://latexplatform-api.coecore.com/authen', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ export default function Users() {
         };
 
 
-        fetch("http://localhost:3333/db_data/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_data/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setItems(result);
@@ -110,7 +111,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/db_data_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_data_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
@@ -125,7 +126,21 @@ export default function Users() {
             .catch(error => console.log('error', error));
     }
 
+    const [searchQuery, setSearchQuery] = useState("");
 
+    const filteredData = items.data?.filter((results, index) => {
+        const customerName = results.customer_name.toLowerCase();
+        const catwithdrawName = results.catwithdraw_name.toLowerCase();
+        const priceTotal = typeof results.data_pricetotal === 'string' ? results.data_pricetotal.toLowerCase() : '';
+        const data_date = typeof results.data_date === 'string' ? results.data_date.toLowerCase() : '';
+    
+        return (
+            customerName.includes(searchQuery.toLowerCase()) ||
+            catwithdrawName.includes(searchQuery.toLowerCase()) ||
+            priceTotal.includes(searchQuery.toLowerCase()) ||
+            data_date.includes(searchQuery.toLowerCase())
+        );
+    });
 
 
 
@@ -148,6 +163,12 @@ export default function Users() {
                             </Link>
                         </Box>
                     </Box>
+                    <TextField
+                    fullWidth
+                                    label="Search"
+                                    value={searchQuery}
+                                    onChange={(event) => setSearchQuery(event.target.value)}
+                                />
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 2000 }} aria-label="simple table">
                             <TableHead>
@@ -156,6 +177,8 @@ export default function Users() {
                                     <TableCell align="center">ลำดับ</TableCell>
                                     <TableCell align="lift">วันที่ทำรายการ</TableCell>
                                     <TableCell align="lift">ชื่อลูกค้า</TableCell>
+                                    <TableCell align="lift">จำนวนเงินทั้งหมด</TableCell>
+
                                     <TableCell align="lift">ประเภท</TableCell>
                                     <TableCell align="lift">น้ำหนักรวมทั้งหมด</TableCell>
                                     <TableCell align="lift">น้ำหนักแกลลอน</TableCell>
@@ -163,7 +186,6 @@ export default function Users() {
                                     {/* <TableCell align="lift">เปอร์เซ็น</TableCell> */}
                                     <TableCell align="lift">น้ำยาแห้ง</TableCell>
                                     <TableCell align="lift">ราคา</TableCell>
-                                    <TableCell align="lift">จำนวนเงินทั้งหมด</TableCell>
                                     <TableCell align="lift">เงินแบ่ง</TableCell>
                                     <TableCell align="lift">เงินฝาก</TableCell>
                                     <TableCell align="lift">สถานะ</TableCell>
@@ -173,7 +195,7 @@ export default function Users() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {items.data?.map((results, index) => {
+                            {filteredData?.map((results,index)  => {
                                     return (
                                         <TableRow
                                             key={results.data_id}

@@ -32,7 +32,7 @@ export default function SignUp() {
     useEffect(() => {
   
       const token = localStorage.getItem('token')
-      fetch('http://localhost:3333/authen', {
+      fetch('https://latexplatform-api.coecore.com/authen', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export default function SignUp() {
       };
 
 
-    fetch("http://localhost:3333/db_dataSelect/"+users_id , requestOptions)
+    fetch("https://latexplatform-api.coecore.com/db_dataSelect/"+users_id , requestOptions)
     .then(res => res.json())
     .then((result) => {
         setItems(result);
@@ -90,7 +90,7 @@ export default function SignUp() {
   const [db_pricerubbers, setdb_pricerubbers] = useState([]);
 
     const UserGetdb_pricerubbers = () => {
-        fetch("http://localhost:3333/db_pricerubbersSelect")
+        fetch("https://latexplatform-api.coecore.com/db_pricerubbersSelect")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -127,7 +127,7 @@ export default function SignUp() {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
-            fetch('http://localhost:3333/CreateRevealdisplay', {
+            fetch('https://latexplatform-api.coecore.com/CreateRevealdisplay', {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',

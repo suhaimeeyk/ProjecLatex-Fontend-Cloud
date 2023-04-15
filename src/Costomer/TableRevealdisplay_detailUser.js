@@ -35,7 +35,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Revealdisplaydetail/" + reveal_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/Revealdisplaydetail/" + reveal_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
@@ -58,7 +58,7 @@ export default function Users() {
         };
 
 
-      fetch("http://localhost:3333/Revealdisplay_detail/"+reveal_id , requestOptions)
+      fetch("https://latexplatform-api.coecore.com/Revealdisplay_detail/"+reveal_id , requestOptions)
       .then(res => res.json())
       .then((result) => {
           setItems(result.results);
@@ -84,7 +84,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/db_reveal_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_reveal_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)

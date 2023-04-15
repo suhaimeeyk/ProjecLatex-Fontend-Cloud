@@ -121,7 +121,7 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Manureeditform/" + manure_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/Manureeditform/" + manure_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
@@ -144,7 +144,7 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Manureeditformdetail/" + manure_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/Manureeditformdetail/" + manure_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
@@ -185,7 +185,7 @@ function DashboardContent() {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
-            fetch('http://localhost:3333/editmanure', {
+            fetch('https://latexplatform-api.coecore.com/editmanure', {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',

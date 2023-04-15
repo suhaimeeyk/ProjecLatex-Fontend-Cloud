@@ -28,7 +28,7 @@ export default function Users() {
     useEffect(() => {
   
       const token = localStorage.getItem('token')
-      fetch('http://localhost:3333/authen', {
+      fetch('https://latexplatform-api.coecore.com/authen', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default function Users() {
       };
 
 
-    fetch("http://localhost:3333/db_dataSelect/"+users_id , requestOptions)
+    fetch("https://latexplatform-api.coecore.com/db_dataSelect/"+users_id , requestOptions)
     .then(res => res.json())
     .then((result) => {
         setUser(result);
@@ -90,7 +90,7 @@ export default function Users() {
       };
 
 
-    fetch("http://localhost:3333/manuredisplay/"+users_id , requestOptions)
+    fetch("https://latexplatform-api.coecore.com/manuredisplay/"+users_id , requestOptions)
     .then(res => res.json())
     .then((result) => {
         setItems(result);
@@ -108,7 +108,7 @@ export default function Users() {
     //     };
 
 
-    //     fetch("http://localhost:3333/manuredisplay", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/manuredisplay", requestOptions)
     //         .then(res => res.json())
     //         .then((result) => {
     //             setItems(result);
@@ -149,7 +149,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/db_manure_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_manure_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)

@@ -81,7 +81,7 @@ export default function SignUp() {
     useEffect(() => {
 
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
+        fetch('https://latexplatform-api.coecore.com/authen', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export default function SignUp() {
         };
 
 
-        fetch("http://localhost:3333/db_profittoSelectmouth", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_profittoSelectmouth", requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setItems(result);
@@ -144,7 +144,7 @@ export default function SignUp() {
 
 
     const UserGetUsers = () => {
-        fetch("http://localhost:3333/db_paydailySelect")
+        fetch("https://latexplatform-api.coecore.com/db_paydailySelect")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -158,7 +158,7 @@ export default function SignUp() {
     const [db_pricerubbers, setdb_pricerubbers] = useState([]);
 
     const UserGetdb_pricerubbers = () => {
-        fetch("http://localhost:3333/pay_for_all_latex_db_income")
+        fetch("https://latexplatform-api.coecore.com/pay_for_all_latex_db_income")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -198,7 +198,7 @@ export default function SignUp() {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
-            fetch('http://localhost:3333/Createdatdb_profittomonth', {
+            fetch('https://latexplatform-api.coecore.com/Createdatdb_profittomonth', {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',

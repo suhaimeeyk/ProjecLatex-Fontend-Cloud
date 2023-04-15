@@ -27,7 +27,7 @@ export default function Users() {
     useEffect(() => {
   
       const token = localStorage.getItem('token')
-      fetch('http://localhost:3333/authen', {
+      fetch('https://latexplatform-api.coecore.com/authen', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export default function Users() {
       };
 
 
-    fetch("http://localhost:3333/db_dataSelect/"+users_id , requestOptions)
+    fetch("https://latexplatform-api.coecore.com/db_dataSelect/"+users_id , requestOptions)
     .then(res => res.json())
     .then((result) => {
         setUser(result);
@@ -90,7 +90,7 @@ export default function Users() {
           };
     
     
-        fetch("http://localhost:3333/RevealdisplayAll/"+users_id , requestOptions)
+        fetch("https://latexplatform-api.coecore.com/RevealdisplayAll/"+users_id , requestOptions)
         .then(res => res.json())
         .then((result) => {
             setItems(result);
@@ -127,7 +127,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/db_reveal_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_reveal_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)

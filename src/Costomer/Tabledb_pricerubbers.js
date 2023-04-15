@@ -31,7 +31,7 @@ export default function Users() {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3333/db_pricerubbers", requestOptions)
+    fetch("https://latexplatform-api.coecore.com/db_pricerubbers", requestOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -63,7 +63,7 @@ export default function Users() {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3333/db_pricerubbers_id", requestOptions)
+    fetch("https://latexplatform-api.coecore.com/db_pricerubbers_id", requestOptions)
       .then(response => response.json())
       .then((data) => {
         console.log(data)

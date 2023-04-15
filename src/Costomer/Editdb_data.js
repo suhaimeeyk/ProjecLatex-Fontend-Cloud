@@ -163,7 +163,7 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Editdb_data/" + data_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/Editdb_data/" + data_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
@@ -202,7 +202,7 @@ function DashboardContent() {
         } else {
 
 
-            fetch('http://localhost:3333/EditUserdb_data', {
+            fetch('https://latexplatform-api.coecore.com/EditUserdb_data', {
                 method: 'PUT', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',
@@ -232,7 +232,7 @@ function DashboardContent() {
     useEffect(() => {
 
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
+        fetch('https://latexplatform-api.coecore.com/authen', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -275,7 +275,7 @@ function DashboardContent() {
         };
 
 
-        fetch("http://localhost:3333/db_dataSelect/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_dataSelect/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setdb_customer(result);
@@ -288,7 +288,7 @@ function DashboardContent() {
     const [db_pricerubbers, setdb_pricerubbers] = useState([]);
 
     const UserGetdb_pricerubbers = () => {
-        fetch("http://localhost:3333/db_pricerubbersSelect")
+        fetch("https://latexplatform-api.coecore.com/db_pricerubbersSelect")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -311,7 +311,7 @@ function DashboardContent() {
 
 
     const UserGetUsers = () => {
-        fetch("http://localhost:3333/db_catwithdraw")
+        fetch("https://latexplatform-api.coecore.com/db_catwithdraw")
             .then(res => res.json())
             .then(
                 (result) => {

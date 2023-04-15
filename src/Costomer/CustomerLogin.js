@@ -32,7 +32,7 @@ export default function SignInSide() {
       customer_tel: data.get('customer_tel'),
     };
 
-    fetch('http://localhost:3333/loginCostomer', {
+    fetch('https://latexplatform-api.coecore.com/loginCostomer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

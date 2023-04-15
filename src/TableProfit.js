@@ -71,7 +71,7 @@ export default function Users() {
     useEffect(() => {
 
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
+        fetch('https://latexplatform-api.coecore.com/authen', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export default function Users() {
     //         redirect: 'follow'
     //     };
 
-    //     fetch("http://localhost:3333/db_paydailyALL/", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/db_paydailyALL/", requestOptions)
     //         .then(response => response.json())
     //         .then(result => {
     //             if (result['status'] === 'Ok') {
@@ -131,7 +131,7 @@ export default function Users() {
         };
 
 
-        fetch("http://localhost:3333/db_paydailyALL/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_paydailyALL/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {
@@ -151,7 +151,7 @@ export default function Users() {
     //         redirect: 'follow'
     //     };
 
-    //     fetch("http://localhost:3333/db_profittoSelectmouth/", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/db_profittoSelectmouth/", requestOptions)
     //         .then(response => response.json())
     //         .then(result => {
     //             if (result['status'] === 'Ok') {
@@ -169,7 +169,7 @@ export default function Users() {
         };
 
 
-        fetch("http://localhost:3333/db_profittoSelectmouth/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_profittoSelectmouth/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {
@@ -189,7 +189,7 @@ export default function Users() {
     //         redirect: 'follow'
     //     };
 
-    //     fetch("http://localhost:3333/db_profittoSelectyear/", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/db_profittoSelectyear/", requestOptions)
     //         .then(response => response.json())
     //         .then(result => {
     //             if (result['status'] === 'Ok') {
@@ -208,7 +208,7 @@ export default function Users() {
         };
 
 
-        fetch("http://localhost:3333/db_profittoSelectyear/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_profittoSelectyear/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {
@@ -233,7 +233,7 @@ export default function Users() {
         };
 
 
-        fetch("http://localhost:3333/db_dataSelect/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_dataSelect/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setUser(result);
@@ -254,7 +254,7 @@ export default function Users() {
     //     };
 
 
-    //     fetch("http://localhost:3333/Profit", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/Profit", requestOptions)
     //         .then(res => res.json())
     //         .then((result) => {
     //             setItems(result);
@@ -272,7 +272,7 @@ export default function Users() {
         };
   
   
-      fetch("http://localhost:3333/Profit/"+users_id , requestOptions)
+      fetch("https://latexplatform-api.coecore.com/Profit/"+users_id , requestOptions)
       .then(res => res.json())
       .then((result) => {
           setItems(result);
@@ -293,7 +293,7 @@ export default function Users() {
     //     };
 
 
-    //     fetch("http://localhost:3333/Profittoday", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/Profittoday", requestOptions)
     //         .then(res => res.json())
     //         .then((result) => {
     //             setprofit(result);
@@ -310,7 +310,7 @@ export default function Users() {
         };
   
   
-      fetch("http://localhost:3333/Profittoday/"+users_id , requestOptions)
+      fetch("https://latexplatform-api.coecore.com/Profittoday/"+users_id , requestOptions)
       .then(res => res.json())
       .then((result) => {
         setprofit(result);
@@ -330,7 +330,7 @@ export default function Users() {
     //     };
 
 
-    //     fetch("http://localhost:3333/db_profittoSelectmouth", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/db_profittoSelectmouth", requestOptions)
     //         .then(res => res.json())
     //         .then((data) => {
     //             setSelectmouth(data);
@@ -346,7 +346,7 @@ export default function Users() {
           };
     
     
-        fetch("http://localhost:3333/db_profittoSelectmouth/"+users_id , requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_profittoSelectmouth/"+users_id , requestOptions)
         .then(res => res.json())
         .then((result) => {
             setSelectmouth(result);
@@ -367,7 +367,7 @@ export default function Users() {
     //     };
 
 
-    //     fetch("http://localhost:3333/db_profittoSelectyear", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/db_profittoSelectyear", requestOptions)
     //         .then(res => res.json())
     //         .then((data) => {
     //             setSelectYear(data);
@@ -382,7 +382,7 @@ export default function Users() {
           };
     
     
-        fetch("http://localhost:3333/db_profittoSelectyear/"+users_id , requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_profittoSelectyear/"+users_id , requestOptions)
         .then(res => res.json())
         .then((result) => {
             setSelectYear(result);
@@ -402,7 +402,7 @@ export default function Users() {
     //     };
 
 
-    //     fetch("http://localhost:3333/db_income", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/db_income", requestOptions)
     //         .then(res => res.json())
     //         .then((result) => {
     //             setdb_income(result);
@@ -420,7 +420,7 @@ export default function Users() {
         };
   
   
-      fetch("http://localhost:3333/db_income/"+users_id , requestOptions)
+      fetch("https://latexplatform-api.coecore.com/db_income/"+users_id , requestOptions)
       .then(res => res.json())
       .then((result) => {
         setdb_income(result);
@@ -457,7 +457,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/paydaily_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/paydaily_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
@@ -487,7 +487,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/db_income_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_income_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
@@ -516,7 +516,7 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/profittoday_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/profittoday_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
@@ -541,7 +541,7 @@ export default function Users() {
         };
 
 
-        fetch("http://localhost:3333/db_data/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_data/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setdb_data(result);

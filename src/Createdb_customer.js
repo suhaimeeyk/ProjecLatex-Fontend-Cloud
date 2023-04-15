@@ -34,7 +34,7 @@ export default function SignUp() {
 
 
     const UserGet = () => {
-        fetch("http://localhost:3333/db_catusers")
+        fetch("https://latexplatform-api.coecore.com/db_catusers")
         .then(res => res.json())
         .then(
           (result) => {
@@ -53,7 +53,7 @@ export default function SignUp() {
 
 
     const UserGetUsers = () => {
-        fetch("http://localhost:3333/Users")
+        fetch("https://latexplatform-api.coecore.com/Users")
         .then(res => res.json())
         .then(
           (result) => {
@@ -91,7 +91,7 @@ export default function SignUp() {
         alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
       }else{
 
-    fetch('http://localhost:3333/Createdb_customer', {
+    fetch('https://latexplatform-api.coecore.com/Createdb_customer', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',

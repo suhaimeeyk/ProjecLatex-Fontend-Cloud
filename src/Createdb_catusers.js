@@ -38,7 +38,7 @@ export default function SignUp() {
         alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
       }else{
 
-    fetch('http://localhost:3333/Createdb_catwithdraw', {
+    fetch('https://latexplatform-api.coecore.com/Createdb_catwithdraw', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',

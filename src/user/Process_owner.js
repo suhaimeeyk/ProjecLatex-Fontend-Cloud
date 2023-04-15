@@ -97,7 +97,7 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Editdb_data/" + data_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/Editdb_data/" + data_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
@@ -128,7 +128,7 @@ function DashboardContent() {
           }else{
       
         
-        fetch('http://localhost:3333/Editdb_data2', {
+        fetch('https://latexplatform-api.coecore.com/Editdb_data2', {
             method: 'PUT', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',

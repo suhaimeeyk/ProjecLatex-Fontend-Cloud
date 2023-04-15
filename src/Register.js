@@ -34,7 +34,7 @@ export default function SignUp() {
 
 
     const UserGet = () => {
-        fetch("http://localhost:3333/db_level")
+        fetch("https://latexplatform-api.coecore.com/db_level")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -56,7 +56,7 @@ export default function SignUp() {
             level: data.get('level'),
         }
 
-        fetch('http://localhost:3333/register', {
+        fetch('https://latexplatform-api.coecore.com/register', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

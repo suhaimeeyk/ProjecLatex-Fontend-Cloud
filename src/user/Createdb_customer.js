@@ -30,7 +30,7 @@ export default function SignUp() {
   useEffect(() => {
 
     const token = localStorage.getItem('token')
-    fetch('http://localhost:3333/authen', {
+    fetch('https://latexplatform-api.coecore.com/authen', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export default function SignUp() {
 
 
     const UserGet = () => {
-        fetch("http://localhost:3333/db_catusers")
+        fetch("https://latexplatform-api.coecore.com/db_catusers")
         .then(res => res.json())
         .then(
           (result) => {
@@ -92,7 +92,7 @@ export default function SignUp() {
           };
 
 
-        fetch("http://localhost:3333/UsersTo/"+users_id , requestOptions)
+        fetch("https://latexplatform-api.coecore.com/UsersTo/"+users_id , requestOptions)
         .then(res => res.json())
         .then((result) => {
             setUsers(result);
@@ -129,7 +129,7 @@ export default function SignUp() {
         alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
       }else{
 
-    fetch('http://localhost:3333/Createdb_customer', {
+    fetch('https://latexplatform-api.coecore.com/Createdb_customer', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',

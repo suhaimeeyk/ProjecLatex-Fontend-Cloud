@@ -121,7 +121,7 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Revealditform/" + reveal_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/Revealditform/" + reveal_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
@@ -144,7 +144,7 @@ function DashboardContent() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3333/Revealditformdetail/" + reveal_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/Revealditformdetail/" + reveal_id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result['status'] === 'Ok') {
@@ -185,7 +185,7 @@ function DashboardContent() {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
-            fetch('http://localhost:3333/editreveal', {
+            fetch('https://latexplatform-api.coecore.com/editreveal', {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',

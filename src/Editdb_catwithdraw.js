@@ -96,7 +96,7 @@ function DashboardContent() {
           redirect: 'follow'
         };
         
-        fetch("http://localhost:3333/EditUserdb_catwithdraw/"+catwithdraw_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/EditUserdb_catwithdraw/"+catwithdraw_id, requestOptions)
           .then(response => response.json())
           .then(result => {
               if (result['status'] === 'Ok') {
@@ -125,7 +125,7 @@ const handleSubmit = (event) => {
     }else{
 
   
-  fetch('http://localhost:3333/EditUserdb_catwithdraw', {
+  fetch('https://latexplatform-api.coecore.com/EditUserdb_catwithdraw', {
       method: 'PUT', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

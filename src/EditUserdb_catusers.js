@@ -96,7 +96,7 @@ function DashboardContent() {
           redirect: 'follow'
         };
         
-        fetch("http://localhost:3333/EditUserdb_catusers/"+catusers_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/EditUserdb_catusers/"+catusers_id, requestOptions)
           .then(response => response.json())
           .then(result => {
               if (result['status'] === 'Ok') {
@@ -123,7 +123,7 @@ const handleSubmit = (event) => {
     }else{
 
   
-  fetch('http://localhost:3333/EditUserdb_catusers', {
+  fetch('https://latexplatform-api.coecore.com/EditUserdb_catusers', {
       method: 'PUT', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

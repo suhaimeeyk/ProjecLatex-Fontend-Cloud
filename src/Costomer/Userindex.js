@@ -98,7 +98,7 @@ function DashboardContent() {
   useEffect(() => {
 
       const token = localStorage.getItem('token')
-      fetch('http://localhost:3333/authen', {
+      fetch('https://latexplatform-api.coecore.com/authen', {
           method: 'POST', // or 'PUT'
           headers: {
               'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ function DashboardContent() {
           redirect: 'follow'
         };
         
-        fetch("http://localhost:3333/EditUserCon/"+users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/EditUserCon/"+users_id, requestOptions)
           .then(response => response.json())
           .then(result => {
               if (result['status'] === 'Ok') {
@@ -180,7 +180,7 @@ const handleSubmit = (event) => {
     }else{
 
   
-  fetch('http://localhost:3333/EditUserCon', {
+  fetch('https://latexplatform-api.coecore.com/EditUserCon', {
       method: 'PUT', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

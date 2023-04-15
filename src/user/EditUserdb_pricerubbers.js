@@ -97,7 +97,7 @@ function DashboardContent() {
           redirect: 'follow'
         };
         
-        fetch("http://localhost:3333/EditUserdb_pricerubbers/"+pricerubbers_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/EditUserdb_pricerubbers/"+pricerubbers_id, requestOptions)
           .then(response => response.json())
           .then(result => {
               if (result['status'] === 'Ok') {
@@ -126,7 +126,7 @@ const handleSubmit = (event) => {
     }else{
 
   
-  fetch('http://localhost:3333/EditUserdb_pricerubbers', {
+  fetch('https://latexplatform-api.coecore.com/EditUserdb_pricerubbers', {
       method: 'PUT', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

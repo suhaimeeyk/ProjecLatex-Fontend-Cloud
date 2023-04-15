@@ -112,7 +112,7 @@ function DashboardContent() {
     useEffect(() => {
 
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
+        fetch('https://latexplatform-api.coecore.com/authen', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ function DashboardContent() {
 
     useEffect(() => {
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3333/authen', {
+        fetch('https://latexplatform-api.coecore.com/authen', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -298,7 +298,7 @@ function DashboardContent() {
     //         redirect: 'follow'
     //     };
 
-    //     fetch("http://localhost:3333/db_paydailyALL/", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/db_paydailyALL/", requestOptions)
     //         .then(response => response.json())
     //         .then(result => {
     //             if (result['status'] === 'Ok') {
@@ -317,7 +317,7 @@ function DashboardContent() {
         };
 
 
-        fetch("http://localhost:3333/db_paydailyALL/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_paydailyALL/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {
@@ -342,7 +342,7 @@ function DashboardContent() {
         };
 
 
-        fetch("http://localhost:3333/db_dataALL/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_dataALL/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {
@@ -358,7 +358,7 @@ function DashboardContent() {
     const [revealdisplayALL, setrevealdisplayALL] = useState([]);
 
     const UserrevealdisplayALL = () => {
-        fetch("http://localhost:3333/revealdisplayALL")
+        fetch("https://latexplatform-api.coecore.com/revealdisplayALL")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -382,7 +382,7 @@ function DashboardContent() {
         };
 
 
-        fetch("http://localhost:3333/db_profittoSelectmouth/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_profittoSelectmouth/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {
@@ -403,7 +403,7 @@ function DashboardContent() {
         };
 
 
-        fetch("http://localhost:3333/db_profittoSelectyear/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_profittoSelectyear/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {

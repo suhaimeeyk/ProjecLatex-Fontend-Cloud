@@ -26,7 +26,7 @@ export default function Users() {
 
 
     const UserGet = () => {
-        fetch("http://localhost:3333/db_catusers")
+        fetch("https://latexplatform-api.coecore.com/db_catusers")
         .then(res => res.json())
         .then(
           (result) => {
@@ -58,7 +58,7 @@ export default function Users() {
             redirect: 'follow'
             };
 
-            fetch("http://localhost:3333/db_catusers_id", requestOptions)
+            fetch("https://latexplatform-api.coecore.com/db_catusers_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)

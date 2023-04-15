@@ -31,7 +31,7 @@ export default function SignInSide() {
       users_password: data.get('users_password'),
     };
   
-    fetch('http://localhost:3333/login', {
+    fetch('https://latexplatform-api.coecore.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
