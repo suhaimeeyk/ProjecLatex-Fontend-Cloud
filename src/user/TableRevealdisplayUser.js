@@ -17,6 +17,8 @@ import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import { TextField } from '@material-ui/core';
+
 
 
 export default function Users() {
@@ -160,7 +162,19 @@ export default function Users() {
     }
 
 
+    const [searchQuery, setSearchQuery] = useState("");
 
+    const filteredData = items.results?.filter((results, index) => {
+        const customer_name = results.customer_name.toLowerCase();
+        const db_reveal_date = typeof results.db_reveal_date === 'string' ? results.db_reveal_date.toLowerCase() : '';
+        const reveal_total = typeof results.db_reveal_date === 'string' ? results.db_reveal_date.toLowerCase() : '';
+      
+        return (
+          customer_name.includes(searchQuery.toLowerCase()) ||
+          db_reveal_date.includes(searchQuery.toLowerCase()) ||
+          reveal_total.includes(searchQuery.toLowerCase())
+        );
+      });
 
 
 
@@ -182,6 +196,12 @@ export default function Users() {
                             </Link>
                         </Box>
                     </Box>
+                    <TextField
+                        fullWidth
+                        label="Search"
+                        value={searchQuery}
+                        onChange={(event) => setSearchQuery(event.target.value)}
+                    />
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth:650 }} aria-label="simple table">
                             <TableHead>
@@ -196,7 +216,7 @@ export default function Users() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {items.results?.map((results, index) => {
+                            {filteredData?.map((results, index) => {
                                     return (
                                         <TableRow
                                             key={results.reveal_id}

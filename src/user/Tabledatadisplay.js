@@ -133,7 +133,7 @@ export default function Users() {
         const catwithdrawName = results.catwithdraw_name.toLowerCase();
         const priceTotal = typeof results.data_pricetotal === 'string' ? results.data_pricetotal.toLowerCase() : '';
         const data_date = typeof results.data_date === 'string' ? results.data_date.toLowerCase() : '';
-    
+
         return (
             customerName.includes(searchQuery.toLowerCase()) ||
             catwithdrawName.includes(searchQuery.toLowerCase()) ||
@@ -164,11 +164,11 @@ export default function Users() {
                         </Box>
                     </Box>
                     <TextField
-                    fullWidth
-                                    label="Search"
-                                    value={searchQuery}
-                                    onChange={(event) => setSearchQuery(event.target.value)}
-                                />
+                        fullWidth
+                        label="Search"
+                        value={searchQuery}
+                        onChange={(event) => setSearchQuery(event.target.value)}
+                    />
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 2000 }} aria-label="simple table">
                             <TableHead>
@@ -195,7 +195,7 @@ export default function Users() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                            {filteredData?.map((results,index)  => {
+                                {filteredData?.map((results, index) => {
                                     return (
                                         <TableRow
                                             key={results.data_id}
@@ -270,7 +270,7 @@ export default function Users() {
                                                                     </ButtonGroup>
                                                                 </MenuItem>
                                                                 <MenuItem onClick={() => Process_owner(results.data_id)}>เจ้าของส่วนกรีดยางเอง</MenuItem>
-                                                                <MenuItem onClick={() =>Process_percent(results.data_id)}>ลูกจ้าง %2</MenuItem>
+                                                                <MenuItem onClick={() => Process_percent(results.data_id)}>ลูกจ้าง %2</MenuItem>
                                                                 <MenuItem onClick={() => Process_divide(results.data_id)}>45% - 55%</MenuItem>
 
                                                                 {/* <MenuItem> <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
@@ -292,7 +292,7 @@ export default function Users() {
 
                                             </TableCell>
                                             <TableCell>
-                                                
+
 
                                             </TableCell>
 

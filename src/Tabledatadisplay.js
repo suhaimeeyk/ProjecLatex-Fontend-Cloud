@@ -202,7 +202,7 @@ export default function Users() {
         const catwithdrawName = results.catwithdraw_name.toLowerCase();
         const priceTotal = typeof results.data_pricetotal === 'string' ? results.data_pricetotal.toLowerCase() : '';
         const data_date = typeof results.data_date === 'string' ? results.data_date.toLowerCase() : '';
-    
+
         return (
             customerName.includes(searchQuery.toLowerCase()) ||
             catwithdrawName.includes(searchQuery.toLowerCase()) ||
@@ -210,8 +210,8 @@ export default function Users() {
             data_date.includes(searchQuery.toLowerCase())
         );
     });
-    
-    
+
+
     // items.data?.filter((results, index) => {
 
     return (
@@ -233,11 +233,11 @@ export default function Users() {
                         </Box>
                     </Box>
                     <TextField
-                    fullWidth
-                                    label="Search"
-                                    value={searchQuery}
-                                    onChange={(event) => setSearchQuery(event.target.value)}
-                                />
+                        fullWidth
+                        label="Search"
+                        value={searchQuery}
+                        onChange={(event) => setSearchQuery(event.target.value)}
+                    />
                     {/* <SearchForm onSearch={(searchTerm) => console.log(searchTerm)} /> */}
                     {/* <TextField
                         label="Search"
@@ -270,10 +270,10 @@ export default function Users() {
                         ))}
                     </TableBody> */}
 
-                    
+
 
                     <TableContainer component={Paper}>
-                    
+
                         <Table sx={{ minWidth: 2000 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -301,7 +301,7 @@ export default function Users() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {filteredData?.map((results,index)  => {
+                                {filteredData?.map((results, index) => {
                                     return (
                                         <TableRow
                                             key={results.data_id}

@@ -18,6 +18,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
+import { TextField } from '@material-ui/core';
 
 
 
@@ -161,7 +162,19 @@ export default function Users() {
             })
             .catch(error => console.log('error', error));
     }
+    const [searchQuery, setSearchQuery] = useState("");
 
+    const filteredData = items.results?.filter((results, index) => {
+        const customer_name = results.customer_name.toLowerCase();
+        const manure_total = typeof results.manure_total === 'string' ? results.manure_total.toLowerCase() : '';
+        const db_manure_date = typeof results.db_manure_date === 'string' ? results.db_manure_date.toLowerCase() : '';
+
+        return (
+            customer_name.includes(searchQuery.toLowerCase()) ||
+            manure_total.includes(searchQuery.toLowerCase()) ||
+            db_manure_date.includes(searchQuery.toLowerCase())
+        );
+    });
 
 
 
@@ -183,6 +196,12 @@ export default function Users() {
                             </Link>
                         </Box> */}
                     </Box>
+                    <TextField
+                        fullWidth
+                        label="Search"
+                        value={searchQuery}
+                        onChange={(event) => setSearchQuery(event.target.value)}
+                    />
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
@@ -197,7 +216,7 @@ export default function Users() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {items.results?.map((results, index) => {
+                            {filteredData?.map((results, index) => {
                                     return (
                                         <TableRow
                                             key={results.manure_id}
