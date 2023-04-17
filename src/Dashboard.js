@@ -342,7 +342,7 @@ function DashboardContent() {
         };
 
 
-        fetch("https://latexplatform-api.coecore.com/db_dataALL/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/cumulative_tire_price/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 if (result['status'] === 'Ok') {
@@ -657,7 +657,7 @@ function DashboardContent() {
                             <Grid item xs={12} >
                                 <Item>
                                     <Typography variant="h6" gutterBottom >
-                                        ยอดรายการขายน้ำยาง
+                                    ยอดเงินสะสมของผู้ขาย
                                     </Typography>
                                     <ResponsiveContainer width="100%" aspect={2}>
                                         <BarChart
@@ -673,8 +673,8 @@ function DashboardContent() {
                                         >
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="customer_name" />
-                                            <YAxis dataKey="data_pricetotal"/>
-                                            <Bar dataKey="data_pricetotal" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                                            <YAxis dataKey="ผลร่วมจ่ายค่าน้ำยางต่อวัน"/>
+                                            <Bar dataKey="ผลร่วมจ่ายค่าน้ำยางต่อวัน" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
                                                 {data.map((entry, index) => (
                                                     <Cell key={`cell-${index}`} fill={colorsCustomShapeBarChart[index % 20]} />
                                                 ))}

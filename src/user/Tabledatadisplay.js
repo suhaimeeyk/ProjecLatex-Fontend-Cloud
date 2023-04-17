@@ -270,8 +270,8 @@ export default function Users() {
                                                                     </ButtonGroup>
                                                                 </MenuItem>
                                                                 <MenuItem onClick={() => Process_owner(results.data_id)}>เจ้าของส่วนกรีดยางเอง</MenuItem>
-                                                                <MenuItem onClick={() => Process_percent(results.data_id)}>ลูกจ้าง %2</MenuItem>
-                                                                <MenuItem onClick={() => Process_divide(results.data_id)}>45% - 55%</MenuItem>
+                                                                <MenuItem onClick={() => Process_percent(results.data_id)}>45% - 55%</MenuItem>
+                                                                <MenuItem onClick={() => Process_divide(results.data_id)}>ลูกจ้าง %2</MenuItem>
 
                                                                 {/* <MenuItem> <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
                                                                     {({ blob, url, loading, error }) =>

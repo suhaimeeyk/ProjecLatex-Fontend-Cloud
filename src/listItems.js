@@ -69,6 +69,15 @@ export const mainListItems = (
             </ListItemButton>
         </Link>
 
+        <Link href="/Cumulative_balanceDisplay" underline="none">
+            <ListItemButton>
+                <ListItemIcon>
+                    <LayersIcon />
+                </ListItemIcon>
+                <ListItemText primary="ยอดเงินสะสมของผู้ขาย" />
+            </ListItemButton>
+        </Link>
+
 
 
 
