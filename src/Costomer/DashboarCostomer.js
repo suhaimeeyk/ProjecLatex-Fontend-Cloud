@@ -357,6 +357,28 @@ function DashboardContent() {
             .catch(error => console.log('error', error));
     }, [users_id])
 
+    const [db_dataALLPrice, setdb_dataALLPrice] = useState([]);
+
+
+    useEffect(() => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+
+        fetch("https://latexplatform-api.coecore.com/cumulative_tire_price_Customer/" + users_id, requestOptions)
+            .then(res => res.json())
+            .then((result) => {
+                if (result['status'] === 'Ok') {
+
+                    setdb_dataALLPrice(result['data'])
+
+                }
+            })
+            .catch(error => console.log('error', error));
+    }, [users_id])
+
 
     const [revealdisplayALL, setrevealdisplayALL] = useState([]);
 
@@ -660,13 +682,13 @@ function DashboardContent() {
                             <Grid item xs={12} >
                                 <Item>
                                     <Typography variant="h6" gutterBottom >
-                                        ยอดรายการขายน้ำยาง
+                                        ยอดเงินสะสมการขายน้ำยาง
                                     </Typography>
                                     <ResponsiveContainer width="100%" aspect={2}>
                                         <BarChart
                                             width={600}
                                             height={300}
-                                            data={db_dataALL}
+                                            data={db_dataALLPrice}
                                             margin={{
                                                 top: 20,
                                                 right: 30,
@@ -675,9 +697,9 @@ function DashboardContent() {
                                             }}
                                         >
                                             <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="data_date" tickFormatter={(tick) => moment(tick).format("DD/MM/YYYY")} />
-                                            <YAxis dataKey="data_pricetotal" />
-                                            <Bar dataKey="data_pricetotal" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                                            {/* <XAxis dataKey="data_date"/> */}
+                                            <YAxis dataKey="ผลร่วมจ่ายค่าน้ำยางต่อวัน" />
+                                            <Bar dataKey="ผลร่วมจ่ายค่าน้ำยางต่อวัน" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
                                                 {data.map((entry, index) => (
                                                     <Cell key={`cell-${index}`} fill={colorsCustomShapeBarChart[index % 20]} />
                                                 ))}
