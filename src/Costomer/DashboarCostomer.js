@@ -675,7 +675,7 @@ function DashboardContent() {
                                             }}
                                         >
                                             <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="customer_name" />
+                                            <XAxis dataKey="data_date" tickFormatter={(tick) => moment(tick).format("DD/MM/YYYY")} />
                                             <YAxis dataKey="data_pricetotal" />
                                             <Bar dataKey="data_pricetotal" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
                                                 {data.map((entry, index) => (
@@ -756,7 +756,7 @@ function DashboardContent() {
 
                         </Grid>
 
-
+<br></br>
 
 
 
