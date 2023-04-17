@@ -105,7 +105,7 @@ export default function Users() {
         };
 
 
-      fetch("https://latexplatform-api.coecore.com/cumulative_tire_price_customer/"+customer_id , requestOptions)
+      fetch("https://latexplatform-api.coecore.com/cumulative_tire_price_customer_id/"+customer_id , requestOptions)
       .then(res => res.json())
       .then((result) => {
           setItems(result.results);
