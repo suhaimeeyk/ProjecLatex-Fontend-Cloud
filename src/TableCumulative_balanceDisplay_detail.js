@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -19,33 +19,36 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
 
 export default function Users() {
 
     const { customer_id } = useParams();
 
-//   const [items, setItems] = useState([]);
-        
-        
-//       useEffect(() => {
-//         var requestOptions = {
-//             method: 'GET',
-//             redirect: 'follow'
-//           };
+    //   const [items, setItems] = useState([]);
 
 
-//         fetch("https://latexplatform-api.coecore.com/manuredisplay_detail/"+customer_id , requestOptions)
-//         .then(res => res.json())
-//         .then((data) => {
-//             setItems(data.data);
-//             // console.log(data.data)
-//           }
-//         )
-//       }, [customer_id])
+    //       useEffect(() => {
+    //         var requestOptions = {
+    //             method: 'GET',
+    //             redirect: 'follow'
+    //           };
 
 
-        // const [customer_name, setcustomer_name] = useState('');
-        // const [manure_sumtotal, setmanure_sumtotal] = useState('');
+    //         fetch("https://latexplatform-api.coecore.com/manuredisplay_detail/"+customer_id , requestOptions)
+    //         .then(res => res.json())
+    //         .then((data) => {
+    //             setItems(data.data);
+    //             // console.log(data.data)
+    //           }
+    //         )
+    //       }, [customer_id])
+
+
+    // const [customer_name, setcustomer_name] = useState('');
+    // const [manure_sumtotal, setmanure_sumtotal] = useState('');
     //     const [manure_pay, setmanure_pay] = useState('');
     //     const [manure_sumtotal, setmanure_sumtotal] = useState('');
     //     const [manure_detail_date, setmanure_detail_date] = useState('');
@@ -88,7 +91,7 @@ export default function Users() {
 
                     // setmanure_sumtotal(result['data']['manure_sumtotal'])
                     setmmanure_total(result['data']['manure_total'])
-                    
+
                 }
             })
             .catch(error => console.log('error', error));
@@ -97,21 +100,21 @@ export default function Users() {
 
 
     const [items, setItems] = useState([]);
-        
+
     useEffect(() => {
-      var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
         };
 
 
-      fetch("https://latexplatform-api.coecore.com/cumulative_tire_price_customer_id/"+customer_id , requestOptions)
-      .then(res => res.json())
-      .then((result) => {
-          setItems(result.results);
-          console.log(result.results)
-        }
-      )
+        fetch("https://latexplatform-api.coecore.com/cumulative_tire_price_customer_id/" + customer_id, requestOptions)
+            .then(res => res.json())
+            .then((result) => {
+                setItems(result.results);
+                console.log(result.results)
+            }
+            )
     }, [customer_id])
 
 
@@ -149,13 +152,44 @@ export default function Users() {
 
 
 
+    const pageRef = useRef();
+
+    const capturePage = () => {
+        // Get the dimensions of the page
+        const pageWidth = 8.27; // A4 paper width in inches
+        const pageHeight = 11.69; // A4 paper height in inches
+
+        // Use html2canvas to capture a screenshot of the entire page
+        html2canvas(pageRef.current, { scrollY: -window.scrollY }).then(canvas => {
+            // `canvas` now contains a rendered image of the entire page
+            const imgData = canvas.toDataURL('image/png');
+
+            // Calculate the scale factor to fit the image on an A4 page
+            const scaleFactor = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+
+            // Calculate the width and height of the image after scaling
+            const imgWidth = canvas.width * scaleFactor;
+            const imgHeight = canvas.height * scaleFactor;
+
+            // Create a new jsPDF instance with A4 page size
+            const pdf = new jsPDF('p', 'in', 'a4');
+
+            // Add the image to the PDF and position it at the top of the page
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+            // Save the PDF with a custom name
+            pdf.save('example.pdf');
+        });
+    };
 
     return (
         <React.Fragment>
             <CssBaseline />
 
             <Container maxWidth="xl" sx={{ mt: 10, p: 5 }}>
+
                 <Paper sx={{ p: 2 }}>
+
                     <Box align="center" display="flex">
                         {/* <Box sx={{ flexGrow: 1 }}>
                             <Typography variant="h6" gutterBottom >
@@ -166,40 +200,54 @@ export default function Users() {
                         <Box>
                             <Link href="/Cumulative_balanceDisplay">
                                 <Button variant="contained">BACK</Button>
+
                             </Link>
                         </Box>
                     </Box>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <div ref={pageRef}>
 
-                                    <TableCell align="center">ลำดับ</TableCell>
-                                    {/* <TableCell align="center"></TableCell> */}
-                                    <TableCell align="lift">ชื่อลูกค้า</TableCell>
-                                    <TableCell align="lift">ผลร่วมจ่ายค่าน้ำยางต่อวัน</TableCell>
-                                    {/* <TableCell align="lift">ยอดหลังชำระ</TableCell> */}
-                                    <TableCell align="lift">วันที่</TableCell>
+                        <Typography align="center" variant="h6" gutterBottom >
+                            รายละเอียดยอดเงินสะสมของผู้ขาย
+                        </Typography>
 
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {items?.map((results, index) => {
-                                    return (
-                                        <TableRow
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell component="th" scope="row" align="center">
-                                                {index + 1}
-                                            </TableCell>
-                                            
+                        <TableContainer component={Paper}>
 
-                                            <TableCell align="lift">{results.customer_name}</TableCell>
-                                            <TableCell align="lift">{results.ผลร่วมจ่ายค่าน้ำยางต่อวัน}</TableCell>
-                                            <TableCell align="lift">{results.วันที่}</TableCell>
-                                            {/* <TableCell align="lift">{results.manure_sumtotal}</TableCell> */}
+                            <Table sx={{
+                                minWidth: 500,
+                                border: '1px solid',
+                                borderColor: 'grey.300',
+                                borderRadius: '8px',
+                                overflow: 'hidden',
+                            }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 
-                                            {/* <TableCell align="lift" >
+                                        <TableCell align="center">ลำดับ</TableCell>
+                                        {/* <TableCell align="center"></TableCell> */}
+                                        <TableCell align="lift">ชื่อลูกค้า</TableCell>
+                                        <TableCell align="lift">ผลร่วมจ่ายค่าน้ำยางต่อวัน</TableCell>
+                                        {/* <TableCell align="lift">ยอดหลังชำระ</TableCell> */}
+                                        <TableCell align="lift">วันที่</TableCell>
+
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {items?.map((results, index) => {
+                                        return (
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {index + 1}
+                                                </TableCell>
+
+
+                                                <TableCell align="lift">{results.customer_name}</TableCell>
+                                                <TableCell align="lift">{results.ผลร่วมจ่ายค่าน้ำยางต่อวัน}</TableCell>
+                                                <TableCell align="lift">{results.วันที่}</TableCell>
+                                                {/* <TableCell align="lift">{results.manure_sumtotal}</TableCell> */}
+
+                                                {/* <TableCell align="lift" >
                                                 {(new Date(results.วันที่)).toLocaleTimeString('th-TH', {
                                                     year: 'numeric',
                                                     month: 'long',
@@ -207,15 +255,23 @@ export default function Users() {
                                                     weekday: 'long',
                                                 })}
                                             </TableCell> */}
-                                         
 
-                                        </TableRow>
-                                    )
-                                })}
 
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                                            </TableRow>
+                                        )
+                                    })}
+
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
+
+                    <br></br>
+                    <Box align="center" display="flex" justifyContent="flex-end">
+                        <button onClick={capturePage}>Capture and Save as PDF</button>
+                    </Box>
+
+
                 </Paper>
             </Container>
         </React.Fragment>

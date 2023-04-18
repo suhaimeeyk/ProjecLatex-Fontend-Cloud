@@ -250,7 +250,7 @@ export default function Users() {
                                                             </Button>
                                                             <Menu {...bindMenu(popupState)}>
                                                                 <MenuItem onClick={() => Manuredisplay_detail(results.customer_id)}>ดูรายการ</MenuItem>
-                                                                <MenuItem onClick={() => Manureeditform(results.customer_id)}>ปริ้นใบเสร็จ</MenuItem>
+                                                                {/* <MenuItem onClick={() => Manureeditform(results.customer_id)}>ปริ้นใบเสร็จ</MenuItem> */}
                                                                 {/* <MenuItem onClick={() => UserDelete(results.manure_id)}>ลบ</MenuItem> */}
                                                                 {/* <MenuItem onClick={() => { if (window.confirm("คุณต้องการลบรายการนี้ใช่หรือไม่?")) { UserDelete(results.manure_id); }}}>ลบ</MenuItem> */}
                                                             </Menu>
