@@ -162,6 +162,25 @@ export default function SignUp() {
             )
     }
 
+    const [Owner, setOwner] = useState([]);
+
+
+    useEffect(() => {
+        UserGetOwner()
+    }, [])
+
+
+    const UserGetOwner = () => {
+        fetch("https://latexplatform-api.coecore.com/OwnerSelect")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setOwner(result);
+                    // console.log(result)
+                }
+            )
+    }
+
 
     const [db_pricerubbers, setdb_pricerubbers] = useState([]);
 
@@ -195,6 +214,7 @@ export default function SignUp() {
         const jsonData = {
             data_usersid: data.get('data_usersid'),
             cat_id: data.get('cat_id'),
+            owder_id: data.get('owder_id'),
             inputpercent: data.get('inputpercent'),
             data_totalgallon: data.get('data_totalgallon'),
             data_wgallon: data.get('data_wgallon'),
@@ -209,7 +229,7 @@ export default function SignUp() {
         console.log(jsonData)
 
 
-        if ((jsonData.data_usersid && jsonData.cat_id && jsonData.inputpercent && jsonData.data_totalgallon && jsonData.data_wgallon && jsonData.data_disgallon && jsonData.data_dryrubber && jsonData.data_price && jsonData.data_pricetotal) === '') {
+        if ((jsonData.data_usersid && jsonData.cat_id && jsonData.owder_id && jsonData.inputpercent && jsonData.data_totalgallon && jsonData.data_wgallon && jsonData.data_disgallon && jsonData.data_dryrubber && jsonData.data_price && jsonData.data_pricetotal) === '') {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
@@ -256,14 +276,14 @@ export default function SignUp() {
                         alignItems: 'center',
                     }}
                 >
-                    <Box
+                    {/* <Box
                         component="img"
                         sx={{
                             height: 150,
                         }}
                         alt="Your logo."
                         src={Logo}
-                    />
+                    /> */}
                     <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
@@ -276,11 +296,11 @@ export default function SignUp() {
 
                             <Grid item xs={12} sm={6} >
                                 <FormControl fullWidth>
-                                    <InputLabel name="data_usersid" id="data_usersid">ชื่อลูกค้า</InputLabel>
+                                    <InputLabel name="data_usersid" id="data_usersid">ชื่อผู้ขาย</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="data_usersid"
-                                        label="ชื่อลูกค้า"
+                                        label="ชื่อผู้ขาย"
                                         name="data_usersid"
                                     >
                                         {items.data?.map((data, index) => (
@@ -305,6 +325,25 @@ export default function SignUp() {
                                         {Users.results?.map((results, index) => (
 
                                             <MenuItem value={results.catwithdraw_id}>{results.catwithdraw_name}</MenuItem>
+                                        ))}
+
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+
+                            <Grid item xs={12} >
+                                <FormControl fullWidth>
+                                    <InputLabel name="owder_id" id="owder_id">เจ้าของสวน</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="owder_id"
+                                        label="เจ้าของสวน"
+                                        name="owder_id"
+
+                                    >
+                                        {Owner.results?.map((results, index) => (
+
+                                            <MenuItem value={results.customer_id}>{results.customer_name}</MenuItem>
                                         ))}
 
                                     </Select>

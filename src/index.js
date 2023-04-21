@@ -33,6 +33,7 @@ import UserAlldb_customer from './user/Alldb_customer'
 import EditUserdb_customer from './EditUserdb_customer'
 import UserEditUserdb_customer from './user/EditUserdb_customer'
 import UserDatadisplay from './user/datadisplay'
+import UserDatadisplayOwner from './Owner/datadisplay'
 import CostomerDatadisplay from './Costomer/datadisplay'
 import Datadisplay from './datadisplay'
 import Createdatadisplay from './Createdatadisplay'
@@ -55,12 +56,15 @@ import UserProcess_divide from './user/Process_percent'
 import UserProcess_percent from './user/Process_divide'
 import Manuredisplay from './Manuredisplay'
 import ManuredisplayUser from './user/ManuredisplayUser'
+import ManuredisplayOwner from './Owner/ManuredisplayUser'
 import ManuredisplayCostomer from './Costomer/ManuredisplayUser'
 import Manuredisplay_detail from './Manuredisplay_detail'
 import Manuredisplay_detailUser from './user/Manuredisplay_detailUser'
+import Manuredisplay_detailUserOwner from './Owner/Manuredisplay_detailUser'
 import Manuredisplay_detailCostomer from './Costomer/Manuredisplay_detailUser'
 import Revealdisplay from './Revealdisplay'
 import RevealdisplayUser from './user/RevealdisplayUser'
+import RevealdisplayUserOwner from './Owner/RevealdisplayUser'
 import RevealdisplayCostomer from './Costomer/RevealdisplayUser'
 import Manureeditform from './Manureeditform'
 import ManureeditformUser from './user/ManureeditformUser'
@@ -86,6 +90,9 @@ import Cumulative_balanceDisplay from './Cumulative_balanceDisplay'
 import Cumulative_balanceDisplayUser from './user/Cumulative_balanceDisplay'
 import Cumulative_balanceDisplay_detail from './Cumulative_balanceDisplay_detail'
 import Cumulative_balanceDisplay_detailUser from './user/Cumulative_balanceDisplay_detail'
+import DashboarCostomerOwner from './Owner/DashboarCostomer'
+import OwnerData from './Owner/OwnerData'
+import CreateOwner from './Owner/CreateOwner'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -126,6 +133,7 @@ root.render(
         <Route path="/EditUserdb_customer/:customer_id" element={<EditUserdb_customer />} />
         <Route path="/user/EditUserdb_customer/:customer_id" element={<UserEditUserdb_customer />} />
         <Route path="/user/datadisplay" element={<UserDatadisplay />} />
+        <Route path="/Owner/datadisplay" element={<UserDatadisplayOwner />} />
         <Route path="/Costomer/datadisplay" element={<CostomerDatadisplay />} />
         <Route path="/datadisplay" element={<Datadisplay />} />
         <Route path="/Createdatadisplay" element={<Createdatadisplay />} />
@@ -148,16 +156,19 @@ root.render(
         <Route path="/user/Process_percent/:data_id" element={<UserProcess_percent />} />
         <Route path="/Manuredisplay" element={<Manuredisplay />} />
         <Route path="/user/ManuredisplayUser" element={<ManuredisplayUser />} />
+        <Route path="/Owner/ManuredisplayUser" element={<ManuredisplayOwner />} />
         <Route path="/Costomer/ManuredisplayUser" element={<ManuredisplayCostomer />} />
         <Route path="/Manuredisplay_detail/:manure_id" element={<Manuredisplay_detail />} />
         <Route path="/Cumulative_balanceDisplay_detail/:customer_id" element={<Cumulative_balanceDisplay_detail />} />
         <Route path="/user/Manuredisplay_detailUser/:manure_id" element={<Manuredisplay_detailUser />} />
+        <Route path="/Owner/Manuredisplay_detailUser/:manure_id" element={<Manuredisplay_detailUserOwner />} />
         <Route path="/Costomer/Manuredisplay_detailUser/:manure_id" element={<Manuredisplay_detailCostomer />} />
         <Route path="/Revealdisplay_detail/:reveal_id" element={<Revealdisplay_detail />} />
         <Route path="/user/Revealdisplay_detailUser/:reveal_id" element={<Revealdisplay_detailUser />} />
         <Route path="/Costomer/Revealdisplay_detailUser/:reveal_id" element={<Revealdisplay_detailCostomer />} />
         <Route path="/Revealdisplay" element={<Revealdisplay />} />
         <Route path="/user/RevealdisplayUser" element={<RevealdisplayUser />} />
+        <Route path="/Owner/RevealdisplayUser" element={<RevealdisplayUserOwner />} />
         <Route path="/Costomer/RevealdisplayUser" element={<RevealdisplayCostomer />} />
         <Route path="/Manureeditform/:manure_id" element={<Manureeditform />} />
         <Route path="/user/ManureeditformUser/:manure_id" element={<ManureeditformUser />} />
@@ -177,6 +188,9 @@ root.render(
         <Route path="/Cumulative_balanceDisplay" element={<Cumulative_balanceDisplay />} />
         <Route path="/user/Cumulative_balanceDisplay" element={<Cumulative_balanceDisplayUser />} />
         <Route path="/user/Cumulative_balanceDisplay_detail/:customer_id" element={<Cumulative_balanceDisplay_detailUser />} />
+        <Route path="/Owner/DashboarCostomer" element={<DashboarCostomerOwner />} />
+        <Route path="/Owner/OwnerData" element={<OwnerData />} />
+        <Route path="/Owner/CreateOwner" element={<CreateOwner />} />
 
 
 

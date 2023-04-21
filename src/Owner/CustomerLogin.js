@@ -42,73 +42,55 @@ export default function SignInSide() {
       .then((response) => response.json())
       .then((data) => {
 
-        if (data.status === 'ok') {
+        if (data.catcustomer_id === '1') {
 
-          // Store the token in localStorage
-          localStorage.setItem('token', data.token);
+          Swal.fire({
+            title: 'Login Success..',
+            text: 'กำลังเดินการเข้าสู่ระบบ',
+            icon: 'success',
+            timer: 3000, // Display time increased to 8 seconds
+            showConfirmButton: false
+          });
+          setTimeout(() => {
+            window.location = '/Owner/DashboarCostomer';
+          }, 3000); // Wait 8 seconds before redirecting
 
-          if (data.catcustomer_id === '1') {
-            Swal.fire({
-              title: 'Login Success..',
-              text: 'กำลังเดินการเข้าสู่ระบบ',
-              icon: 'success',
-              timer: 3000, // Display time increased to 8 seconds
-              showConfirmButton: false
-            });
-            setTimeout(() => {
-              window.location = '../Owner/DashboarCostomer';
-            }, 3000); // Wait 8 seconds before redirecting
-  
-          } else if (data.catcustomer_id === '2') {
-  
-            Swal.fire({
-              title: 'Login Success..',
-              text: 'กำลังเดินการเข้าสู่ระบบ',
-              icon: 'success',
-              timer: 3000, // Display time increased to 8 seconds
-              showConfirmButton: false
-            });
-            setTimeout(() => {
-              window.location = '/Costomer/DashboarCostomer';
-            }, 3000); // Wait 8 seconds before redirecting
-            
-          } else if (data.catcustomer_id === '3') {
-  
-            Swal.fire({
-              title: 'Login Success..',
-              text: 'กำลังเดินการเข้าสู่ระบบ',
-              icon: 'success',
-              timer: 3000, // Display time increased to 8 seconds
-              showConfirmButton: false
-            });
-            localStorage.setItem('token', data.token);
-            setTimeout(() => {
-              window.location = '/Costomer/DashboarCostomer';
-            }, 3000); // Wait 8 seconds before redirecting
-            
-          }else {
-  
-            Swal.fire({
-              title: 'Login Error!',
-              text: 'รหัสผ่านไม่ถูกต้อง!! กรุณาตรวจสอบ',
-              icon: 'error',
-              confirmButtonText: 'OK'
-            });
-            
-          }
+        } else if (data.catcustomer_id === '2') {
 
+          Swal.fire({
+            title: 'Login Success..',
+            text: 'กำลังเดินการเข้าสู่ระบบ',
+            icon: 'success',
+            timer: 3000, // Display time increased to 8 seconds
+            showConfirmButton: false
+          });
+          setTimeout(() => {
+            window.location = '/Costomer/DashboarCostomer';
+          }, 3000); // Wait 8 seconds before redirecting
+          
+        } else if (data.catcustomer_id === '3') {
 
-        } else {
+          Swal.fire({
+            title: 'Login Success..',
+            text: 'กำลังเดินการเข้าสู่ระบบ',
+            icon: 'success',
+            timer: 3000, // Display time increased to 8 seconds
+            showConfirmButton: false
+          });
+          setTimeout(() => {
+            window.location = '/Costomer/DashboarCostomer';
+          }, 3000); // Wait 8 seconds before redirecting
+          
+        }else {
+
           Swal.fire({
             title: 'Login Error!',
-            text: data.message,
+            text: 'รหัสผ่านไม่ถูกต้อง!! กรุณาตรวจสอบ',
             icon: 'error',
-            confirmButtonText: 'OK',
+            confirmButtonText: 'OK'
           });
+          
         }
-
-
-       
 
       })
       .catch((error) => {

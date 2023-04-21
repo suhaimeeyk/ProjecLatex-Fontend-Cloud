@@ -24,7 +24,7 @@ import TextField from '@mui/material/TextField';
 // import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Logo from "./img/LOGO.png";
+import Logo from "../img/LOGO.png";
 import { useParams } from 'react-router-dom';
 
 
@@ -89,7 +89,6 @@ function DashboardContent() {
 
     const [customer_name, setcustomer_name] = useState('');
     const [data_pricetotal, setdata_pricetotal] = useState('');
-    const [data_pricetotalAll, setdata_pricetotalAll] = useState('');
     const [data_date, setdata_date] = useState('');
 
     useEffect(() => {
@@ -104,8 +103,7 @@ function DashboardContent() {
                 if (result['status'] === 'Ok') {
 
                     setcustomer_name(result['data']['customer_name'])
-                    setdata_pricetotal(result['data']['data_pricetotal']/2)
-                    setdata_pricetotalAll(result['data']['data_pricetotal'])
+                    setdata_pricetotal(result['data']['data_pricetotal'])
                     setdata_date(result['data']['data_date'])
                 }
             })
@@ -122,7 +120,7 @@ function DashboardContent() {
             data_id: data_id,
             data_shareprice: data.get('data_shareprice'),
             data_depositprice: data.get('data_depositprice'),
-            status_id: 3,
+            status_id: 1,
         }
       
         if ( (jsonData.data_shareprice && jsonData.data_depositprice && jsonData.status_id ) ==='') {
@@ -141,7 +139,7 @@ function DashboardContent() {
             .then((data) => {
                 console.log(jsonData)
             if(data.status === 'Ok' ) {
-                window.location ='/datadisplay'
+                window.location ='/Owner/datadisplay'
                 alert('ทำรายการเรียบร้อย')
             }else{
                 alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
@@ -252,13 +250,13 @@ function DashboardContent() {
                                         {/* <LockOutlinedIcon /> */}
                                     </Avatar>
                                     <Typography component="h1" variant="h5">
-                                 ลูกจ้าง%2
+                                        เจ้าของสวนกรีดยางเอง
                                     </Typography>
 
                                     {/* <Typography component="h1" variant="h5">
                                         เลขที่รายการ : {data_id}
                                     </Typography> */}
-                                     <Typography component="h1" variant="h6">
+                                    <Typography component="h1" variant="h6">
                                         {(new Date(data_date)).toLocaleTimeString('th-TH', {
                                             year: 'numeric',
                                             month: 'long',
@@ -277,15 +275,6 @@ function DashboardContent() {
                                                     label="ชื่อ"
                                                     variant="filled"
                                                     value={customer_name}
-                                                    fullWidth
-                                                />
-                                            </Grid>
-
-                                            <Grid item xs={12}>
-                                                <TextField
-                                                    label="จำนวนเงินทั้งหมด"
-                                                    variant="filled"
-                                                    value={data_pricetotalAll}
                                                     fullWidth
                                                 />
                                             </Grid>
@@ -328,7 +317,7 @@ function DashboardContent() {
                                         </Button>
                                         <Grid container justifyContent="flex-end">
                                             <Grid item>
-                                                <Link href="/datadisplay" variant="body2">
+                                                <Link href="/Owner/datadisplay" variant="body2">
                                                     BACK
                                                 </Link>
                                             </Grid>

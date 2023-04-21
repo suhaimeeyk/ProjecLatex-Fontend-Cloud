@@ -291,8 +291,8 @@ export default function Users() {
                                     {/* <TableCell align="lift">เปอร์เซ็น</TableCell> */}
                                     <TableCell align="lift">น้ำยาแห้ง</TableCell>
                                     <TableCell align="lift">ราคา</TableCell>
-                                    <TableCell align="lift">เงินแบ่ง</TableCell>
-                                    <TableCell align="lift">เงินฝาก</TableCell>
+                                    <TableCell align="lift">เงินส่วนคนตัด</TableCell>
+                                    <TableCell align="lift">เงินส่วนเจ้าของสวน</TableCell>
                                     <TableCell align="lift">สถานะ</TableCell>
 
                                     <TableCell align="lift">Action</TableCell>
@@ -347,8 +347,8 @@ export default function Users() {
                                                     <Button > ยังไม่ได้ทำรายการ </Button>
                                                     : null}
                                                 {results.status_id === 1 ? <p>เบิกทั้งหมด</p> : null}
-                                                {results.status_id === 2 ? <p>45% - 55%</p> : null}
-                                                {results.status_id === 3 ? <p>%2</p> : null}
+                                                {results.status_id === 2 ? <p>45/55</p> : null}
+                                                {results.status_id === 3 ? <p>50/50</p> : null}
                                             </TableCell>
 
 
@@ -376,8 +376,8 @@ export default function Users() {
                                                                     </ButtonGroup>
                                                                 </MenuItem>
                                                                 <MenuItem onClick={() => Process_owner(results.data_id)}>เจ้าของส่วนกรีดยางเอง</MenuItem>
-                                                                <MenuItem onClick={() => Process_percent(results.data_id)}>ลูกจ้าง %2</MenuItem>
-                                                                <MenuItem onClick={() => Process_divide(results.data_id)}>45% - 55%</MenuItem>
+                                                                <MenuItem onClick={() => Process_percent(results.data_id)}>50/50</MenuItem>
+                                                                <MenuItem onClick={() => Process_divide(results.data_id)}>45/55</MenuItem>
 
                                                                 {/* <MenuItem> <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
                                                                     {({ blob, url, loading, error }) =>

@@ -24,7 +24,7 @@ import TextField from '@mui/material/TextField';
 // import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Logo from "./img/LOGO.png";
+import Logo from "../img/LOGO.png";
 import { useParams } from 'react-router-dom';
 
 
@@ -122,7 +122,7 @@ function DashboardContent() {
             data_id: data_id,
             data_shareprice: data.get('data_shareprice'),
             data_depositprice: data.get('data_depositprice'),
-            status_id: 3,
+            status_id: 2,
         }
       
         if ( (jsonData.data_shareprice && jsonData.data_depositprice && jsonData.status_id ) ==='') {
@@ -141,7 +141,7 @@ function DashboardContent() {
             .then((data) => {
                 console.log(jsonData)
             if(data.status === 'Ok' ) {
-                window.location ='/datadisplay'
+                window.location ='/Owner/datadisplay'
                 alert('ทำรายการเรียบร้อย')
             }else{
                 alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
@@ -252,7 +252,7 @@ function DashboardContent() {
                                         {/* <LockOutlinedIcon /> */}
                                     </Avatar>
                                     <Typography component="h1" variant="h5">
-                                 ลูกจ้าง%2
+                                    เปอร์เซ็นต์ 45% กับ 50%
                                     </Typography>
 
                                     {/* <Typography component="h1" variant="h5">
@@ -328,7 +328,7 @@ function DashboardContent() {
                                         </Button>
                                         <Grid container justifyContent="flex-end">
                                             <Grid item>
-                                                <Link href="/datadisplay" variant="body2">
+                                                <Link href="/Owner/datadisplay" variant="body2">
                                                     BACK
                                                 </Link>
                                             </Grid>

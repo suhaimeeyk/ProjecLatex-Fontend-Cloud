@@ -143,7 +143,7 @@ function DashboardContent() {
                 .then((data) => {
                     console.log(jsonData)
                     if (data.status === 'Ok') {
-                        window.location = '/user/datadisplay'
+                        window.location = '/datadisplay'
                         alert('ทำรายการเรียบร้อย')
                     } else {
                         alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
