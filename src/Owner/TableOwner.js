@@ -93,7 +93,7 @@ export default function Users() {
         };
 
 
-        fetch("https://latexplatform-api.coecore.com/manuredisplayCostomer/" + users_id, requestOptions)
+        fetch("https://latexplatform-api.coecore.com/ownerdisplayCostomerOwner/" + users_id, requestOptions)
             .then(res => res.json())
             .then((result) => {
                 setItems(result);
@@ -111,7 +111,7 @@ export default function Users() {
     //     };
 
 
-    //     fetch("https://latexplatform-api.coecore.com/manuredisplay", requestOptions)
+    //     fetch("https://latexplatform-api.coecore.com/mownerdisplay", requestOptions)
     //         .then(res => res.json())
     //         .then((result) => {
     //             setItems(result);
@@ -124,21 +124,21 @@ export default function Users() {
 
 
 
-    const Manuredisplay_detail = manure_id => {
-        window.location = '/Owner/Manuredisplay_detailUser/' + manure_id
+    const Mownerdisplay_detail = mowner_id => {
+        window.location = '/Owner/Ownerdisplay_detailUser/' + mowner_id
     }
-    const Manureeditform = manure_id => {
-        window.location = '/Owner/ManureeditformUser/' + manure_id
+    const Mownereditform = mowner_id => {
+        window.location = '/Owner/Manureeditform/' + mowner_id
     }
 
 
 
-    const UserDelete = manure_id => {
+    const UserDelete = mowner_id => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
-            "manure_id": manure_id
+            "mowner_id": mowner_id
         });
 
         var requestOptions = {
@@ -148,12 +148,12 @@ export default function Users() {
             redirect: 'follow'
         };
 
-        fetch("https://latexplatform-api.coecore.com/db_manure_id", requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_owner_id", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
                 if (data.status === 'Ok') {
-                    window.location = '/user/ManuredisplayUser'
+                    window.location = '/user/MownerdisplayUser'
                     alert('ลบรายการเรียบร้อย')
                 } else {
                     console.log(data.status)
@@ -166,13 +166,13 @@ export default function Users() {
 
     const filteredData = items.results?.filter((results, index) => {
         const customer_name = results.customer_name.toLowerCase();
-        const manure_total = typeof results.manure_total === 'string' ? results.manure_total.toLowerCase() : '';
-        const db_manure_date = typeof results.db_manure_date === 'string' ? results.db_manure_date.toLowerCase() : '';
+        const owner_total = typeof results.owner_total === 'string' ? results.owner_total.toLowerCase() : '';
+        const db_owner_date = typeof results.db_owner_date === 'string' ? results.db_owner_date.toLowerCase() : '';
 
         return (
             customer_name.includes(searchQuery.toLowerCase()) ||
-            manure_total.includes(searchQuery.toLowerCase()) ||
-            db_manure_date.includes(searchQuery.toLowerCase())
+            owner_total.includes(searchQuery.toLowerCase()) ||
+            db_owner_date.includes(searchQuery.toLowerCase())
         );
     });
 
@@ -244,7 +244,7 @@ console.log(result['data'][0]['ยอดเงินสะสมของเจ�
                             {filteredData?.map((results, index) => {
                                     return (
                                         <TableRow
-                                            key={results.manure_id}
+                                            key={results.mowner_id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row" align="center">
@@ -254,10 +254,10 @@ console.log(result['data'][0]['ยอดเงินสะสมของเจ�
                                             <TableCell align="lift">{results.customer_name}</TableCell>
 
 
-                                            <TableCell align="lift">{results.manure_total}</TableCell>
-                                            {/* <TableCell align="lift">{results.db_manure_date}</TableCell>  */}
+                                            <TableCell align="lift">{results.owner_total}</TableCell>
+                                            {/* <TableCell align="lift">{results.db_mowner_date}</TableCell>  */}
                                             <TableCell align="lift" >
-                                                {(new Date(results.db_manure_date)).toLocaleTimeString('th-TH', {
+                                                {(new Date(results.db_owner_date)).toLocaleTimeString('th-TH', {
                                                     year: 'numeric',
                                                     month: 'long',
                                                     day: 'numeric',
@@ -265,13 +265,13 @@ console.log(result['data'][0]['ยอดเงินสะสมของเจ�
                                                 })}
                                             </TableCell>
 
-                                            {/* <TableCell align="lift">{results.manure_pay}</TableCell>       */}
+                                            {/* <TableCell align="lift">{results.mowner_pay}</TableCell>       */}
 
                                             {/* <TableCell align="lift">
-                                                {results.manure_sumtotal === 0 ?
+                                                {results.mowner_sumtotal === 0 ?
                                                      <p><Button > ไม่มียอดการจ่าย </Button></p>
                                                     : null}
-                                                {results.manure_sumtotal !== 0 ? <p>{results.manure_sumtotal}</p> : null}
+                                                {results.mowner_sumtotal !== 0 ? <p>{results.mowner_sumtotal}</p> : null}
                                             </TableCell>                                       */}
 
 <TableCell align="lift">
@@ -282,10 +282,10 @@ console.log(result['data'][0]['ยอดเงินสะสมของเจ�
                                                                 ทำรายการ
                                                             </Button>
                                                             <Menu {...bindMenu(popupState)}>
-                                                                <MenuItem onClick={() => Manuredisplay_detail(results.manure_id)}>ดูรายการ</MenuItem>
-                                                                <MenuItem onClick={() => Manureeditform(results.manure_id)}>จ่ายเงิน</MenuItem>
-                                                                {/* <MenuItem onClick={() => UserDelete(results.manure_id)}>ลบ</MenuItem> */}
-                                                                <MenuItem onClick={() => { if (window.confirm("คุณต้องการลบรายการนี้ใช่หรือไม่?")) { UserDelete(results.manure_id); }}}>ลบ</MenuItem>
+                                                                <MenuItem onClick={() => Mownerdisplay_detail(results.owner_id)}>ดูรายการ</MenuItem>
+                                                                <MenuItem onClick={() => Mownereditform(results.owner_id)}>ถอนเงิน</MenuItem>
+                                                                {/* <MenuItem onClick={() => UserDelete(results.mowner_id)}>ลบ</MenuItem> */}
+                                                                <MenuItem onClick={() => { if (window.confirm("คุณต้องการลบรายการนี้ใช่หรือไม่?")) { UserDelete(results.mowner_id); }}}>ลบ</MenuItem>
                                                             </Menu>
                                                         </React.Fragment>
                                                     )}

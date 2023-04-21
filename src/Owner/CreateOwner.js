@@ -22,6 +22,25 @@ import Select from '@mui/material/Select';
 import { useParams } from 'react-router-dom';
 
 
+function fncSum() {
+
+    const totalprofittoday = parseFloat(document.frmMain.totalprofittoday.value);
+
+    const income = parseFloat(document.frmMain.income.value);
+
+    if (isNaN(income) || income === "") {
+        document.frmMain.income.focus();
+        return;
+    }
+
+
+
+    if (totalprofittoday === 0) {
+        document.frmMain.totalprofittoday.value = income;
+    } else {
+        document.frmMain.totalprofittoday.value = income;
+    }
+}
 
 const theme = createTheme();
 
@@ -117,13 +136,14 @@ export default function SignUp() {
 
 
         const jsonData = {
+            owner_userid: users_id,
             users_id: data.get('users_id'),
             owner_total: data.get('owner_total'),
         }
-        console.log(jsonData)
+        console.log(users_id)
 
 
-        if ((jsonData.users_id && jsonData.owner_total) === '') {
+        if ((jsonData.users_id && jsonData.owner_total&& jsonData.owner_userid) === '') {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
@@ -137,8 +157,8 @@ export default function SignUp() {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.status === 'Ok') {
-                        window.location = '/Manuredisplay'
-                        alert('สร้างรายการขายน้ำยางเรียบร้อย')
+                        window.location = '/Owner/OwnerData'
+                        alert('สร้างรายการถอนเรียบร้อย')
                         console.log(data)
                     } else {
                         alert('register failed')
@@ -157,6 +177,15 @@ export default function SignUp() {
     };
 
     // DATE_FORMAT(data_date, '%d/%m/%Y')
+
+
+    const [selectedCustomerId, setSelectedCustomerId] = useState('');
+
+    const handleCustomerSelect = (event) => {
+        setSelectedCustomerId(event.target.value);
+    };
+
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -194,18 +223,23 @@ export default function SignUp() {
 
                             <Grid item xs={12} >
                                 <FormControl fullWidth>
-                                    <InputLabel name="users_id" id="users_id">ชื่อลูกค้า</InputLabel>
+                                    <InputLabel name="users_id" id="users_id">
+                                        ชื่อลูกค้า
+                                    </InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="users_id"
                                         label="ชื่อลูกค้า"
                                         name="users_id"
+                  
+                                        onChange={handleCustomerSelect}
                                     >
-                                        {items.data?.map((data, index) => (
-
-                                            <MenuItem value={data.customer_id}> ชื่อ: {data.customer_name} ยอดเงิน :{data.เงินส่วนคนตัด} วันที่: {data.data_date}  </MenuItem>
+                                        {items.data
+                                        ?.map((data, index) => (
+                                            <MenuItem value={data.customer_id}>
+                                                ชื่อ: {data.customer_name} 
+                                            </MenuItem>
                                         ))}
-
 
                                     </Select>
                                 </FormControl>
@@ -213,14 +247,36 @@ export default function SignUp() {
 
                             <Grid item xs={12}>
 
-                                <TextField
+                                {/* <TextField
                                     id="owner_total"
-                                    label="ยอดทั้งหมด"
+                                    label="ยอดถอน"
                                     name="owner_total"
                                     type="number"
                                     fullWidth
                                     aria-describedby="emailHelp" placeholder=""
-                                />
+                                /> */}
+
+                                <FormControl fullWidth>
+                                    <InputLabel name="owner_total" id="owner_total">
+                                        ยอดเงิน
+                                    </InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="owner_total"
+                                        label="ยอดเงิน"
+                                        name="owner_total"
+                                        
+                                    >
+                                        {items.data
+                                            ?.filter((data) => data.customer_id === selectedCustomerId)
+                                            .map((data, index) => (
+                                                <MenuItem value={data.เงินส่วนคนตัด}>
+                                                     ยอดเงิน :{data.เงินส่วนคนตัด} วันที่:{' '}
+                                                    {data.data_date}
+                                                </MenuItem>
+                                            ))}
+                                    </Select>
+                                </FormControl>
 
                             </Grid>
 

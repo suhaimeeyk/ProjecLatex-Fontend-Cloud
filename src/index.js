@@ -93,6 +93,8 @@ import Cumulative_balanceDisplay_detailUser from './user/Cumulative_balanceDispl
 import DashboarCostomerOwner from './Owner/DashboarCostomer'
 import OwnerData from './Owner/OwnerData'
 import CreateOwner from './Owner/CreateOwner'
+import ManureeditformOwner from './Owner/Manureeditform'
+import Ownerdisplay_detailUser from './Owner/Ownerdisplay_detailUser'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -191,6 +193,8 @@ root.render(
         <Route path="/Owner/DashboarCostomer" element={<DashboarCostomerOwner />} />
         <Route path="/Owner/OwnerData" element={<OwnerData />} />
         <Route path="/Owner/CreateOwner" element={<CreateOwner />} />
+        <Route path="/Owner/Manureeditform/:owner_id" element={<ManureeditformOwner />} />
+        <Route path="/Owner/Ownerdisplay_detailUser/:owner_id" element={<Ownerdisplay_detailUser />} />
 
 
 
