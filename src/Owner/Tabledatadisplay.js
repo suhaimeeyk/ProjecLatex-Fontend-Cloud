@@ -72,7 +72,7 @@ export default function Users() {
           };
 
 
-        fetch("https://latexplatform-api.coecore.com/db_dataCostomer/"+users_id , requestOptions)
+        fetch("https://latexplatform-api.coecore.com/db_dataCostomerOwner/"+users_id , requestOptions)
         .then(res => res.json())
         .then((result) => {
             setItems(result);
