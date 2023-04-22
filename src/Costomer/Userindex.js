@@ -323,7 +323,7 @@ const handleLogout = (event) => {
             {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
-            แก้ข้อมูลส่วนตัว
+            แก้ไขข้อมูลส่วนตัว
           </Typography>
 
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
