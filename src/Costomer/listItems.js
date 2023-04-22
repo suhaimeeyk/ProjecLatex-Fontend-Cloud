@@ -37,14 +37,14 @@ export const mainListItems = (
             </ListItemButton>
         </Link>
 
-        <Link href="/Costomer/ManuredisplayUser" underline="none">
+        {/* <Link href="/Costomer/ManuredisplayUser" underline="none">
             <ListItemButton>
                 <ListItemIcon>
                     <PeopleIcon />
                 </ListItemIcon>
                 <ListItemText primary="ค่าปุ๋ย" />
             </ListItemButton>
-        </Link>
+        </Link> */}
 
         <Link href="/Costomer/RevealdisplayUser" underline="none">
             <ListItemButton>
