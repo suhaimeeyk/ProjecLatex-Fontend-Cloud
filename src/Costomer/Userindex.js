@@ -323,7 +323,7 @@ const handleLogout = (event) => {
             {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
-            Edit Users
+            แก้ข้อมูลส่วนตัว
           </Typography>
 
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -336,7 +336,7 @@ const handleLogout = (event) => {
                   required
                   fullWidth
                   id="users_name"
-                  label="Name"
+                  label="ชื่อ"
                   onChange={ (e) => setUsers_name(e.target.value)}
                   value={users_name}
                 />
@@ -350,7 +350,7 @@ const handleLogout = (event) => {
                   required
                   fullWidth
                   id="users_tel"
-                  label="Tell"
+                  label="เบอร์ศัพท์"
                   name="users_tel"
                   autoComplete="family-name"
                   onChange={ (e) => setUsers_tel(e.target.value)}

@@ -163,7 +163,7 @@ export default function SignInSide() {
                 required
                 fullWidth
                 name="customer_tel"
-                label="เบอร์โทรศัพย์"
+                label="เบอร์โทรศัพท์"
                 type="password"
                 id="customer_tel"
                 autoComplete="current-password"

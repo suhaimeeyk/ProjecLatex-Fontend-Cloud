@@ -178,7 +178,7 @@ export default function Users() {
                             <TableCell align="center">ลำดับ</TableCell>
                             <TableCell align="lift">วันที่ทำรายการ</TableCell>
                             <TableCell align="lift">ชื่อลูกค้า</TableCell>
-                            <TableCell align="lift">ประเภท</TableCell>
+                            {/* <TableCell align="lift">ประเภท</TableCell> */}
                             <TableCell align="lift">น้ำหนักรวมทั้งหมด</TableCell>
                             <TableCell align="lift">น้ำหนักแกลลอน</TableCell>
                             <TableCell align="lift">น้ำหนักหักลบแกลลอน</TableCell>
@@ -186,9 +186,9 @@ export default function Users() {
                             <TableCell align="lift">น้ำยาแห้ง</TableCell>
                             <TableCell align="lift">ราคา</TableCell>
                             <TableCell align="lift">จำนวนเงินทั้งหมด</TableCell>
-                            <TableCell align="lift">เงินแบ่ง</TableCell>
-                            <TableCell align="lift">เงินฝาก</TableCell>
-                            <TableCell align="lift">สถานะ</TableCell>
+                            <TableCell align="lift">เงินส่วนคนตัด</TableCell>
+                            <TableCell align="lift">เงินส่วนเจ้าของสวน</TableCell>
+                            {/* <TableCell align="lift">สถานะ</TableCell> */}
 
                             {/* <TableCell align="lift">Action</TableCell> */}
              
@@ -215,7 +215,7 @@ export default function Users() {
                                             </TableCell>
 
                                             <TableCell align="lift">{results.customer_name}</TableCell>
-                                            <TableCell align="lift">{results.catwithdraw_name}</TableCell>
+                                            {/* <TableCell align="lift">{results.catwithdraw_name}</TableCell> */}
                                             <TableCell align="lift">{results.data_totalgallon}</TableCell>
                                             <TableCell align="lift">{results.data_wgallon}</TableCell>
                                             <TableCell align="lift">{results.data_disgallon}</TableCell>
@@ -235,14 +235,14 @@ export default function Users() {
                                                     : null}
                                                 {results.data_depositprice !== 0 ? <p>{results.data_depositprice}</p> : null}
                                             </TableCell>
-                                            <TableCell align="lift">
+                                            {/* <TableCell align="lift">
                                                 {results.status_id === 0 ?
                                                     <Button > ยังไม่ได้ทำรายการ </Button>
                                                     : null}
                                                 {results.status_id === 1 ? <p>เบิกทั้งหมด</p> : null}
                                                 {results.status_id === 2 ? <p>45% - 55%</p> : null}
                                                 {results.status_id === 3 ? <p>%2</p> : null}
-                                            </TableCell>
+                                            </TableCell> */}
 
 
                                             {/* <TableCell align="lift">

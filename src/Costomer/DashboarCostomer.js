@@ -729,7 +729,7 @@ function DashboardContent() {
                                             <Area label="" type="monotone" dataKey="ราคายางทั้งหมด" fill="#8884d8" stroke="#8884d8" />
 
                                             <Bar dataKey="รายการเบิก" stackId="a" barSize={20} fill="#FF0000" />
-                                            <Bar dataKey="รายการปุ๋ย" stackId="b" barSize={20} fill="#0FFF00" /> // ผลร่วมค่าปุ๋ย ตัวแปร
+                                            {/* <Bar dataKey="รายการปุ๋ย" stackId="b" barSize={20} fill="#0FFF00" /> // ผลร่วมค่าปุ๋ย ตัวแปร */}
 
 
                                         </ComposedChart>

@@ -90,7 +90,7 @@ export default function Users() {
           <Box align="center" display="flex">
             <Box sx={{ flexGrow: 1 }}>
               <Typography variant="h6" gutterBottom >
-                รายการค่าปุ๋ย
+                ราคาน้ำยางวันนี้
               </Typography>
             </Box>
             {/* <Box>
