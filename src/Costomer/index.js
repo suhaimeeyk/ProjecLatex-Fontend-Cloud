@@ -175,7 +175,7 @@ export default function Album() {
                         color="#FFFFFF"
                         component="p"
                     >
-                        แพล็ตฟอร์มจัดซื้อน้ำยางพารา
+                        แพลตฟอร์มจัดซื้อน้ำยางพารา
                     </Typography>
                     <Copyright />
                 </Box>

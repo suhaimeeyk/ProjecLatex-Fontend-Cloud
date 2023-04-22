@@ -20,6 +20,7 @@ import Editdb_catwithdraw from './Editdb_catwithdraw'
 import Alldb_pricerubbers from './Alldb_pricerubbers'
 import UserAlldb_pricerubbers from './user/Alldb_pricerubbers'
 import UserAlldb_pricerubbersCostomer from './Costomer/Alldb_pricerubbers'
+import UserAlldb_pricerubbersOwner from './Owner/Alldb_pricerubbers'
 import EditUserdb_pricerubbers from './EditUserdb_pricerubbers'
 import UserEditUserdb_pricerubbers from './user/EditUserdb_pricerubbers'
 import Createdb_pricerubbers from './Createdb_pricerubbers'
@@ -29,6 +30,7 @@ import Createdb_customer from './Createdb_customer'
 import UserCreatedb_customer from './user/Createdb_customer'
 import Userindex from './user/Userindex'
 import UserindexCostomer from './Costomer/Userindex'
+import UserindexCostomerOwner from './Owner/Userindex'
 import UserAlldb_customer from './user/Alldb_customer'
 import EditUserdb_customer from './EditUserdb_customer'
 import UserEditUserdb_customer from './user/EditUserdb_customer'
@@ -114,6 +116,7 @@ root.render(
         <Route path="/Createdb_catusers" element={<Createdb_catusers />} />
         <Route path="/user/Userindex" element={<Userindex />} />
         <Route path="/Costomer/Userindex" element={<UserindexCostomer />} />
+        <Route path="/Owner/Userindex" element={<UserindexCostomerOwner />} />
         <Route path="/EditUser/:users_id" element={<EditUser />} />
         <Route path="/Navbar" element={<Navbar />} />
         <Route path="/Alldb_catusers" element={<Alldb_catusers />} />
@@ -126,6 +129,7 @@ root.render(
         <Route path="/Alldb_pricerubbers" element={<Alldb_pricerubbers />} />
         <Route path="/user/Alldb_pricerubbers" element={<UserAlldb_pricerubbers />} />
         <Route path="/Costomer/Alldb_pricerubbers" element={<UserAlldb_pricerubbersCostomer />} />
+        <Route path="/Owner/Alldb_pricerubbers" element={<UserAlldb_pricerubbersOwner />} />
         <Route path="/Createdb_pricerubbers" element={<Createdb_pricerubbers />} />
         <Route path="/user/Createdb_pricerubbers" element={<UserCreatedb_pricerubbers />} />
         <Route path="/Alldb_customer" element={<Alldb_customer />} />
