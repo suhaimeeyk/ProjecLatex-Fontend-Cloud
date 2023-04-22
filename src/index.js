@@ -73,6 +73,7 @@ import RevealditformUser from './user/RevealditformUser'
 import Revealdisplay_detail from './Revealdisplay_detail'
 import Revealdisplay_detailUser from './user/Revealdisplay_detailUser'
 import Revealdisplay_detailCostomer from './Costomer/Revealdisplay_detailUser'
+import Revealdisplay_detailCostomerOwner from './Owner/Revealdisplay_detailUser'
 import Dashboard from './Dashboard'
 import DashboardUser from './user/DashboardUser'
 import Profit from './Profit'
@@ -168,6 +169,7 @@ root.render(
         <Route path="/Revealdisplay_detail/:reveal_id" element={<Revealdisplay_detail />} />
         <Route path="/user/Revealdisplay_detailUser/:reveal_id" element={<Revealdisplay_detailUser />} />
         <Route path="/Costomer/Revealdisplay_detailUser/:reveal_id" element={<Revealdisplay_detailCostomer />} />
+        <Route path="/Owner/Revealdisplay_detailUser/:reveal_id" element={<Revealdisplay_detailCostomerOwner />} />
         <Route path="/Revealdisplay" element={<Revealdisplay />} />
         <Route path="/user/RevealdisplayUser" element={<RevealdisplayUser />} />
         <Route path="/Owner/RevealdisplayUser" element={<RevealdisplayUserOwner />} />
