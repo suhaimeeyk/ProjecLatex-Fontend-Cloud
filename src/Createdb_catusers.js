@@ -50,7 +50,7 @@ export default function SignUp() {
 
         if(data.status === 'Ok' ) {
             window.location ='/Alldb_catusers'
-            alert('สร้างประเภทการเบิกเงินเรียบร้อย')
+            alert('สร้างสร้างประเภทลูกค้าเรียบร้อย')
         }else{
             alert('register failed')
 
