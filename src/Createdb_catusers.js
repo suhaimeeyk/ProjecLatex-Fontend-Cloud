@@ -38,7 +38,7 @@ export default function SignUp() {
         alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
       }else{
 
-    fetch('https://latexplatform-api.coecore.com/Createdb_catwithdraw', {
+    fetch('https://latexplatform-api.coecore.com/Createdb_catusers', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export default function SignUp() {
         .then((data) => {
 
         if(data.status === 'Ok' ) {
-            window.location ='/Alldb_catwithdraw'
+            window.location ='/Alldb_catusers'
             alert('สร้างประเภทการเบิกเงินเรียบร้อย')
         }else{
             alert('register failed')
