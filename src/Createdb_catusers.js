@@ -30,11 +30,11 @@ export default function SignUp() {
     
 
     const  jsonData = {
-        catwithdraw_name: data.get('catwithdraw_name'),
+        catusers_name: data.get('catusers_name'),
     }
 
     
-    if ( (jsonData.catwithdraw_name) ==='') {
+    if ( (jsonData.catusers_name) ==='') {
         alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
       }else{
 
@@ -96,10 +96,10 @@ export default function SignUp() {
                 <Grid item xs={12} sm={6} >
                 <TextField
                   autoComplete="given-name"
-                  name="catwithdraw_name"
+                  name="catusers_name"
                   required
                   fullWidth
-                  id="catwithdraw_name"
+                  id="catusers_name"
                   label="Name"
                 />
               </Grid>
