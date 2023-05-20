@@ -195,6 +195,7 @@ export default function SignUp() {
         const jsonData = {
             data_usersid: data.get('data_usersid'),
             cat_id: data.get('cat_id'),
+            owder_id: data.get('owder_id'),
             inputpercent: data.get('inputpercent'),
             data_totalgallon: data.get('data_totalgallon'),
             data_wgallon: data.get('data_wgallon'),
@@ -209,7 +210,7 @@ export default function SignUp() {
         console.log(jsonData)
 
 
-        if ((jsonData.data_usersid && jsonData.cat_id && jsonData.inputpercent && jsonData.data_totalgallon && jsonData.data_wgallon && jsonData.data_disgallon && jsonData.data_dryrubber && jsonData.data_price && jsonData.data_pricetotal) === '') {
+        if ((jsonData.data_usersid && jsonData.cat_id && jsonData.owder_id && jsonData.inputpercent && jsonData.data_totalgallon && jsonData.data_wgallon && jsonData.data_disgallon && jsonData.data_dryrubber && jsonData.data_price && jsonData.data_pricetotal) === '') {
             alert('เกิดข้อผิดพลาด!! กรุณาเช็คข้อมูลข้อมูล')
         } else {
 
@@ -223,7 +224,7 @@ export default function SignUp() {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.status === 'Ok') {
-                        window.location = '/user/datadisplay'
+                        window.location = '/datadisplay'
                         alert('สร้างรายการขายน้ำยางเรียบร้อย')
                         console.log(data)
                     } else {
@@ -241,6 +242,7 @@ export default function SignUp() {
         }
 
     };
+
 
 
 
