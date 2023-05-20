@@ -86,7 +86,22 @@ export default function SignInSide() {
               window.location = '/Costomer/DashboarCostomer';
             }, 3000); // Wait 8 seconds before redirecting
             
-          }else {
+          }else if (data.catcustomer_id === '10') {
+  
+            Swal.fire({
+              title: 'Login Success..',
+              text: 'กำลังเดินการเข้าสู่ระบบ',
+              icon: 'success',
+              timer: 3000, // Display time increased to 8 seconds
+              showConfirmButton: false
+            });
+            setTimeout(() => {
+              window.location = '../Owner/DashboarCostomer';
+            }, 3000); // Wait 8 seconds before redirecting
+  
+            
+          }
+          else {
   
             Swal.fire({
               title: 'Login Error!',
