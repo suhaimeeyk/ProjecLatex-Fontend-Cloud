@@ -224,7 +224,7 @@ export default function SignUp() {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.status === 'Ok') {
-                        window.location = '/datadisplay'
+                        window.location = '/user/datadisplay'
                         alert('สร้างรายการขายน้ำยางเรียบร้อย')
                         console.log(data)
                     } else {
