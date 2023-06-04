@@ -330,25 +330,31 @@ export default function Users() {
                                             {/* <TableCell align="lift">{results.data_percent}</TableCell> */}
                                             <TableCell align="lift">{results.data_dryrubber}</TableCell>
                                             <TableCell align="lift">{results.data_price}</TableCell>
-                                            <TableCell align="lift">
-                                                {results.data_shareprice === 0 ?
-                                                    <p><Button > ยังไม่ได้ทำรายการ </Button></p>
-                                                    : null}
-                                                {results.data_shareprice !== 0 ? <p>{results.data_shareprice}</p> : null}
+                                            <TableCell align="left">
+                                                {results.data_shareprice === 0 ? (
+                                                    <p style={{ color: 'red' }}>ยังไม่ได้ทำรายการ</p>
+                                                ) : results.status_id === 1 ? (
+                                                    <p>0</p>
+                                                ) : (
+                                                    <p>{results.data_shareprice}</p>
+                                                )}
                                             </TableCell>
-                                            <TableCell align="lift">
-                                                {results.data_depositprice === 0 ?
-                                                    <Button  > ยังไม่ได้ทำรายการ </Button>
-                                                    : null}
-                                                {results.data_depositprice !== 0 ? <p>{results.data_depositprice}</p> : null}
+                                            <TableCell align="left">
+                                                {results.data_depositprice === 0 ? (
+                                                    <p style={{ color: 'red' }}>ยังไม่ได้ทำรายการ</p>
+                                                ) : results.status_id === 1 ? (
+                                                    <p>0</p>
+                                                ) : (
+                                                    <p>{results.data_depositprice}</p>
+                                                )}
                                             </TableCell>
                                             <TableCell align="lift">
                                                 {results.status_id === 0 ?
-                                                    <Button > ยังไม่ได้ทำรายการ </Button>
+                                                    <p style={{ color: 'red' }}>ยังไม่ได้ทำรายการ</p>
                                                     : null}
-                                                {results.status_id === 1 ? <p>เบิกทั้งหมด</p> : null}
-                                                {results.status_id === 2 ? <p>45/55</p> : null}
-                                                {results.status_id === 3 ? <p>50/50</p> : null}
+                                                {results.status_id === 1 ? <p style={{ color: 'green' }}>เบิกทั้งหมด</p> : null}
+                                                {results.status_id === 2 ? <p>%2</p> : null}
+                                                {results.status_id === 3 ? <p>45% - 55%</p> : null}
                                             </TableCell>
 
 

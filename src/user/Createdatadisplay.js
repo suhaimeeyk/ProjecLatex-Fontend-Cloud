@@ -243,226 +243,262 @@ export default function SignUp() {
 
     };
 
+    const [Owner, setOwner] = useState([]);
 
+
+    useEffect(() => {
+        UserGetOwner()
+    }, [])
+
+
+    const UserGetOwner = () => {
+        fetch("https://latexplatform-api.coecore.com/OwnerSelect")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setOwner(result);
+                    // console.log(result)
+                }
+            )
+    }
 
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                {/* <Box
+                    component="img"
                     sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
+                        height: 150,
                     }}
-                >
-                    <Box
-                        component="img"
-                        sx={{
-                            height: 150,
-                        }}
-                        alt="Your logo."
-                        src={Logo}
-                    />
-                    <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        สร้างรายการขายน้ำยาง
-                    </Typography>
-                    <Box component="form" name="frmMain" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    alt="Your logo."
+                    src={Logo}
+                /> */}
+                <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    สร้างรายการขายน้ำยาง
+                </Typography>
+                <Box component="form" name="frmMain" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
 
-                        <Grid container spacing={2}>
+                    <Grid container spacing={2}>
 
-                            <Grid item xs={12} sm={6} >
-                                <FormControl fullWidth>
-                                    <InputLabel name="data_usersid" id="data_usersid">ชื่อลูกค้า</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="data_usersid"
-                                        label="ชื่อลูกค้า"
-                                        name="data_usersid"
-                                    >
-                                        {items.data?.map((data, index) => (
+                        <Grid item xs={12} sm={6} >
+                            <FormControl fullWidth>
+                                <InputLabel name="data_usersid" id="data_usersid">ชื่อผู้ขาย</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="data_usersid"
+                                    label="ชื่อผู้ขาย"
+                                    name="data_usersid"
+                                >
+                                    {items.data?.map((data, index) => (
 
-                                            <MenuItem value={data.customer_id}>{data.customer_name}</MenuItem>
-                                        ))}
+                                        <MenuItem value={data.customer_id}>{data.customer_name}</MenuItem>
+                                    ))}
 
-                                    </Select>
-                                </FormControl>
-                            </Grid>
+                                </Select>
+                            </FormControl>
+                        </Grid>
 
-                            <Grid item xs={12} sm={6} >
-                                <FormControl fullWidth>
-                                    <InputLabel name="cat_id" id="cat_id">ประเภทการเบิก</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="cat_id"
-                                        label="ประเภทการเบิก"
-                                        name="cat_id"
+                        <Grid item xs={12} sm={6} >
+                            <FormControl fullWidth>
+                                <InputLabel name="cat_id" id="cat_id">ประเภทการเบิก</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="cat_id"
+                                    label="ประเภทการเบิก"
+                                    name="cat_id"
 
-                                    >
-                                        {Users.results?.map((results, index) => (
+                                >
+                                    {Users.results?.map((results, index) => (
 
-                                            <MenuItem value={results.catwithdraw_id}>{results.catwithdraw_name}</MenuItem>
-                                        ))}
+                                        <MenuItem value={results.catwithdraw_id}>{results.catwithdraw_name}</MenuItem>
+                                    ))}
 
-                                    </Select>
-                                </FormControl>
-                            </Grid>
+                                </Select>
+                            </FormControl>
+                        </Grid>
 
+                        <Grid item xs={12} >
+                            <FormControl fullWidth>
+                                <InputLabel name="owder_id" id="owder_id">เจ้าของสวน</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="owder_id"
+                                    label="เจ้าของสวน"
+                                    name="owder_id"
 
-                            <Grid item xs={12} sm={6} >
+                                >
+                                    {Owner.results?.map((results, index) => (
 
-                                <TextField
-                                    id="data_totalgallon"
-                                    label="น้ำหนักรวมทั้งหมด"
-                                    name="data_totalgallon"
-                                    type="number"
-                                    onChange={fncSum} aria-describedby="emailHelp" placeholder=""
-                                />
+                                        <MenuItem value={results.customer_id}>{results.customer_name}</MenuItem>
+                                    ))}
 
-                            </Grid>
-
-                            <Grid item xs={12} sm={6} >
-
-                                <TextField
-                                    id="data_wgallon"
-                                    label="น้ำหนักแกลลอน"
-                                    name="data_wgallon"
-                                    type="number"
-                                    // InputLabelProps={{
-                                    //     shrink: true,
-                                    // }}
-                                    onChange={fncSum} aria-describedby="emailHelp" placeholder=""
-                                />
+                                </Select>
+                            </FormControl>
+                        </Grid>
 
 
-                            </Grid>
+                        <Grid item xs={12} sm={6} >
 
-                            <Grid item xs={12}>
+                            <TextField
+                                id="data_totalgallon"
+                                label="น้ำหนักรวมทั้งหมด"
+                                name="data_totalgallon"
+                                type="number"
+                                onChange={fncSum} aria-describedby="emailHelp" placeholder=""
+                            />
 
-                                <TextField
-                                    id="data_disgallon"
-                                    label="น้ำหนักหักลบแกลลอน"
-                                    name="data_disgallon"
-                                    defaultValue="น้ำหนักรวมทั้งหมด - น้ำหนักแกลลอน"
-                                    variant="filled"
-                                    InputProps={{
-                                        shrink: true,
-                                        readOnly: true,
-                                    }}
-                                    fullWidth
-                                    onChange={fncSum} aria-describedby="emailHelp" placeholder="น้ำหนักรวมทั้งหมด - น้ำหนักแกลลอน"
-                                    focused
-                                />
-                            </Grid>
+                        </Grid>
 
-                            <Grid item xs={12}>
+                        <Grid item xs={12} sm={6} >
 
-                                <TextField
-                                    id="inputpercent"
-                                    label="กรอกเปอร์เซ็น"
-                                    name="inputpercent"
-                                    type="number"
-                                    fullWidth
-                                    onChange={fncSum2} aria-describedby="emailHelp" placeholder=""
-                                />
-                            </Grid>
+                            <TextField
+                                id="data_wgallon"
+                                label="น้ำหนักแกลลอน"
+                                name="data_wgallon"
+                                type="number"
+                                // InputLabelProps={{
+                                //     shrink: true,
+                                // }}
+                                onChange={fncSum} aria-describedby="emailHelp" placeholder=""
+                            />
 
 
-                            <Grid item xs={12}>
-                                <FormControl fullWidth>
-                                    <InputLabel name="data_price" id="data_price">เปอร์เซ็น</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        label="เปอร์เซ็น"
-                                        id="data_price"
-                                        name="data_price"
-                                        onChange={fncSum3}
-                                    >
-                                        {db_pricerubbers.results?.map((results, index) => (
+                        </Grid>
 
-                                            <MenuItem value={results.price}>{results.percent} ราคา {results.price}</MenuItem>
-                                        ))}
+                        <Grid item xs={12}>
 
-                                    </Select>
-                                </FormControl>
-                            </Grid>
+                            <TextField
+                                id="data_disgallon"
+                                label="น้ำหนักหักลบแกลลอน"
+                                name="data_disgallon"
+                                defaultValue="น้ำหนักรวมทั้งหมด - น้ำหนักแกลลอน"
+                                variant="filled"
+                                InputProps={{
+                                    shrink: true,
+                                    readOnly: true,
+                                }}
+                                fullWidth
+                                onChange={fncSum} aria-describedby="emailHelp" placeholder="น้ำหนักรวมทั้งหมด - น้ำหนักแกลลอน"
+                                focused
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+
+                            <TextField
+                                id="inputpercent"
+                                label="กรอกเปอร์เซ็น"
+                                name="inputpercent"
+                                type="number"
+                                fullWidth
+                                onChange={fncSum2} aria-describedby="emailHelp" placeholder=""
+                            />
+                        </Grid>
 
 
-                            <Grid item xs={12}>
-
-                                <TextField
-                                    readOnly="true"
-                                    label="น้ำยาแห้ง"
-                                    id="data_dryrubber"
-                                    name="data_dryrubber"
-                                    // value="data_dryrubber"
-                                    type="number"
-                                    variant="filled"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    fullWidth
+                        <Grid item xs={12}>
+                            <FormControl fullWidth>
+                                <InputLabel name="data_price" id="data_price">เปอร์เซ็น</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    label="เปอร์เซ็น"
+                                    id="data_price"
+                                    name="data_price"
                                     onChange={fncSum3}
-                                    aria-describedby="emailHelp" placeholder="น้ำหนักหักลบแกลลอน * กรอกเปอร์เซ็น / 100"
-                                    focused
-                                />
+                                >
+                                    {db_pricerubbers.results?.map((results, index) => (
 
-                            </Grid>
+                                        <MenuItem value={results.price}>{results.percent} ราคา {results.price}</MenuItem>
+                                    ))}
 
-
-
-                            <Grid item xs={12}>
-
-
-                                <TextField
-                                    id="data_pricetotal"
-                                    label="จำนวนเงินทั้งหมด"
-                                    name="data_pricetotal"
-                                    defaultValue=""
-                                    variant="filled"
-                                    InputProps={{
-                                        shrink: true,
-                                        readOnly: true,
-                                    }}
-                                    fullWidth
-                                    onChange={fncSum3} aria-describedby="emailHelp" placeholder="เปอร์เซ็น * น้ำยาแห้ง"
-                                    
-                                    focused
-                                />
-                            </Grid>
-
-
-                            {/* <Grid item xs={12}>
-                    <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="เพิ่มข้อมูล."
-                    />
-                </Grid> */}
+                                </Select>
+                            </FormControl>
                         </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            ยืนยัน
-                        </Button>
-                        <Grid container justifyContent="flex-end">
-                            <Grid item>
-                                <Link href="/user/datadisplay" variant="body2">
-                                    BACK
-                                </Link>
-                            </Grid>
+
+
+                        <Grid item xs={12}>
+
+                            <TextField
+                                readOnly="true"
+                                label="น้ำยาแห้ง"
+                                id="data_dryrubber"
+                                name="data_dryrubber"
+                                // value="data_dryrubber"
+                                type="number"
+                                variant="filled"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                fullWidth
+                                onChange={fncSum3}
+                                aria-describedby="emailHelp" placeholder="น้ำหนักหักลบแกลลอน * กรอกเปอร์เซ็น / 100"
+                                focused
+                            />
+
                         </Grid>
-                    </Box>
+
+
+
+                        <Grid item xs={12}>
+
+
+                            <TextField
+                                id="data_pricetotal"
+                                label="จำนวนเงินทั้งหมด"
+                                name="data_pricetotal"
+                                defaultValue=""
+                                variant="filled"
+                                InputProps={{
+                                    shrink: true,
+                                    readOnly: true,
+                                }}
+                                fullWidth
+                                onChange={fncSum3} aria-describedby="emailHelp" placeholder="เปอร์เซ็น * น้ำยาแห้ง"
+                                
+                                focused
+                            />
+                        </Grid>
+
+
+                        {/* <Grid item xs={12}>
+                <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="เพิ่มข้อมูล."
+                />
+            </Grid> */}
+                    </Grid>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        ยืนยัน
+                    </Button>
+                    <Grid container justifyContent="flex-end">
+                        <Grid item>
+                            <Link href="/user/datadisplay" variant="body2">
+                                BACK
+                            </Link>
+                        </Grid>
+                    </Grid>
                 </Box>
+            </Box>
 
-            </Container>
-        </ThemeProvider>
+        </Container>
+    </ThemeProvider>
     );
 }
