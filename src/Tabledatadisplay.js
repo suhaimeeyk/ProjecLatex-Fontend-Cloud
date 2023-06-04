@@ -353,8 +353,8 @@ export default function Users() {
                                                     <p style={{ color: 'red' }}>ยังไม่ได้ทำรายการ</p>
                                                     : null}
                                                 {results.status_id === 1 ? <p style={{ color: 'green' }}>เบิกทั้งหมด</p> : null}
-                                                {results.status_id === 2 ? <p>%2</p> : null}
-                                                {results.status_id === 3 ? <p>45% - 55%</p> : null}
+                                                {results.status_id === 2 ? <p style={{ color: '#008EDF' }}>%2</p> : null}
+                                                {results.status_id === 3 ? <p style={{ color: '#008EDF' }}>45% - 55%</p> : null}
                                             </TableCell>
 
 
