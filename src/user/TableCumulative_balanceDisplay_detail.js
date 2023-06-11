@@ -157,29 +157,42 @@ export default function Users() {
         // Get the dimensions of the page
         const pageWidth = 8.27; // A4 paper width in inches
         const pageHeight = 11.69; // A4 paper height in inches
-
-        // Use html2canvas to capture a screenshot of the entire page
-        html2canvas(pageRef.current, { scrollY: -window.scrollY }).then(canvas => {
-            // `canvas` now contains a rendered image of the entire page
-            const imgData = canvas.toDataURL('image/png');
-
-            // Calculate the scale factor to fit the image on an A4 page
-            const scaleFactor = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
-
-            // Calculate the width and height of the image after scaling
-            const imgWidth = canvas.width * scaleFactor;
-            const imgHeight = canvas.height * scaleFactor;
-
-            // Create a new jsPDF instance with A4 page size
-            const pdf = new jsPDF('p', 'in', 'a4');
-
-            // Add the image to the PDF and position it at the top of the page
-            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-
-            // Save the PDF with a custom name
-            pdf.save('example.pdf');
+      
+        // Get the table element
+        const tableElement = document.getElementById('table-container');
+      
+        // Use html2canvas to capture a screenshot of the table element
+        html2canvas(tableElement, { scrollY: -window.scrollY, backgroundColor: 'rgba(0, 0, 0, 0)' }).then(canvas => {
+          // `canvas` now contains a rendered image of the table element with a transparent background
+          const imgData = canvas.toDataURL('image/png');
+      
+          // Calculate the scale factor to fit the image on an A4 page
+          const scaleFactor = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+      
+          // Calculate the width and height of the image after scaling
+          const imgWidth = canvas.width * scaleFactor;
+          const imgHeight = canvas.height * scaleFactor;
+      
+          // Create a new jsPDF instance with A4 page size
+          const pdf = new jsPDF('p', 'in', 'a4');
+      
+          // Add the image to the PDF and position it at the top of the page
+          pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      
+          // Save the PDF with a custom name
+          pdf.save('example.pdf');
         });
-    };
+      };
+      
+      
+      
+            
+            
+      
+      
+      
+      
+      
 
 
 
@@ -204,7 +217,8 @@ export default function Users() {
                                 </Link>
                             </Box>
                         </Box>
-                        <TableContainer component={Paper}>
+                        <TableContainer component={Paper}  >
+                            <div  id="table-container">
                             <Table sx={{ minWidth: 500 }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -250,6 +264,7 @@ export default function Users() {
 
                                 </TableBody>
                             </Table>
+                            </div>
                         </TableContainer>
                         <Box align="center" display="flex" justifyContent="flex-end">
                         <button onClick={capturePage}>Capture and Save as PDF</button>
